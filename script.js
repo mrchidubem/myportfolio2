@@ -41,8 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ensure sidebar is visible on desktop
   const sidebar = document.querySelector('.sidebar');
-  if (window.matchMedia("(min-width: 768px)").matches && sidebar) {
-    sidebar.style.transform = 'translateX(0)';
+  const sidebarOverlay = document.querySelector('.sidebar-overlay');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  if (sidebar && sidebarOverlay && mobileMenuToggle) {
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      sidebar.style.transform = 'translateX(0)';
+      sidebarOverlay.classList.remove('active');
+      mobileMenuToggle.checked = false;
+    } else {
+      sidebar.style.transform = 'translateX(-100%)';
+      sidebarOverlay.classList.remove('active');
+      mobileMenuToggle.checked = false;
+    }
   }
 });
 
@@ -53,14 +63,16 @@ window.addEventListener('resize', () => {
   resizeTimeout = setTimeout(() => {
     applyTheme();
     const sidebar = document.querySelector('.sidebar');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    if (sidebar && mobileMenuToggle) {
+    if (sidebar && sidebarOverlay && mobileMenuToggle) {
       if (window.matchMedia("(min-width: 768px)").matches) {
         sidebar.style.transform = 'translateX(0)';
+        sidebarOverlay.classList.remove('active');
         mobileMenuToggle.checked = false;
       } else {
-        sidebar.style.transform = 'translateX(-100%)';
-        mobileMenuToggle.checked = false;
+        sidebar.style.transform = mobileMenuToggle.checked ? 'translateX(0)' : 'translateX(-100%)';
+        sidebarOverlay.classList.toggle('active', mobileMenuToggle.checked);
       }
     }
   }, 100);
@@ -106,35 +118,51 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
   closeBtn.setAttribute('role', 'button');
   closeBtn.setAttribute('aria-label', 'Close menu');
 
+  // Function to open sidebar
+  function openSidebar() {
+    mobileMenuToggle.checked = true;
+    sidebar.style.transform = 'translateX(0)';
+    sidebarOverlay.classList.add('active');
+    mobileMenuBtn.setAttribute('aria-label', 'Close menu');
+    sidebar.focus();
+  }
+
   // Function to close sidebar
   function closeSidebar() {
     mobileMenuToggle.checked = false;
     sidebar.style.transform = 'translateX(-100%)';
-    sidebarOverlay.style.display = 'none';
-    sidebarOverlay.style.opacity = '0';
+    sidebarOverlay.classList.remove('active');
     mobileMenuBtn.setAttribute('aria-label', 'Open menu');
     mobileMenuBtn.focus();
   }
 
   // Handle checkbox toggle
   mobileMenuToggle.addEventListener('change', () => {
-    const isOpen = mobileMenuToggle.checked;
-    sidebar.style.transform = isOpen ? 'translateX(0)' : 'translateX(-100%)';
-    sidebarOverlay.style.display = isOpen ? 'block' : 'none';
-    sidebarOverlay.style.opacity = isOpen ? '1' : '0';
-    mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    if (isOpen) {
-      sidebar.focus();
+    if (mobileMenuToggle.checked) {
+      openSidebar();
     } else {
-      mobileMenuBtn.focus();
+      closeSidebar();
     }
   });
 
+  // Open sidebar via mobile menu button
+  mobileMenuBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    mobileMenuToggle.checked = !mobileMenuToggle.checked;
+    mobileMenuToggle.dispatchEvent(new Event('change'));
+  });
+
   // Close sidebar via close button
-  closeBtn.addEventListener('click', closeSidebar);
+  closeBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeSidebar();
+  });
 
   // Close sidebar via overlay click
-  sidebarOverlay.addEventListener('click', closeSidebar);
+  sidebarOverlay.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeSidebar();
+  });
 
   // Keyboard support for mobile menu button
   mobileMenuBtn.addEventListener('keydown', (e) => {
@@ -208,8 +236,6 @@ document.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
   const likeBtn = e.target.closest('.like-btn');
   if (likeBtn) {
-    likeBtn.setAttribute('tabindex', '0');
-    likeBtn.setAttribute('role', 'button');
     const blogId = likeBtn.getAttribute('data-blog-id');
     const likeCountSpan = likeBtn.querySelector('.like-count');
     let likes = parseInt(localStorage.getItem(`likes-${blogId}`)) || 0;
