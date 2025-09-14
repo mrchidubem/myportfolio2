@@ -12,10 +12,12 @@ themeToggle.addEventListener('click', () => {
 });
 
 // Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'light';
+const savedTheme = localStorage.getItem('theme') || 'dark';
 body.setAttribute('data-theme', savedTheme);
 if (savedTheme === 'dark') {
   themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+} else {
+  themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
 }
 
 // Blog Toggle Functionality
@@ -44,6 +46,48 @@ document.addEventListener('click', (e) => {
     
     // Scroll back to grid
     card.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Like Button Functionality
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.like-btn')) {
+    const likeBtn = e.target.closest('.like-btn');
+    const blogId = likeBtn.getAttribute('data-blog-id');
+    const likeCountSpan = likeBtn.querySelector('.like-count');
+    let likes = parseInt(localStorage.getItem(`likes-${blogId}`)) || 0;
+    const isLiked = likeBtn.classList.contains('liked');
+
+    if (isLiked) {
+      likes = Math.max(0, likes - 1); // Prevent negative likes
+      likeBtn.classList.remove('liked');
+    } else {
+      likes += 1;
+      likeBtn.classList.add('liked');
+    }
+
+    likeCountSpan.textContent = likes;
+    localStorage.setItem(`likes-${blogId}`, likes);
+
+    // Sync like state across teaser and full article
+    document.querySelectorAll(`.like-btn[data-blog-id="${blogId}"]`).forEach(btn => {
+      btn.querySelector('.like-count').textContent = likes;
+      if (isLiked) {
+        btn.classList.remove('liked');
+      } else {
+        btn.classList.add('liked');
+      }
+    });
+  }
+});
+
+// Initialize like counts from localStorage
+document.querySelectorAll('.like-btn').forEach(btn => {
+  const blogId = btn.getAttribute('data-blog-id');
+  const likes = parseInt(localStorage.getItem(`likes-${blogId}`)) || 0;
+  btn.querySelector('.like-count').textContent = likes;
+  if (likes > 0) {
+    btn.classList.add('liked');
   }
 });
 
