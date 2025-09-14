@@ -2,33 +2,37 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Function to determine and set theme
-function setThemeBasedOnScreen() {
+// Function to apply theme based on screen size and saved preference
+function applyTheme() {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const savedTheme = localStorage.getItem('theme');
-  // Set dark theme as default for mobile if no saved theme, otherwise use saved theme
-  const defaultTheme = isMobile && !savedTheme ? 'dark' : (savedTheme || 'light');
+  // Use dark theme for mobile if no saved theme, otherwise use saved or light
+  const theme = isMobile ? (savedTheme || 'dark') : (savedTheme || 'light');
 
-  body.setAttribute('data-theme', defaultTheme);
-  themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
-  themeToggle.querySelector('i').classList.add(defaultTheme === 'dark' ? 'fa-sun' : 'fa-moon');
+  body.setAttribute('data-theme', theme);
+  // Update toggle button icon
+  const icon = themeToggle.querySelector('i');
+  icon.classList.remove('fa-moon', 'fa-sun');
+  icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
 }
 
-// Set theme on initial load
-setThemeBasedOnScreen();
-
-// Update theme on window resize
-window.addEventListener('resize', setThemeBasedOnScreen);
+// Apply theme on page load
+applyTheme();
 
 // Theme toggle button click handler
 themeToggle.addEventListener('click', () => {
   const currentTheme = body.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   body.setAttribute('data-theme', newTheme);
-  themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
-  themeToggle.querySelector('i').classList.add(newTheme === 'dark' ? 'fa-sun' : 'fa-moon');
   localStorage.setItem('theme', newTheme);
+  // Update icon
+  const icon = themeToggle.querySelector('i');
+  icon.classList.remove('fa-moon', 'fa-sun');
+  icon.classList.add(newTheme === 'dark' ? 'fa-sun' : 'fa-moon');
 });
+
+// Re-apply theme on window resize (e.g., device rotation)
+window.addEventListener('resize', applyTheme);
 
 // Blog Toggle Functionality
 document.addEventListener('click', (e) => {
@@ -38,11 +42,8 @@ document.addEventListener('click', (e) => {
     const fullArticle = document.getElementById(`blog-${targetId}`);
     const card = e.target.closest('.blog-card');
     
-    // Hide teaser, show full
     card.querySelector('.blog-content').style.display = 'none';
     fullArticle.style.display = 'block';
-    
-    // Scroll to top of article
     fullArticle.scrollIntoView({ behavior: 'smooth' });
   } else if (e.target.classList.contains('back-link')) {
     e.preventDefault();
@@ -50,11 +51,8 @@ document.addEventListener('click', (e) => {
     const fullArticle = document.getElementById(`blog-${targetId}`);
     const card = e.target.closest('.blog-card');
     
-    // Hide full, show teaser
     fullArticle.style.display = 'none';
     card.querySelector('.blog-content').style.display = 'block';
-    
-    // Scroll back to grid
     card.scrollIntoView({ behavior: 'smooth' });
   }
 });
@@ -69,7 +67,7 @@ document.addEventListener('click', (e) => {
     const isLiked = likeBtn.classList.contains('liked');
 
     if (isLiked) {
-      likes = Math.max(0, likes - 1); // Prevent negative likes
+      likes = Math.max(0, likes - 1);
       likeBtn.classList.remove('liked');
     } else {
       likes += 1;
@@ -79,14 +77,9 @@ document.addEventListener('click', (e) => {
     likeCountSpan.textContent = likes;
     localStorage.setItem(`likes-${blogId}`, likes);
 
-    // Sync like state across teaser and full article
     document.querySelectorAll(`.like-btn[data-blog-id="${blogId}"]`).forEach(btn => {
       btn.querySelector('.like-count').textContent = likes;
-      if (isLiked) {
-        btn.classList.remove('liked');
-      } else {
-        btn.classList.add('liked');
-      }
+      btn.classList.toggle('liked', !isLiked);
     });
   }
 });
@@ -101,7 +94,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
   }
 });
 
-// Contact Form Handling (Placeholder - replace with your backend endpoint)
+// Contact Form Handling (Placeholder)
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -111,7 +104,7 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
   submitBtn.disabled = true;
 
   try {
-    // Placeholder: Send to your API (e.g., EmailJS or Netlify)
+    // Replace with your actual API endpoint
     await fetch('https://your-api-endpoint.com/send-email', {
       method: 'POST',
       body: formData,
@@ -140,12 +133,11 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Observe sections
 document.querySelectorAll('.section').forEach(section => {
   observer.observe(section);
 });
 
-// Lazy load images with fallback
+// Lazy load images
 if ('IntersectionObserver' in window) {
   const imageObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
