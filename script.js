@@ -11,14 +11,11 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', newTheme);
 });
 
-// Load saved theme
+// Load saved theme or default to dark
 const savedTheme = localStorage.getItem('theme') || 'dark';
 body.setAttribute('data-theme', savedTheme);
-if (savedTheme === 'dark') {
-  themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-} else {
-  themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-}
+themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
+themeToggle.querySelector('i').classList.add(savedTheme === 'dark' ? 'fa-sun' : 'fa-moon');
 
 // Blog Toggle Functionality
 document.addEventListener('click', (e) => {
