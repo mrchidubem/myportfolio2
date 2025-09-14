@@ -2,6 +2,15 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
+// Determine default theme based on screen size
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+const defaultTheme = isMobile ? 'dark' : (localStorage.getItem('theme') || 'dark');
+
+// Set initial theme
+body.setAttribute('data-theme', defaultTheme);
+themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
+themeToggle.querySelector('i').classList.add(defaultTheme === 'dark' ? 'fa-sun' : 'fa-moon');
+
 themeToggle.addEventListener('click', () => {
   const currentTheme = body.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -10,12 +19,6 @@ themeToggle.addEventListener('click', () => {
   themeToggle.querySelector('i').classList.toggle('fa-sun');
   localStorage.setItem('theme', newTheme);
 });
-
-// Load saved theme or default to dark
-const savedTheme = localStorage.getItem('theme') || 'dark';
-body.setAttribute('data-theme', savedTheme);
-themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
-themeToggle.querySelector('i').classList.add(savedTheme === 'dark' ? 'fa-sun' : 'fa-moon');
 
 // Blog Toggle Functionality
 document.addEventListener('click', (e) => {

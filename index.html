@@ -96,7 +96,7 @@
       <header class="header">
         <h1 class="logo">Dubicventures</h1>
         <div class="header-controls">
-          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light mode">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
             <i class="fas fa-sun"></i>
           </button>
         </div>
@@ -180,13 +180,15 @@
         <div class="section-header">
           <p class="small-heading">About Me</p>
           <h2 class="heading">Who I Am</h2>
-          <p class="section-description">
-            I’m a multi-disciplinary developer who combines engineering precision with creative design thinking to build exceptional digital experiences. 
-            With a B.Eng. in Electronic Engineering from the University of Nigeria Nsukka, I blend hardware expertise with software innovation, specializing in Full Stack Development,
-             Cloud Architecture, and Generative AI. Trained through ALX, 3MTT, IHS, and PLP Academy, I leverage tools like Django, AWS, Make.com, n8n, and Zapier to craft scalable, 
-             user-focused solutions—from HIPAA-compliant healthcare platforms like CareCycle to AI-automated workflows that streamline business operations. Driven by purpose, 
-             I create transformative tech that optimizes experiences and mentors aspiring devs in global communities.
-          </p>
+          <div class="about-description">
+            <p>
+              I’m a <span class="highlight">multi-disciplinary developer</span> who combines engineering precision with creative design thinking to build exceptional digital experiences. 
+              With a <strong>B.Eng. in Electronic Engineering</strong> from the University of Nigeria Nsukka, I blend hardware expertise with software innovation, specializing in 
+              <span class="highlight">Full Stack Development, Cloud Architecture, and Generative AI</span>. Trained through ALX, 3MTT, IHS, and PLP Academy, I leverage tools like 
+              Django, AWS, Make.com, n8n, and Zapier to craft scalable, user-focused solutions—from HIPAA-compliant healthcare platforms like CareCycle to AI-automated workflows 
+              that streamline business operations. Driven by purpose, I create transformative tech that optimizes experiences and <em>mentors aspiring devs</em> in global communities.
+            </p>
+          </div>
         </div>
 
         <div class="about-grid">
@@ -275,13 +277,17 @@
         <div class="section-header">
           <p class="small-heading">Skillset</p>
           <h2 class="heading">My Specialty</h2>
-          <p class="section-description">
-            Over the past Few years, I've had the opportunity to learn and master a variety of tools and programming languages.
-             You may find me building with these: Python (Expert), Django (Expert), Flask (Expert), Node.js (Intermediate), 
-             C Programming (Expert), JavaScript (Intermediate), React (Intermediate), AWS (Intermediate), Docker (Intermediate), 
-             MySQL (Expert), MongoDB (Intermediate), Zapier (Intermediate), n8n (Intermediate), Make.com (Intermediate), 
-             and Hugging Face (Basic)—crafting scalable full stack apps, AI-automated workflows, and cloud architectures that drive real impact.
-           </p>
+          <div class="skills-description">
+            <p>
+              Over the past few years, I've honed a diverse skill set that empowers me to deliver <span class="highlight">impactful, scalable solutions</span>. 
+              My expertise spans <strong>Python (Expert)</strong>, <strong>Django (Expert)</strong>, <strong>Flask (Expert)</strong>, 
+              <strong>Node.js (Intermediate)</strong>, <strong>C Programming (Expert)</strong>, <strong>JavaScript (Intermediate)</strong>, 
+              <strong>React (Intermediate)</strong>, <strong>AWS (Intermediate)</strong>, <strong>Docker (Intermediate)</strong>, 
+              <strong>MySQL (Expert)</strong>, <strong>MongoDB (Intermediate)</strong>, <strong>Zapier (Intermediate)</strong>, 
+              <strong>n8n (Intermediate)</strong>, <strong>Make.com (Intermediate)</strong>, and <strong>Hugging Face (Basic)</strong>. 
+              I specialize in crafting full-stack applications, AI-driven automations, and cloud-based architectures that drive <em>real-world impact</em>.
+            </p>
+          </div>
         </div>
 
         <div class="skills-grid">
@@ -697,9 +703,7 @@
 
           <a
             href="http://study-assistant-ai.vercel.app"
-           
-
- target="_blank"
+            target="_blank"
             rel="noopener noreferrer"
             class="project-card"
           >
@@ -731,148 +735,147 @@
         </div>
       </section>
 
-      <!-- Blog Section (New) -->
-     <!-- Blog Section -->
-<section id="blog" class="section">
-  <div class="section-header">
-    <p class="small-heading">Insights</p>
-    <h2 class="heading">Latest Blog Posts</h2>
-    <p class="section-description">
-      Sharing knowledge on AI, full-stack dev, and tech trends to help fellow developers grow.
-    </p>
-  </div>
-  <div class="blog-grid">
-    <article class="blog-card" data-blog-id="1">
-      <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdxYR7FU8A293e2eZQ4EWzrFzIyZ2rrLtq6ADtn1-hQABJH8Z3a3suXncWB_qa1PSfKmCj6GMgvuE24_NIkUJj1IHbhVSe3wvDGXpnq4h91xKnhyRm_4W0ch2pJYucEDO0-DtM_bA?key=NZ08G4TSt0ztcXaXn9IiGe0Q" alt="Building AI Workflows blog cover" loading="lazy" />
-      <div class="blog-content">
-        <h4>Building Scalable AI Workflows with n8n and Zapier</h4>
-        <p>Explore how no-code tools integrate with Python for efficient automations.</p>
-        <div class="blog-actions">
-          <button class="like-btn" data-blog-id="1" aria-label="Like this post">
-            <i class="fas fa-heart"></i> <span class="like-count">0</span>
-          </button>
-          <a href="#" class="blog-link read-more" data-target="1">Read More <i class="fas fa-arrow-right"></i></a>
+      <!-- Blog Section -->
+      <section id="blog" class="section">
+        <div class="section-header">
+          <p class="small-heading">Insights</p>
+          <h2 class="heading">Latest Blog Posts</h2>
+          <p class="section-description">
+            Sharing knowledge on AI, full-stack dev, and tech trends to help fellow developers grow.
+          </p>
         </div>
-      </div>
-      <div class="blog-full" id="blog-1">
-        <h2>Building Scalable AI Workflows with n8n and Zapier: A 2025 Guide</h2>
-        <p><em>Published: September 10, 2025 | By Joseph Chidubem Okafor</em></p>
-        <p>In the fast-evolving landscape of 2025, where AI isn't just a buzzword but a core driver of business efficiency, workflow automation tools like n8n and Zapier have become indispensable. As a Full Stack Developer with a background in electronics engineering, I've seen firsthand how blending no-code platforms with custom Python scripts can transform clunky processes into seamless, scalable systems. Whether you're automating customer support, data pipelines, or AI-driven content generation, these tools offer a gateway to productivity without sacrificing control.</p>
-        <h3>Why AI Workflows Matter in 2025</h3>
-        <p>According to recent industry reports, businesses adopting AI automation see up to 40% reductions in operational costs. [](grok_render_citation_card_json={"cardIds":["fb5b61"]}) With the rise of generative AI models like those from Hugging Face, workflows now go beyond simple if-this-then-that logic. They incorporate intelligent decision-making, error recovery, and real-time scaling. n8n, an open-source powerhouse, excels in complex, developer-friendly setups, while Zapier democratizes AI for non-technical teams with its intuitive interface and 6,000+ integrations. [](grok_render_citation_card_json={"cardIds":["45612b"]})</p>
-        <h3>Getting Started: Core Concepts</h3>
-        <p>Start with the basics: A workflow is a sequence of triggers, actions, and conditions. In n8n, think node-based architecture—each "node" is a step, like fetching data from an API or processing it with an AI model. Zapier uses "Zaps," which are linear but now enhanced with AI Copilot for natural language creation. [](grok_render_citation_card_json={"cardIds":["0a4944"]}) For scalability, n8n's execution-based pricing (not per-task) keeps costs low for multi-step AI flows, unlike Zapier's task limits that can balloon expenses. [](grok_render_citation_card_json={"cardIds":["0986f3"]})</p>
-        <h3>Best Practices for Scalability</h3>
-        <ul>
-          <li><strong>Modular Design:</strong> Break workflows into reusable nodes or Zaps. In n8n, use sub-workflows for AI tasks like sentiment analysis via Hugging Face integration.</li>
-          <li><strong>Error Handling:</strong> Implement retries and notifications. n8n's dedicated Error nodes outshine Zapier's basic alerts. [](grok_render_citation_card_json={"cardIds":["4b6450"]})</li>
-          <li><strong>Python Integration:</strong> For custom logic, embed Python scripts. Example: In n8n, a Code node can process LLM outputs before routing to Slack.</li>
-          <li><strong>Security First:</strong> Use API keys securely and enable role-based access. Both tools support this, but n8n's self-hosting option gives full data control. [](grok_render_citation_card_json={"cardIds":["46ed49"]})</li>
-          <li><strong>Monitoring & Scaling:</strong> Track executions with built-in logs. For high-volume, n8n's cloud scales infinitely without per-task fees.</li>
-        </ul>
-        <h3>A Simple Example: AI Lead Qualification Workflow</h3>
-        <p>Trigger: New form submission in Typeform. Action: Send to OpenAI for qualification scoring. If high-score, route to CRM via Zapier; else, nurture via email. In n8n, this is a 5-node flow; in Zapier, a multi-step Zap with AI steps. Pro tip: Hybridize—use Zapier for quick fronts and n8n for backend heavy-lifting. [](grok_render_citation_card_json={"cardIds":["ede13c"]})</p>
-        <p>As we push into 2025, tools like these bridge the gap between no-code ease and code-level power. Start small, iterate, and watch your workflows evolve into AI powerhouses. What's your go-to automation hack? Share in the comments!</p>
-        <div class="blog-actions">
-          <button class="like-btn" data-blog-id="1" aria-label="Like this post">
-            <i class="fas fa-heart"></i> <span class="like-count">0</span>
-          </button>
-          <a href="#" class="blog-link back-link" data-target="1">Back to Teasers <i class="fas fa-arrow-left"></i></a>
-        </div>
-      </div>
-    </article>
+        <div class="blog-grid">
+          <article class="blog-card" data-blog-id="1">
+            <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdxYR7FU8A293e2eZQ4EWzrFzIyZ2rrLtq6ADtn1-hQABJH8Z3a3suXncWB_qa1PSfKmCj6GMgvuE24_NIkUJj1IHbhVSe3wvDGXpnq4h91xKnhyRm_4W0ch2pJYucEDO0-DtM_bA?key=NZ08G4TSt0ztcXaXn9IiGe0Q" alt="Building AI Workflows blog cover" loading="lazy" />
+            <div class="blog-content">
+              <h4>Building Scalable AI Workflows with n8n and Zapier</h4>
+              <p>Explore how no-code tools integrate with Python for efficient automations.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="1" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link read-more" data-target="1">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="blog-full" id="blog-1">
+              <h2>Building Scalable AI Workflows with n8n and Zapier: A 2025 Guide</h2>
+              <p><em>Published: September 10, 2025 | By Joseph Chidubem Okafor</em></p>
+              <p>In the fast-evolving landscape of 2025, where AI isn't just a buzzword but a core driver of business efficiency, workflow automation tools like n8n and Zapier have become indispensable. As a Full Stack Developer with a background in electronics engineering, I've seen firsthand how blending no-code platforms with custom Python scripts can transform clunky processes into seamless, scalable systems. Whether you're automating customer support, data pipelines, or AI-driven content generation, these tools offer a gateway to productivity without sacrificing control.</p>
+              <h3>Why AI Workflows Matter in 2025</h3>
+              <p>According to recent industry reports, businesses adopting AI automation see up to 40% reductions in operational costs. With the rise of generative AI models like those from Hugging Face, workflows now go beyond simple if-this-then-that logic. They incorporate intelligent decision-making, error recovery, and real-time scaling. n8n, an open-source powerhouse, excels in complex, developer-friendly setups, while Zapier democratizes AI for non-technical teams with its intuitive interface and 6,000+ integrations.</p>
+              <h3>Getting Started: Core Concepts</h3>
+              <p>Start with the basics: A workflow is a sequence of triggers, actions, and conditions. In n8n, think node-based architecture—each "node" is a step, like fetching data from an API or processing it with an AI model. Zapier uses "Zaps," which are linear but now enhanced with AI Copilot for natural language creation. For scalability, n8n's execution-based pricing (not per-task) keeps costs low for multi-step AI flows, unlike Zapier's task limits that can balloon expenses.</p>
+              <h3>Best Practices for Scalability</h3>
+              <ul>
+                <li><strong>Modular Design:</strong> Break workflows into reusable nodes or Zaps. In n8n, use sub-workflows for AI tasks like sentiment analysis via Hugging Face integration.</li>
+                <li><strong>Error Handling:</strong> Implement retries and notifications. n8n's dedicated Error nodes outshine Zapier's basic alerts.</li>
+                <li><strong>Python Integration:</strong> For custom logic, embed Python scripts. Example: In n8n, a Code node can process LLM outputs before routing to Slack.</li>
+                <li><strong>Security First:</strong> Use API keys securely and enable role-based access. Both tools support this, but n8n's self-hosting option gives full data control.</li>
+                <li><strong>Monitoring & Scaling:</strong> Track executions with built-in logs. For high-volume, n8n's cloud scales infinitely without per-task fees.</li>
+              </ul>
+              <h3>A Simple Example: AI Lead Qualification Workflow</h3>
+              <p>Trigger: New form submission in Typeform. Action: Send to OpenAI for qualification scoring. If high-score, route to CRM via Zapier; else, nurture via email. In n8n, this is a 5-node flow; in Zapier, a multi-step Zap with AI steps. Pro tip: Hybridize—use Zapier for quick fronts and n8n for backend heavy-lifting.</p>
+              <p>As we push into 2025, tools like these bridge the gap between no-code ease and code-level power. Start small, iterate, and watch your workflows evolve into AI powerhouses. What's your go-to automation hack? Share in the comments!</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="1" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link back-link" data-target="1">Back to Teasers <i class="fas fa-arrow-left"></i></a>
+              </div>
+            </div>
+          </article>
 
-    <article class="blog-card" data-blog-id="2">
-      <img src="https://cdn.moontechnolabs.com/live/blog/wp-content/uploads/2024/12/30024054/Django-Best-Practices.jpg" alt="Django Best Practices 2025 blog cover" loading="lazy" />
-      <div class="blog-content">
-        <h4>Django Best Practices for 2025: Security and Performance</h4>
-        <p>Tips on securing APIs and optimizing queries for high-traffic apps.</p>
-        <div class="blog-actions">
-          <button class="like-btn" data-blog-id="2" aria-label="Like this post">
-            <i class="fas fa-heart"></i> <span class="like-count">0</span>
-          </button>
-          <a href="#" class="blog-link read-more" data-target="2">Read More <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
-      <div class="blog-full" id="blog-2">
-        <h2>Django Best Practices for 2025: Security and Performance</h2>
-        <p><em>Published: September 5, 2025 | By Joseph Chidubem Okafor</em></p>
-        <p>Django, the web framework that's powered countless scalable apps since 2005, enters 2025 stronger than ever. With rising threats like AI-augmented attacks and the demand for sub-second load times, adhering to best practices isn't optional—it's essential. Drawing from my experience building HIPAA-compliant platforms, here's a deep dive into securing and optimizing Django for the modern era.</p>
-        <h3>Security: Lock It Down from Day One</h3>
-        <p>The golden rule? Never trust user input. [](grok_render_citation_card_json={"cardIds":["70d938"]}) Django's built-in protections against XSS, CSRF, and SQL injection are robust, but configuration is key. Always run the latest version—major releases every 9 months bring critical patches. [](grok_render_citation_card_json={"cardIds":["783a44"]}) Enable SECURE_HSTS_SECONDS, SECURE_SSL_REDIRECT, and X-Frame-Options middleware to thwart clickjacking. [](grok_render_citation_card_json={"cardIds":["29be2d"]})</p>
-        <ul>
-          <li><strong>Authentication & Authorization:</strong> Use Django's auth system with groups for RBAC. For APIs, JWT with django-rest-framework-jwt; avoid sessions in stateless setups. [](grok_render_citation_card_json={"cardIds":["345f46"]})</li>
-          <li><strong>Input Validation:</strong> Sanitize with forms and serializers. For file uploads, validate MIME types to prevent malicious HTML disguised as images. [](grok_render_citation_card_json={"cardIds":["5f4486"]})</li>
-          <li><strong>Secrets Management:</strong> Ditch hard-coded keys; use environment variables via django-environ. Rotate regularly and audit third-party libs. [](grok_render_citation_card_json={"cardIds":["22b468"]})</li>
-          <li><strong>Rate Limiting & Monitoring:</strong> Integrate django-ratelimit and tools like Sentry for real-time threat detection.</li>
-        </ul>
-        <h3>Performance: Optimize for Scale</h3>
-        <p>In 2025, users expect blazing-fast apps. Django's ORM is great, but unoptimized queries can kill performance. Profile with django-debug-toolbar (dev only) and aim for N+1 query elimination via select_related/prefetch_related. [](grok_render_citation_card_json={"cardIds":["6d682f"]})</p>
-        <ul>
-          <li><strong>Caching:</strong> Layer Redis/Memcached for views and querysets. Use django-cacheops for ORM-level smarts.</li>
-          <li><strong>Async Views:</strong> Leverage ASGI with channels for real-time features; offload heavy tasks to Celery.</li>
-          <li><strong>Database Tuning:</strong> Index wisely, use connection pooling, and consider read replicas for high-traffic.</li>
-          <li><strong>Static Assets:</strong> Minify with Whitenoise; serve via CDN for global scale. [](grok_render_citation_card_json={"cardIds":["792171"]})</li>
-        </ul>
-        <h3>Real-World Example: Securing a High-Traffic API</h3>
-        <p>For my CareCycle project, I implemented attribute-based auth and query optimization, slashing response times by 50% while passing security audits. Code snippet: Use @permission_classes in DRF views for granular control.</p>
-        <p>Embrace these practices, and your Django apps will thrive in 2025's demanding ecosystem. Questions? Drop a comment below.</p>
-        <div class="blog-actions">
-          <button class="like-btn" data-blog-id="2" aria-label="Like this post">
-            <i class="fas fa-heart"></i> <span class="like-count">0</span>
-          </button>
-          <a href="#" class="blog-link back-link" data-target="2">Back to Teasers <i class="fas fa-arrow-left"></i></a>
-        </div>
-      </div>
-    </article>
+          <article class="blog-card" data-blog-id="2">
+            <img src="https://cdn.moontechnolabs.com/live/blog/wp-content/uploads/2024/12/30024054/Django-Best-Practices.jpg" alt="Django Best Practices 2025 blog cover" loading="lazy" />
+            <div class="blog-content">
+              <h4>Django Best Practices for 2025: Security and Performance</h4>
+              <p>Tips on securing APIs and optimizing queries for high-traffic apps.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="2" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link read-more" data-target="2">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="blog-full" id="blog-2">
+              <h2>Django Best Practices for 2025: Security and Performance</h2>
+              <p><em>Published: September 5, 2025 | By Joseph Chidubem Okafor</em></p>
+              <p>Django, the web framework that's powered countless scalable apps since 2005, enters 2025 stronger than ever. With rising threats like AI-augmented attacks and the demand for sub-second load times, adhering to best practices isn't optional—it's essential. Drawing from my experience building HIPAA-compliant platforms, here's a deep dive into securing and optimizing Django for the modern era.</p>
+              <h3>Security: Lock It Down from Day One</h3>
+              <p>The golden rule? Never trust user input. Django's built-in protections against XSS, CSRF, and SQL injection are robust, but configuration is key. Always run the latest version—major releases every 9 months bring critical patches. Enable SECURE_HSTS_SECONDS, SECURE_SSL_REDIRECT, and X-Frame-Options middleware to thwart clickjacking.</p>
+              <ul>
+                <li><strong>Authentication & Authorization:</strong> Use Django's auth system with groups for RBAC. For APIs, JWT with django-rest-framework-jwt; avoid sessions in stateless setups.</li>
+                <li><strong>Input Validation:</strong> Sanitize with forms and serializers. For file uploads, validate MIME types to prevent malicious HTML disguised as images.</li>
+                <li><strong>Secrets Management:</strong> Ditch hard-coded keys; use environment variables via django-environ. Rotate regularly and audit third-party libs.</li>
+                <li><strong>Rate Limiting & Monitoring:</strong> Integrate django-ratelimit and tools like Sentry for real-time threat detection.</li>
+              </ul>
+              <h3>Performance: Optimize for Scale</h3>
+              <p>In 2025, users expect blazing-fast apps. Django's ORM is great, but unoptimized queries can kill performance. Profile with django-debug-toolbar (dev only) and aim for N+1 query elimination via select_related/prefetch_related.</p>
+              <ul>
+                <li><strong>Caching:</strong> Layer Redis/Memcached for views and querysets. Use django-cacheops for ORM-level smarts.</li>
+                <li><strong>Async Views:</strong> Leverage ASGI with channels for real-time features; offload heavy tasks to Celery.</li>
+                <li><strong>Database Tuning:</strong> Index wisely, use connection pooling, and consider read replicas for high-traffic.</li>
+                <li><strong>Static Assets:</strong> Minify with Whitenoise; serve via CDN for global scale.</li>
+              </ul>
+              <h3>Real-World Example: Securing a High-Traffic API</h3>
+              <p>For my CareCycle project, I implemented attribute-based auth and query optimization, slashing response times by 50% while passing security audits. Code snippet: Use @permission_classes in DRF views for granular control.</p>
+              <p>Embrace these practices, and your Django apps will thrive in 2025's demanding ecosystem. Questions? Drop a comment below.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="2" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link back-link" data-target="2">Back to Teasers <i class="fas fa-arrow-left"></i></a>
+              </div>
+            </div>
+          </article>
 
-    <article class="blog-card" data-blog-id="3">
-      <img src="https://www.shutterstock.com/image-vector/hitech-banner-virtual-reality-technologies-260nw-2274594101.jpg" alt="From Electronics to Software blog cover" loading="lazy" />
-      <div class="blog-content">
-        <h4>From Electronics Engineering to Full-Stack Dev: My Journey</h4>
-        <p>How hardware roots shaped my approach to software innovation.</p>
-        <div class="blog-actions">
-          <button class="like-btn" data-blog-id="3" aria-label="Like this post">
-            <i class="fas fa-heart"></i> <span class="like-count">0</span>
-          </button>
-          <a href="#" class="blog-link read-more" data-target="3">Read More <i class="fas fa-arrow-right"></i></a>
+          <article class="blog-card" data-blog-id="3">
+            <img src="https://www.shutterstock.com/image-vector/hitech-banner-virtual-reality-technologies-260nw-2274594101.jpg" alt="From Electronics to Software blog cover" loading="lazy" />
+            <div class="blog-content">
+              <h4>From Electronics Engineering to Full-Stack Dev: My Journey</h4>
+              <p>How hardware roots shaped my approach to software innovation.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="3" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link read-more" data-target="3">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="blog-full" id="blog-3">
+              <h2>From Electronics Engineering to Full-Stack Dev: My Journey and Tips for 2025</h2>
+              <p><em>Published: August 30, 2025 | By Joseph Chidubem Okafor</em></p>
+              <p>Six years ago, I graduated with a B.Eng. in Electronics from the University of Nigeria, Nsukka, ready to design circuits and debug hardware. Fast-forward to 2025: I'm a Full-Stack Developer crafting AI-powered apps at CAP. This pivot wasn't easy, but my hardware foundation gave me an edge in systematic thinking and problem-solving. If you're an electronics engineer eyeing software, here's my roadmap—blending personal anecdotes with actionable tips.</p>
+              <h3>The Spark: Why the Switch?</h3>
+              <p>Electronics taught me precision—optimizing signals, managing power constraints—but the field felt siloed. Software offered scalability and creativity. The transition took 6-12 months of dedicated learning, aligning with industry averages. My ALX training bridged the gap, turning circuit diagrams into code flows.</p>
+              <h3>Key Skills to Bridge the Gap</h3>
+              <ul>
+                <li><strong>Programming Fundamentals:</strong> Start with Python—its logic mirrors circuit design. I leveraged C from embedded systems for backend efficiency.</li>
+                <li><strong>Front-End Basics:</strong> HTML/CSS/JS via freeCodeCamp; React for dynamic UIs. Hardware's UI (displays, interfaces) made this intuitive.</li>
+                <li><strong>Back-End & Databases:</strong> Django/Flask for servers; SQL for data "wiring." Think of databases as memory banks in MCUs.</li>
+                <li><strong>Full-Stack Integration:</strong> Build projects like IoT dashboards—my electronics background shone here, integrating sensors with web apps.</li>
+                <li><strong>Soft Skills:</strong> Version control (Git) and agile—vital for team dev, unlike solo hardware prototyping.</li>
+              </ul>
+              <h3>Challenges and How I Overcame Them</h3>
+              <p>The paradigm shift from finite hardware to infinite software scalability was tough. Tip: Prototype small—my first project was a Raspberry Pi web controller, blending worlds. Network via LinkedIn and bootcamps; internships eased entry. In 2025, AI tools like GitHub Copilot accelerate learning, but focus on fundamentals first.</p>
+              <h3>Tips for a Smooth Transition in 2025</h3>
+              <ol>
+                <li><strong>Time Commitment:</strong> 10-15 hours/week; aim for bootcamps like ALX or Springboard.</li>
+                <li><strong>Portfolio Power:</strong> Build 3-5 projects showcasing full-stack (e.g., an AI study buddy).</li>
+                <li><strong>Leverage Your Edge:</strong> Electronics pros excel in embedded full-stack—target IoT roles.</li>
+                <li><strong>Certifications:</strong> AWS Certified Developer; no degree needed, but CS basics help.</li>
+                <li><strong>Mindset Shift:</strong> Embrace iteration over perfection—software deploys fast, unlike hardware revisions.</li>
+              </ol>
+              <p>My journey proves hardware roots supercharge software innovation. If you're transitioning, start today— the dev world needs your analytical prowess. What's holding you back? Let's chat in the comments.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="3" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link back-link" data-target="3">Back to Teasers <i class="fas fa-arrow-left"></i></a>
+              </div>
+            </div>
+          </article>
         </div>
-      </div>
-      <div class="blog-full" id="blog-3">
-        <h2>From Electronics Engineering to Full-Stack Dev: My Journey and Tips for 2025</h2>
-        <p><em>Published: August 30, 2025 | By Joseph Chidubem Okafor</em></p>
-        <p>Six years ago, I graduated with a B.Eng. in Electronics from the University of Nigeria, Nsukka, ready to design circuits and debug hardware. Fast-forward to 2025: I'm a Full-Stack Developer crafting AI-powered apps at CAP. This pivot wasn't easy, but my hardware foundation gave me an edge in systematic thinking and problem-solving. If you're an electronics engineer eyeing software, here's my roadmap—blending personal anecdotes with actionable tips.</p>
-        <h3>The Spark: Why the Switch?</h3>
-        <p>Electronics taught me precision—optimizing signals, managing power constraints—but the field felt siloed. Software offered scalability and creativity. The transition took 6-12 months of dedicated learning, aligning with industry averages. [](grok_render_citation_card_json={"cardIds":["5b973c"]}) My ALX training bridged the gap, turning circuit diagrams into code flows.</p>
-        <h3>Key Skills to Bridge the Gap</h3>
-        <ul>
-          <li><strong>Programming Fundamentals:</strong> Start with Python—its logic mirrors circuit design. I leveraged C from embedded systems for backend efficiency.</li>
-          <li><strong>Front-End Basics:</strong> HTML/CSS/JS via freeCodeCamp; React for dynamic UIs. Hardware's UI (displays, interfaces) made this intuitive.</li>
-          <li><strong>Back-End & Databases:</strong> Django/Flask for servers; SQL for data "wiring." Think of databases as memory banks in MCUs.</li>
-          <li><strong>Full-Stack Integration:</strong> Build projects like IoT dashboards—my electronics background shone here, integrating sensors with web apps. [](grok_render_citation_card_json={"cardIds":["6f5029"]})</li>
-          <li><strong>Soft Skills:</strong> Version control (Git) and agile—vital for team dev, unlike solo hardware prototyping.</li>
-        </ul>
-        <h3>Challenges and How I Overcame Them</h3>
-        <p>The paradigm shift from finite hardware to infinite software scalability was tough. Tip: Prototype small—my first project was a Raspberry Pi web controller, blending worlds. [](grok_render_citation_card_json={"cardIds":["1c1389"]}) Network via LinkedIn and bootcamps; internships eased entry. [](grok_render_citation_card_json={"cardIds":["948229"]}) In 2025, AI tools like GitHub Copilot accelerate learning, but focus on fundamentals first.</p>
-        <h3>Tips for a Smooth Transition in 2025</h3>
-        <ol>
-          <li><strong>Time Commitment:</strong> 10-15 hours/week; aim for bootcamps like ALX or Springboard. [](grok_render_citation_card_json={"cardIds":["6af4cb"]})</li>
-          <li><strong>Portfolio Power:</strong> Build 3-5 projects showcasing full-stack (e.g., an AI study buddy).</li>
-          <li><strong>Leverage Your Edge:</strong> Electronics pros excel in embedded full-stack—target IoT roles. [](grok_render_citation_card_json={"cardIds":["f4ba15"]})</li>
-          <li><strong>Certifications:</strong> AWS Certified Developer; no degree needed, but CS basics help. [](grok_render_citation_card_json={"cardIds":["027ef2"]})</li>
-          <li><strong>Mindset Shift:</strong> Embrace iteration over perfection—software deploys fast, unlike hardware revisions.</li>
-        </ol>
-        <p>My journey proves hardware roots supercharge software innovation. If you're transitioning, start today— the dev world needs your analytical prowess. What's holding you back? Let's chat in the comments.</p>
-        <div class="blog-actions">
-          <button class="like-btn" data-blog-id="3" aria-label="Like this post">
-            <i class="fas fa-heart"></i> <span class="like-count">0</span>
-          </button>
-          <a href="#" class="blog-link back-link" data-target="3">Back to Teasers <i class="fas fa-arrow-left"></i></a>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
+      </section>
 
       <!-- Interests Section -->
       <section id="interests" class="section">
@@ -960,8 +963,7 @@
           <p class="small-heading">Get In Touch</p>
           <h2 class="heading">Contact Me</h2>
           <p class="section-description">
-            Impressed with my work & skills? Want to work with me? You can reach
-            out to me through the form below or connect with me on social media.
+            Impressed with my work & skills? Want to collaborate on innovative projects? Reach out through the form below or connect with me on social media.
           </p>
         </div>
 
@@ -1058,7 +1060,7 @@
             </div>
 
             <div class="contact-form">
-              <h3 style="margin-bottom: 1.5rem; color: var(--text-primary)">Send me a message</h3>
+              <h3 class="form-title">Send Me a Message</h3>
               <form id="contact-form">
                 <div class="form-group">
                   <label for="name">Full Name</label>
@@ -1069,6 +1071,7 @@
                     class="form-control"
                     required
                     aria-required="true"
+                    placeholder="Enter your full name"
                   />
                 </div>
 
@@ -1081,6 +1084,7 @@
                     class="form-control"
                     required
                     aria-required="true"
+                    placeholder="Enter your email"
                   />
                 </div>
 
@@ -1093,6 +1097,7 @@
                     class="form-control"
                     required
                     aria-required="true"
+                    placeholder="What's this about?"
                   />
                 </div>
 
@@ -1104,6 +1109,7 @@
                     class="form-control"
                     required
                     aria-required="true"
+                    placeholder="Write your message here..."
                   ></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
@@ -1113,9 +1119,55 @@
         </div>
       </section>
 
-      <!-- Footer (New) -->
+      <!-- Footer -->
       <footer class="footer">
-        <p>&copy; 2025 Joseph Chidubem Okafor. All rights reserved. | <a href="#home">Back to Top</a></p>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <h3 class="footer-logo">Dubicventures</h3>
+            <p class="footer-tagline">Crafting Innovative Solutions with Code & AI</p>
+          </div>
+          <div class="footer-links">
+            <a href="#home" class="footer-link">Home</a>
+            <a href="#about" class="footer-link">About</a>
+            <a href="#projects" class="footer-link">Projects</a>
+            <a href="#contact" class="footer-link">Contact</a>
+          </div>
+          <div class="footer-social">
+            <a
+              href="https://twitter.com/ChidubemOkafor17"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Twitter"
+              aria-label="Twitter profile"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://github.com/mrchidubem"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
+              aria-label="GitHub profile"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dubicventures/"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+              aria-label="LinkedIn profile"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Joseph Chidubem Okafor. All rights reserved.</p>
+        </div>
       </footer>
       <span class="tick" aria-hidden="true"></span>
     </main>
