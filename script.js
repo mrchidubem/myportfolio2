@@ -21,7 +21,7 @@ function applyTheme() {
   // Adjust header-controls positioning on mobile to avoid overlap with hamburger menu
   const headerControls = document.querySelector('.header-controls');
   if (isMobile && headerControls) {
-    headerControls.style.right = '3rem'; // Adjusted to prevent overlap
+    headerControls.style.right = '4.5rem'; // Shifted left to avoid hamburger icon
   } else if (headerControls) {
     headerControls.style.right = '1.5rem'; // Default for desktop
   }
@@ -137,7 +137,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
 // Contact Form Handling
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const formData = new FormFormData(e.target);
+  const formData = new FormData(e.target);
   const submitBtn = e.target.querySelector('.submit-btn');
   const originalText = submitBtn.textContent;
   submitBtn.textContent = 'Sending...';

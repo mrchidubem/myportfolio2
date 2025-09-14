@@ -18,17 +18,14 @@
   --gradient-primary: linear-gradient(135deg, #0d9488 0%, #3b82f6 100%);
   --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #374151 100%);
   --hero-bg: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(59, 130, 246, 0.04) 50%, rgba(13, 148, 136, 0.08) 100%);
-  /* Dark mode defaults */
   --text-primary-dark: #f9fafb;
   --text-secondary-dark: #d1d5db;
   --bg-primary-dark: #0f172a;
   --bg-secondary-dark: #1e293b;
   --bg-card-dark: #1e293b;
   --border-color-dark: #334155;
-  /* Like button specific */
   --like-btn-color: #ff4d6d;
   --like-btn-active: #ff1d5c;
-  /* Tech tag accent */
   --tech-accent: #e0f2fe;
 }
 
@@ -59,12 +56,10 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -87,7 +82,6 @@ html {
   min-height: 100vh;
 }
 
-/* Animated background */
 .bg-animation {
   position: fixed;
   top: 0;
@@ -109,7 +103,6 @@ html {
   }
 }
 
-/* Sidebar Styles */
 .sidebar {
   background: var(--gradient-secondary);
   backdrop-filter: blur(20px);
@@ -382,7 +375,6 @@ html {
   box-shadow: var(--shadow-lg);
 }
 
-/* Main Content */
 .main-content {
   background: var(--bg-primary);
   padding: 0;
@@ -398,7 +390,6 @@ html {
   }
 }
 
-/* Header */
 .header {
   padding: 2rem 1.5rem;
   display: flex;
@@ -433,7 +424,7 @@ html {
   .header-controls {
     position: absolute;
     top: 1rem;
-    right: 3rem; /* Adjusted to prevent overlap with hamburger menu */
+    right: 4.5rem; /* Matches JS positioning */
     z-index: 25;
     display: flex;
     gap: 0.5rem;
@@ -479,7 +470,6 @@ html {
   box-shadow: var(--shadow-md);
 }
 
-/* Hero Section */
 .hero {
   min-height: 80vh;
   padding: 2rem 1.5rem;
@@ -490,6 +480,8 @@ html {
   background: var(--hero-bg);
   overflow: hidden;
   transition: background 0.3s ease;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
@@ -542,24 +534,16 @@ html {
   gap: 1.5rem;
   max-width: 1200px;
   width: 100%;
-  margin-left: 0;
-  margin-right: 2rem;
+  margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
 @media (max-width: 767px) {
   .hero-content {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     align-items: center;
     text-align: center;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-content {
-    max-width: 1200px;
   }
 }
 
@@ -710,11 +694,12 @@ html {
   }
 }
 
-/* Section Styles */
 .section {
   padding: 2rem 1.5rem;
   position: relative;
   transition: background-color 0.3s ease;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
@@ -727,9 +712,20 @@ html {
   background: var(--bg-secondary);
 }
 
+#home, #about, #education, #skills, #experience, #testimonials, #projects, #blog, #interests, #contact {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 @media (min-width: 768px) {
-  #education, #experience, #projects, #interests, #about, #skills, #testimonials, #blog, #contact {
+  #home, #about, #education, #skills, #experience, #testimonials, #projects, #blog, #interests, #contact {
     margin-right: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #home, #about, #education, #skills, #experience, #testimonials, #projects, #blog, #interests, #contact {
+    margin: 0 auto;
   }
 }
 
@@ -766,7 +762,6 @@ html {
   text-align: center;
 }
 
-/* About Section */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -885,7 +880,6 @@ html {
   color: var(--primary-dark);
 }
 
-/* Skills Section */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1012,7 +1006,6 @@ html {
   color: var(--primary-dark);
 }
 
-/* Experience Section */
 .experience-timeline {
   position: relative;
   margin: 1.5rem 2rem 0 0;
@@ -1136,7 +1129,6 @@ html {
   font-weight: bold;
 }
 
-/* Testimonials Section */
 .testimonials-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1215,7 +1207,6 @@ html {
   font-size: 0.75rem;
 }
 
-/* Projects Section */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1386,7 +1377,6 @@ html {
   border-color: transparent;
 }
 
-/* Blog Section */
 .blog-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1532,7 +1522,6 @@ html {
   background: var(--like-btn-active);
 }
 
-/* Blog Full */
 .blog-full {
   display: none;
   padding: 1rem;
@@ -1593,7 +1582,6 @@ html {
   color: var(--text-primary-dark);
 }
 
-/* Interests Section */
 .interests-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1656,7 +1644,6 @@ html {
   line-height: 1.6;
 }
 
-/* Contact Section */
 .contact-content {
   max-width: 1200px;
   margin: 0 2rem 0 0;
@@ -1758,7 +1745,6 @@ html {
   color: var(--primary-color);
 }
 
-/* Contact Form */
 .contact-form {
   background: var(--bg-card);
   padding: 1.5rem;
@@ -1822,7 +1808,6 @@ textarea.form-control {
   box-shadow: var(--shadow-lg);
 }
 
-/* Education Section */
 .education-cards {
   display: grid;
   grid-template-columns: 1fr;
@@ -1892,24 +1877,30 @@ textarea.form-control {
   margin-top: auto;
 }
 
-/* Footer */
 .footer {
   background: var(--bg-secondary);
   padding: 2rem 1.5rem;
   color: var(--text-secondary);
   border-top: 1px solid var(--border-color);
   transition: background 0.3s ease;
+  max-width: 1200px; /* Match other sections */
+  margin: 0 auto; /* Center align */
 }
 
 @media (min-width: 768px) {
   .footer {
     padding: 2rem;
+    margin-right: 2rem; /* Align with sidebar, same as Interests and Projects */
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    margin: 0 auto; /* Center on mobile */
   }
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 2rem 0 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
@@ -1920,12 +1911,6 @@ textarea.form-control {
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
     text-align: left;
-  }
-}
-
-@media (max-width: 767px) {
-  .footer-content {
-    margin: 0 auto;
   }
 }
 
@@ -2010,7 +1995,6 @@ textarea.form-control {
   color: var(--text-light);
 }
 
-/* Utility Classes */
 .text-center {
   text-align: center;
 }
@@ -2021,7 +2005,6 @@ textarea.form-control {
   animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Responsive adjustments */
 @media (max-width: 767px) {
   .section {
     padding: 2rem 1.5rem;
@@ -2047,6 +2030,8 @@ textarea.form-control {
     text-align: center;
     gap: 1rem;
     padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .about-grid {
@@ -2147,7 +2132,6 @@ textarea.form-control {
   }
 }
 
-/* Loading animation */
 .loading {
   display: inline-block;
   width: 16px;
@@ -2164,7 +2148,6 @@ textarea.form-control {
   }
 }
 
-/* Stylish tick */
 .tick {
   display: inline-block;
   font-family: 'Quicksand', 'Segoe UI Symbol', 'Arial', sans-serif;
@@ -2176,7 +2159,6 @@ textarea.form-control {
   text-shadow: 0 2px 8px rgba(13,148,136,0.08);
 }
 
-/* Headings with Quicksand */
 .heading,
 .education-degree,
 .project-title,
