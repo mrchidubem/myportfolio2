@@ -17,6 +17,14 @@ function applyTheme() {
       icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon');
     }
   }
+
+  // Adjust header-controls positioning on mobile to avoid overlap with hamburger menu
+  const headerControls = document.querySelector('.header-controls');
+  if (isMobile && headerControls) {
+    headerControls.style.right = '3rem'; // Adjusted to prevent overlap
+  } else if (headerControls) {
+    headerControls.style.right = '1.5rem'; // Default for desktop
+  }
 }
 
 // Apply theme on page load
