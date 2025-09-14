@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Ensure sidebar is visible on desktop
+  // Initialize sidebar state
   const sidebar = document.querySelector('.sidebar');
   const sidebarOverlay = document.querySelector('.sidebar-overlay');
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -122,6 +122,8 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
   function openSidebar() {
     mobileMenuToggle.checked = true;
     sidebar.style.transform = 'translateX(0)';
+    sidebarOverlay.style.opacity = '1';
+    sidebarOverlay.style.visibility = 'visible';
     sidebarOverlay.classList.add('active');
     mobileMenuBtn.setAttribute('aria-label', 'Close menu');
     sidebar.focus();
@@ -131,6 +133,8 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
   function closeSidebar() {
     mobileMenuToggle.checked = false;
     sidebar.style.transform = 'translateX(-100%)';
+    sidebarOverlay.style.opacity = '0';
+    sidebarOverlay.style.visibility = 'hidden';
     sidebarOverlay.classList.remove('active');
     mobileMenuBtn.setAttribute('aria-label', 'Open menu');
     mobileMenuBtn.focus();
@@ -145,7 +149,7 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
     }
   });
 
-  // Open sidebar via mobile menu button
+  // Open/close sidebar via mobile menu button
   mobileMenuBtn.addEventListener('click', (e) => {
     e.preventDefault();
     mobileMenuToggle.checked = !mobileMenuToggle.checked;
@@ -198,6 +202,32 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
     if (e.key === 'Escape' && mobileMenuToggle.checked) {
       closeSidebar();
     }
+  });
+
+  // Navigation link handler
+  document.querySelectorAll('.nav-link:not(.resume-link)').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1); // Remove '#'
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        const headerHeight = document.querySelector('.header').offsetHeight;
+        const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        // Close sidebar on mobile after clicking a nav link
+        if (window.matchMedia("(max-width: 767px)").matches) {
+          closeSidebar();
+        }
+      } else {
+        console.warn(`Section with ID ${targetId} not found`);
+      }
+    });
+    link.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        link.click();
+      }
+    });
   });
 }
 
