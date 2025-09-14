@@ -4,7 +4,7 @@ const body = document.body;
 
 // Function to apply theme
 function applyTheme() {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
   const savedTheme = localStorage.getItem('theme');
   // Force dark theme on mobile unless a saved theme exists
   const theme = isMobile ? (savedTheme || 'dark') : (savedTheme || 'light');
@@ -22,14 +22,39 @@ function applyTheme() {
 // Apply theme on page load
 document.addEventListener('DOMContentLoaded', () => {
   // Clear saved theme on mobile to ensure dark default
-  if (window.matchMedia("(max-width: 768px)").matches) {
+  if (window.matchMedia("(max-width: 767px)").matches) {
     localStorage.removeItem('theme');
   }
   applyTheme();
+
+  // Log profile image loading status
+  const profileImage = document.querySelector('.profile-image');
+  if (profileImage) {
+    profileImage.addEventListener('error', () => {
+      console.error('Failed to load profile image:', profileImage.src);
+    });
+    profileImage.addEventListener('load', () => {
+      console.log('Profile image loaded successfully:', profileImage.src);
+    });
+  }
+
+  // Ensure sidebar is visible on desktop
+  const sidebar = document.querySelector('.sidebar');
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    sidebar.style.transform = 'translateX(0)';
+  }
 });
 
-// Re-apply theme on resize
-window.addEventListener('resize', applyTheme);
+// Re-apply theme and sidebar visibility on resize
+window.addEventListener('resize', () => {
+  applyTheme();
+  const sidebar = document.querySelector('.sidebar');
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    sidebar.style.transform = 'translateX(0)';
+  } else {
+    sidebar.style.transform = 'translateX(-100%)';
+  }
+});
 
 // Theme toggle button click handler
 if (themeToggle) {
@@ -101,7 +126,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
   }
 });
 
-// Contact Form Handling (Placeholder)
+// Contact Form Handling
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -110,15 +135,19 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
   submitBtn.textContent = 'Sending...';
   submitBtn.disabled = true;
   try {
-    // Replace with your actual API endpoint
-    await fetch('https://your-api-endpoint.com/send-email', {
+    // Replace with your actual API endpoint (e.g., Formspree, Netlify Forms)
+    await fetch('https://formspree.io/f/your-form-id', {
       method: 'POST',
       body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
     });
     alert('Message sent successfully! Thanks for reaching out.');
     e.target.reset();
   } catch (error) {
-    alert('Oops! Something went wrong. Try emailing directly.');
+    console.error('Form submission error:', error);
+    alert('Oops! Something went wrong. Try emailing directly at mrchidubem8@gmail.com.');
   } finally {
     submitBtn.textContent = originalText;
     submitBtn.disabled = false;
@@ -149,9 +178,13 @@ if ('IntersectionObserver' in window) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const img = entry.target;
-        img.src = img.dataset.src || img.src;
-        img.classList.remove('lazy');
-        imageObserver.unobserve(img);
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.classList.remove('lazy');
+          imageObserver.unobserve(img);
+        } else {
+          console.warn('Image missing data-src:', img);
+        }
       }
     });
   });
