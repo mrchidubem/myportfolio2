@@ -6,7 +6,7 @@ const body = document.body;
 function applyTheme() {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const savedTheme = localStorage.getItem('theme');
-  // Default to dark for mobile, otherwise use saved theme or light
+  // Force dark theme on mobile unless a saved theme exists
   const theme = isMobile ? (savedTheme || 'dark') : (savedTheme || 'light');
 
   body.setAttribute('data-theme', theme);
@@ -20,9 +20,15 @@ function applyTheme() {
 }
 
 // Apply theme on page load
-document.addEventListener('DOMContentLoaded', applyTheme);
+document.addEventListener('DOMContentLoaded', () => {
+  // Clear saved theme on mobile to ensure dark default
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    localStorage.removeItem('theme');
+  }
+  applyTheme();
+});
 
-// Re-apply theme on window resize
+// Re-apply theme on resize
 window.addEventListener('resize', applyTheme);
 
 // Theme toggle button click handler
@@ -47,7 +53,6 @@ document.addEventListener('click', (e) => {
     const targetId = e.target.getAttribute('data-target');
     const fullArticle = document.getElementById(`blog-${targetId}`);
     const card = e.target.closest('.blog-card');
-    
     card.querySelector('.blog-content').style.display = 'none';
     fullArticle.style.display = 'block';
     fullArticle.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +61,6 @@ document.addEventListener('click', (e) => {
     const targetId = e.target.getAttribute('data-target');
     const fullArticle = document.getElementById(`blog-${targetId}`);
     const card = e.target.closest('.blog-card');
-    
     fullArticle.style.display = 'none';
     card.querySelector('.blog-content').style.display = 'block';
     card.scrollIntoView({ behavior: 'smooth' });
@@ -71,7 +75,6 @@ document.addEventListener('click', (e) => {
     const likeCountSpan = likeBtn.querySelector('.like-count');
     let likes = parseInt(localStorage.getItem(`likes-${blogId}`)) || 0;
     const isLiked = likeBtn.classList.contains('liked');
-
     if (isLiked) {
       likes = Math.max(0, likes - 1);
       likeBtn.classList.remove('liked');
@@ -79,10 +82,8 @@ document.addEventListener('click', (e) => {
       likes += 1;
       likeBtn.classList.add('liked');
     }
-
     likeCountSpan.textContent = likes;
     localStorage.setItem(`likes-${blogId}`, likes);
-
     document.querySelectorAll(`.like-btn[data-blog-id="${blogId}"]`).forEach(btn => {
       btn.querySelector('.like-count').textContent = likes;
       btn.classList.toggle('liked', !isLiked);
@@ -108,7 +109,6 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
   const originalText = submitBtn.textContent;
   submitBtn.textContent = 'Sending...';
   submitBtn.disabled = true;
-
   try {
     // Replace with your actual API endpoint
     await fetch('https://your-api-endpoint.com/send-email', {
@@ -155,7 +155,6 @@ if ('IntersectionObserver' in window) {
       }
     });
   });
-
   document.querySelectorAll('img[loading="lazy"]').forEach(img => {
     imageObserver.observe(img);
   });
