@@ -148,7 +148,7 @@ html {
   box-shadow: var(--shadow-lg);
   transition: all 0.3s ease;
   z-index: 30;
-  position: absolute;
+  position: fixed;
   right: 1rem;
   top: 1rem;
 }
@@ -452,7 +452,7 @@ html {
 @media (max-width: 767px) {
   .logo {
     text-align: left;
-    margin-right: 1rem;
+    margin-right: 3rem; /* Increased to avoid overlap with fixed mobile-menu-btn */
   }
 }
 
@@ -466,7 +466,7 @@ html {
 @media (max-width: 767px) {
   .header-controls {
     flex-shrink: 0;
-    margin-right: 3rem; /* Space for mobile-menu-btn */
+    margin-right: 3rem; /* Space for fixed mobile-menu-btn */
   }
 }
 
