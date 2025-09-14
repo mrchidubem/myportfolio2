@@ -133,10 +133,6 @@ html {
 }
 
 .mobile-menu-btn {
-  position: fixed;
-  right: 1rem;
-  top: 1rem;
-  z-index: 30;
   background: var(--gradient-primary);
   border: none;
   color: white;
@@ -144,14 +140,14 @@ html {
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 8px;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-lg);
   transition: all 0.3s ease;
-  display: block;
+  z-index: 30;
 }
 
 @media (min-width: 768px) {
@@ -391,10 +387,10 @@ html {
 }
 
 .header {
-  padding: 2rem 1.5rem;
+  padding: 1rem 1.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   position: sticky;
@@ -403,32 +399,27 @@ html {
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   transition: background 0.3s ease;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .header {
-    padding: 2rem;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    position: relative;
   }
 }
 
 [data-theme="dark"] .header {
   background: rgba(15, 23, 42, 0.95);
-}
-
-@media (max-width: 767px) {
-  .header {
-    padding-top: 4rem;
-    position: relative;
-  }
-
-  .header-controls {
-    position: absolute;
-    top: 1rem;
-    right: 3rem; /* Adjusted to be closer to logo, clear of hamburger */
-    z-index: 25;
-    display: flex;
-    gap: 0.5rem;
-  }
 }
 
 .logo {
@@ -440,24 +431,39 @@ html {
   background-clip: text;
   letter-spacing: 0.05em;
   font-family: "Quicksand", sans-serif;
+  order: 1;
+}
+
+@media (max-width: 767px) {
+  .logo {
+    flex: 1;
+    text-align: left;
+  }
 }
 
 .header-controls {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  order: 2;
+}
+
+@media (max-width: 767px) {
+  .header-controls {
+    gap: 0.75rem;
+  }
 }
 
 .theme-toggle {
   background: var(--gradient-primary);
   border: none;
   color: white;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,6 +474,23 @@ html {
 .theme-toggle:hover {
   transform: scale(1.1);
   box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 767px) {
+  .theme-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-menu-btn {
+    order: 3;
+    width: 36px;
+    height: 36px;
+    padding: 0.4rem;
+  }
 }
 
 .hero {
@@ -1523,13 +1546,19 @@ html {
 }
 
 .blog-full {
-  display: none;
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
   padding: 1rem;
   background: var(--bg-card);
   border-top: 1px solid var(--border-color);
-  animation: fadeInUp 0.5s ease;
+}
+
+.blog-full.active {
   max-height: 50vh;
-  overflow-y: auto;
+  opacity: 1;
 }
 
 .blog-full h2 {
@@ -1579,7 +1608,6 @@ html {
 
 [data-theme="dark"] .blog-full {
   background: var(--bg-card-dark);
-  color: var(--text-primary-dark);
 }
 
 .interests-grid {
@@ -1784,6 +1812,11 @@ html {
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
 }
 
+.form-control.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
 textarea.form-control {
   resize: vertical;
   min-height: 100px;
@@ -1806,6 +1839,16 @@ textarea.form-control {
 .submit-btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
+}
+
+.submit-btn.success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.submit-btn.error {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
 }
 
 .education-cards {
@@ -2157,6 +2200,25 @@ textarea.form-control {
   vertical-align: middle;
   margin-right: 0.5em;
   text-shadow: 0 2px 8px rgba(13,148,136,0.08);
+}
+
+.notification {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+}
+
+.notification.success {
+  background: var(--primary-color);
+}
+
+.notification.error {
+  background: #ef4444;
 }
 
 .heading,
