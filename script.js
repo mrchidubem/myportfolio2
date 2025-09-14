@@ -6,7 +6,7 @@ const body = document.body;
 function applyTheme() {
   const isMobile = window.matchMedia("(max-width: 767px)").matches;
   const savedTheme = localStorage.getItem('theme');
-  // Force dark theme on mobile unless a saved theme exists
+  // Use dark theme as default on mobile if no saved theme
   const theme = isMobile ? (savedTheme || 'dark') : (savedTheme || 'light');
 
   body.setAttribute('data-theme', theme);
@@ -20,19 +20,20 @@ function applyTheme() {
   }
 }
 
-// Apply theme and sidebar visibility on page load
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-  // Clear saved theme on mobile to ensure dark default
+  // Clear saved theme on mobile to enforce dark default
   if (window.matchMedia("(max-width: 767px)").matches) {
     localStorage.removeItem('theme');
   }
   applyTheme();
 
-  // Log profile image loading status
+  // Handle image loading with fallback
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', () => {
       console.error('Failed to load image:', img.src);
       img.src = 'public/fallback.jpg'; // Ensure fallback image exists
+      img.alt = 'Fallback image';
     });
     img.addEventListener('load', () => {
       console.log('Image loaded successfully:', img.src);
@@ -41,29 +42,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ensure sidebar is visible on desktop
   const sidebar = document.querySelector('.sidebar');
-  if (window.matchMedia("(min-width: 768px)").matches) {
+  if (window.matchMedia("(min-width: 768px)").matches && sidebar) {
     sidebar.style.transform = 'translateX(0)';
   }
 });
 
-// Re-apply theme and sidebar visibility on resize
+// Handle window resize for theme and sidebar
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
     applyTheme();
     const sidebar = document.querySelector('.sidebar');
-    if (window.matchMedia("(min-width: 768px)").matches) {
-      sidebar.style.transform = 'translateX(0)';
-    } else {
-      sidebar.style.transform = 'translateX(-100%)';
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    if (sidebar && mobileMenuToggle) {
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        sidebar.style.transform = 'translateX(0)';
+        mobileMenuToggle.checked = false;
+      } else {
+        sidebar.style.transform = 'translateX(-100%)';
+        mobileMenuToggle.checked = false;
+      }
     }
   }, 100);
 });
 
-// Theme toggle button click handler
+// Theme toggle button handler
 if (themeToggle) {
   themeToggle.setAttribute('tabindex', '0');
+  themeToggle.setAttribute('role', 'button');
   themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -88,24 +95,84 @@ if (themeToggle) {
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
 const sidebar = document.querySelector('.sidebar');
 const sidebarOverlay = document.querySelector('.sidebar-overlay');
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const closeBtn = document.querySelector('.close-btn');
 
-if (mobileMenuToggle && sidebar && sidebarOverlay && closeBtn) {
+if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) {
+  // Set accessibility attributes
+  mobileMenuBtn.setAttribute('tabindex', '0');
+  mobileMenuBtn.setAttribute('role', 'button');
+  mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+  closeBtn.setAttribute('tabindex', '0');
+  closeBtn.setAttribute('role', 'button');
+  closeBtn.setAttribute('aria-label', 'Close menu');
+
+  // Handle checkbox toggle
   mobileMenuToggle.addEventListener('change', () => {
-    sidebar.style.transform = mobileMenuToggle.checked ? 'translateX(0)' : 'translateX(-100%)';
-    sidebarOverlay.style.display = mobileMenuToggle.checked ? 'block' : 'none';
+    const isOpen = mobileMenuToggle.checked;
+    sidebar.style.transform = isOpen ? 'translateX(0)' : 'translateX(-100%)';
+    sidebarOverlay.style.display = isOpen ? 'block' : 'none';
+    sidebarOverlay.style.opacity = isOpen ? '1' : '0';
+    mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    // Trap focus in sidebar when open
+    if (isOpen) {
+      sidebar.focus();
+    } else {
+      mobileMenuBtn.focus();
+    }
   });
 
+  // Close sidebar via close button
   closeBtn.addEventListener('click', () => {
     mobileMenuToggle.checked = false;
     sidebar.style.transform = 'translateX(-100%)';
     sidebarOverlay.style.display = 'none';
+    sidebarOverlay.style.opacity = '0';
+    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+    mobileMenuBtn.focus();
   });
 
+  // Close sidebar via overlay click
   sidebarOverlay.addEventListener('click', () => {
     mobileMenuToggle.checked = false;
     sidebar.style.transform = 'translateX(-100%)';
     sidebarOverlay.style.display = 'none';
+    sidebarOverlay.style.opacity = '0';
+    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+    mobileMenuBtn.focus();
+  });
+
+  // Keyboard support for mobile menu button
+  mobileMenuBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      mobileMenuToggle.checked = !mobileMenuToggle.checked;
+      mobileMenuToggle.dispatchEvent(new Event('change'));
+    }
+  });
+
+  // Keyboard support for close button
+  closeBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      closeBtn.click();
+    }
+  });
+
+  // Trap focus within sidebar
+  sidebar.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && mobileMenuToggle.checked) {
+      const focusableElements = sidebar.querySelectorAll('a, button, [tabindex="0"]');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
   });
 }
 
@@ -116,27 +183,34 @@ document.addEventListener('click', (e) => {
     const targetId = e.target.getAttribute('data-target');
     const fullArticle = document.getElementById(`blog-${targetId}`);
     const card = e.target.closest('.blog-card');
-    card.querySelector('.blog-content').style.display = 'none';
-    fullArticle.classList.add('active');
-    fullArticle.scrollIntoView({ behavior: 'smooth' });
+    if (card && fullArticle) {
+      card.querySelector('.blog-content').style.display = 'none';
+      fullArticle.style.display = 'block';
+      setTimeout(() => {
+        fullArticle.classList.add('active');
+        fullArticle.scrollIntoView({ behavior: 'smooth' });
+      }, 10); // Small delay to ensure display change takes effect
+    }
   } else if (e.target.classList.contains('back-link')) {
     e.preventDefault();
     const targetId = e.target.getAttribute('data-target');
     const fullArticle = document.getElementById(`blog-${targetId}`);
     const card = e.target.closest('.blog-card');
-    fullArticle.classList.remove('active');
-    setTimeout(() => {
-      fullArticle.style.display = 'none';
-      card.querySelector('.blog-content').style.display = 'block';
-      card.scrollIntoView({ behavior: 'smooth' });
-    }, 500); // Match CSS transition duration
+    if (card && fullArticle) {
+      fullArticle.classList.remove('active');
+      setTimeout(() => {
+        fullArticle.style.display = 'none';
+        card.querySelector('.blog-content').style.display = 'block';
+        card.scrollIntoView({ behavior: 'smooth' });
+      }, 500); // Match CSS transition duration
+    }
   }
 });
 
 // Like Button Functionality
 document.addEventListener('click', (e) => {
-  if (e.target.closest('.like-btn')) {
-    const likeBtn = e.target.closest('.like-btn');
+  const likeBtn = e.target.closest('.like-btn');
+  if (likeBtn) {
     likeBtn.setAttribute('tabindex', '0');
     likeBtn.setAttribute('role', 'button');
     const blogId = likeBtn.getAttribute('data-blog-id');
@@ -186,88 +260,51 @@ function showNotification(message, type = 'success') {
   setTimeout(() => notification.remove(), 3000);
 }
 
-document.getElementById('contact-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = e.target.querySelector('#email').value;
-  const message = e.target.querySelector('#message').value;
-  const submitBtn = e.target.querySelector('.submit-btn');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    submitBtn.classList.add('error');
-    showNotification('Please enter a valid email address.', 'error');
-    setTimeout(() => submitBtn.classList.remove('error'), 2000);
-    return;
-  }
-  if (message.trim().length < 10) {
-    submitBtn.classList.add('error');
-    showNotification('Message must be at least 10 characters long.', 'error');
-    setTimeout(() => submitBtn.classList.remove('error'), 2000);
-    return;
-  }
-  const formData = new FormData(e.target);
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = 'Sending...';
-  submitBtn.disabled = true;
-  try {
-    const response = await fetch('https://formspree.io/f/your-form-id', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-    if (!response.ok) throw new Error('Network response was not ok');
-    submitBtn.classList.add('success');
-    showNotification('Message sent successfully! Thanks for reaching out.');
-    e.target.reset();
-  } catch (error) {
-    submitBtn.classList.add('error');
-    showNotification(`Failed to send message: ${error.message}. Try emailing mrchidubem8@gmail.com.`, 'error');
-  } finally {
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-    setTimeout(() => submitBtn.classList.remove('success', 'error'), 2000);
-  }
-});
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector('#email').value;
+    const message = e.target.querySelector('#message').value;
+    const submitBtn = e.target.querySelector('.submit-btn');
 
-// Intersection Observer for Fade-in Animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+    // Validate email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      submitBtn.classList.add('error');
+      showNotification('Please enter a valid email address.', 'error');
+      setTimeout(() => submitBtn.classList.remove('error'), 2000);
+      return;
+    }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
+    // Validate message length
+    if (message.trim().length < 10) {
+      submitBtn.classList.add('error');
+      showNotification('Message must be at least 10 characters long.', 'error');
+      setTimeout(() => submitBtn.classList.remove('error'), 2000);
+      return;
+    }
+
+    // Simulate form submission (replace with actual API call if needed)
+    try {
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate async operation
+      submitBtn.classList.remove('loading');
+      submitBtn.classList.add('success');
+      showNotification('Message sent successfully!', 'success');
+      contactForm.reset();
+      setTimeout(() => {
+        submitBtn.classList.remove('success');
+        submitBtn.disabled = false;
+      }, 2000);
+    } catch (error) {
+      submitBtn.classList.remove('loading');
+      submitBtn.classList.add('error');
+      showNotification('Failed to send message. Please try again.', 'error');
+      setTimeout(() => {
+        submitBtn.classList.remove('error');
+        submitBtn.disabled = false;
+      }, 2000);
     }
   });
-}, observerOptions);
-
-document.querySelectorAll('.section').forEach(section => {
-  observer.observe(section);
-});
-
-// Lazy load images
-if ('IntersectionObserver' in window) {
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.classList.remove('lazy');
-          imageObserver.unobserve(img);
-        } else {
-          console.warn('Image missing data-src:', img);
-          img.src = 'public/fallback.jpg'; // Ensure fallback image exists
-        }
-      }
-    });
-  });
-  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-    imageObserver.observe(img);
-  });
-}
-
-// Disable background animation for reduced motion
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.querySelector('.bg-animation').style.animation = 'none';
 }
