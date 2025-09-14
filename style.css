@@ -424,7 +424,7 @@ html {
   .header-controls {
     position: absolute;
     top: 1rem;
-    right: 4.5rem; /* Matches JS positioning */
+    right: 3rem; /* Adjusted to be closer to logo, clear of hamburger */
     z-index: 25;
     display: flex;
     gap: 0.5rem;
@@ -1883,20 +1883,20 @@ textarea.form-control {
   color: var(--text-secondary);
   border-top: 1px solid var(--border-color);
   transition: background 0.3s ease;
-  max-width: 1200px; /* Match other sections */
-  margin: 0 auto; /* Center align */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .footer {
     padding: 2rem;
-    margin-right: 2rem; /* Align with sidebar, same as Interests and Projects */
+    margin-right: 2rem;
   }
 }
 
 @media (max-width: 767px) {
   .footer {
-    margin: 0 auto; /* Center on mobile */
+    margin: 0 auto;
   }
 }
 

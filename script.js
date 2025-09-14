@@ -18,10 +18,10 @@ function applyTheme() {
     }
   }
 
-  // Adjust header-controls positioning on mobile to avoid overlap with hamburger menu
+  // Adjust header-controls positioning on mobile to be closer to logo
   const headerControls = document.querySelector('.header-controls');
   if (isMobile && headerControls) {
-    headerControls.style.right = '4.5rem'; // Shifted left to avoid hamburger icon
+    headerControls.style.right = '3rem'; // Adjusted to be closer to logo, clear of hamburger
   } else if (headerControls) {
     headerControls.style.right = '1.5rem'; // Default for desktop
   }
