@@ -179,6 +179,7 @@ html {
 
 .mobile-menu-toggle:checked ~ .sidebar-overlay {
   display: block;
+  opacity: 1;
 }
 
 .sidebar-overlay {
@@ -191,6 +192,7 @@ html {
   backdrop-filter: blur(8px);
   z-index: 10;
   display: none;
+  opacity: 0;
   transition: opacity 0.4s ease;
 }
 
@@ -428,6 +430,7 @@ html {
     padding: 0.75rem 1rem;
     flex-wrap: nowrap;
     gap: 0.75rem;
+    align-items: center;
   }
 }
 
@@ -445,12 +448,13 @@ html {
   letter-spacing: 0.05em;
   font-family: "Quicksand", sans-serif;
   flex: 1;
+  line-height: 36px;
 }
 
 @media (max-width: 767px) {
   .logo {
     text-align: left;
-    line-height: 36px; /* Align vertically with buttons */
+    margin-right: 1rem;
   }
 }
 
@@ -465,6 +469,7 @@ html {
   .header-controls {
     gap: 0.75rem;
     flex-shrink: 0;
+    margin-right: 3rem; /* Space for mobile-menu-btn */
   }
 }
 

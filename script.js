@@ -6,7 +6,6 @@ const body = document.body;
 function applyTheme() {
   const isMobile = window.matchMedia("(max-width: 767px)").matches;
   const savedTheme = localStorage.getItem('theme');
-  // Use dark theme as default on mobile if no saved theme
   const theme = isMobile ? (savedTheme || 'dark') : (savedTheme || 'light');
 
   body.setAttribute('data-theme', theme);
@@ -99,7 +98,7 @@ const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const closeBtn = document.querySelector('.close-btn');
 
 if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) {
-  // Set accessibility attributes
+  // Accessibility attributes
   mobileMenuBtn.setAttribute('tabindex', '0');
   mobileMenuBtn.setAttribute('role', 'button');
   mobileMenuBtn.setAttribute('aria-label', 'Open menu');
@@ -114,7 +113,7 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
     sidebarOverlay.style.display = isOpen ? 'block' : 'none';
     sidebarOverlay.style.opacity = isOpen ? '1' : '0';
     mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    // Trap focus in sidebar when open
+    // Focus management
     if (isOpen) {
       sidebar.focus();
     } else {
@@ -159,7 +158,7 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
     }
   });
 
-  // Trap focus within sidebar
+  // Focus trap in sidebar and Escape key support
   sidebar.addEventListener('keydown', (e) => {
     if (e.key === 'Tab' && mobileMenuToggle.checked) {
       const focusableElements = sidebar.querySelectorAll('a, button, [tabindex="0"]');
@@ -172,6 +171,9 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
         e.preventDefault();
         firstElement.focus();
       }
+    }
+    if (e.key === 'Escape' && mobileMenuToggle.checked) {
+      closeBtn.click();
     }
   });
 }
@@ -189,7 +191,7 @@ document.addEventListener('click', (e) => {
       setTimeout(() => {
         fullArticle.classList.add('active');
         fullArticle.scrollIntoView({ behavior: 'smooth' });
-      }, 10); // Small delay to ensure display change takes effect
+      }, 10);
     }
   } else if (e.target.classList.contains('back-link')) {
     e.preventDefault();
@@ -202,7 +204,7 @@ document.addEventListener('click', (e) => {
         fullArticle.style.display = 'none';
         card.querySelector('.blog-content').style.display = 'block';
         card.scrollIntoView({ behavior: 'smooth' });
-      }, 500); // Match CSS transition duration
+      }, 500);
     }
   }
 });
@@ -284,11 +286,11 @@ if (contactForm) {
       return;
     }
 
-    // Simulate form submission (replace with actual API call if needed)
+    // Simulate form submission
     try {
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate async operation
+      await new Promise(resolve => setTimeout(resolve, 1000));
       submitBtn.classList.remove('loading');
       submitBtn.classList.add('success');
       showNotification('Message sent successfully!', 'success');
