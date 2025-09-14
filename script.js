@@ -2,21 +2,31 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Determine default theme based on screen size
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
-const defaultTheme = isMobile ? 'dark' : (localStorage.getItem('theme') || 'dark');
+// Function to determine and set theme
+function setThemeBasedOnScreen() {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const savedTheme = localStorage.getItem('theme');
+  // Set dark theme as default for mobile if no saved theme, otherwise use saved theme
+  const defaultTheme = isMobile && !savedTheme ? 'dark' : (savedTheme || 'light');
 
-// Set initial theme
-body.setAttribute('data-theme', defaultTheme);
-themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
-themeToggle.querySelector('i').classList.add(defaultTheme === 'dark' ? 'fa-sun' : 'fa-moon');
+  body.setAttribute('data-theme', defaultTheme);
+  themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
+  themeToggle.querySelector('i').classList.add(defaultTheme === 'dark' ? 'fa-sun' : 'fa-moon');
+}
 
+// Set theme on initial load
+setThemeBasedOnScreen();
+
+// Update theme on window resize
+window.addEventListener('resize', setThemeBasedOnScreen);
+
+// Theme toggle button click handler
 themeToggle.addEventListener('click', () => {
   const currentTheme = body.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
   body.setAttribute('data-theme', newTheme);
-  themeToggle.querySelector('i').classList.toggle('fa-moon');
-  themeToggle.querySelector('i').classList.toggle('fa-sun');
+  themeToggle.querySelector('i').classList.remove('fa-moon', 'fa-sun');
+  themeToggle.querySelector('i').classList.add(newTheme === 'dark' ? 'fa-sun' : 'fa-moon');
   localStorage.setItem('theme', newTheme);
 });
 
