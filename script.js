@@ -106,6 +106,16 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
   closeBtn.setAttribute('role', 'button');
   closeBtn.setAttribute('aria-label', 'Close menu');
 
+  // Function to close sidebar
+  function closeSidebar() {
+    mobileMenuToggle.checked = false;
+    sidebar.style.transform = 'translateX(-100%)';
+    sidebarOverlay.style.display = 'none';
+    sidebarOverlay.style.opacity = '0';
+    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+    mobileMenuBtn.focus();
+  }
+
   // Handle checkbox toggle
   mobileMenuToggle.addEventListener('change', () => {
     const isOpen = mobileMenuToggle.checked;
@@ -113,7 +123,6 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
     sidebarOverlay.style.display = isOpen ? 'block' : 'none';
     sidebarOverlay.style.opacity = isOpen ? '1' : '0';
     mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    // Focus management
     if (isOpen) {
       sidebar.focus();
     } else {
@@ -122,24 +131,10 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
   });
 
   // Close sidebar via close button
-  closeBtn.addEventListener('click', () => {
-    mobileMenuToggle.checked = false;
-    sidebar.style.transform = 'translateX(-100%)';
-    sidebarOverlay.style.display = 'none';
-    sidebarOverlay.style.opacity = '0';
-    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-    mobileMenuBtn.focus();
-  });
+  closeBtn.addEventListener('click', closeSidebar);
 
   // Close sidebar via overlay click
-  sidebarOverlay.addEventListener('click', () => {
-    mobileMenuToggle.checked = false;
-    sidebar.style.transform = 'translateX(-100%)';
-    sidebarOverlay.style.display = 'none';
-    sidebarOverlay.style.opacity = '0';
-    mobileMenuBtn.setAttribute('aria-label', 'Open menu');
-    mobileMenuBtn.focus();
-  });
+  sidebarOverlay.addEventListener('click', closeSidebar);
 
   // Keyboard support for mobile menu button
   mobileMenuBtn.addEventListener('keydown', (e) => {
@@ -154,7 +149,7 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
   closeBtn.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      closeBtn.click();
+      closeSidebar();
     }
   });
 
@@ -173,7 +168,7 @@ if (mobileMenuToggle && sidebar && sidebarOverlay && mobileMenuBtn && closeBtn) 
       }
     }
     if (e.key === 'Escape' && mobileMenuToggle.checked) {
-      closeBtn.click();
+      closeSidebar();
     }
   });
 }
