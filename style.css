@@ -26,10 +26,10 @@
   --bg-card-dark: #1e293b;
   --border-color-dark: #334155;
   /* Like button specific */
-  --like-btn-color: #ff4d6d; /* Vibrant pink for visibility */
-  --like-btn-active: #ff1d5c; /* Slightly darker when liked */
+  --like-btn-color: #ff4d6d;
+  --like-btn-active: #ff1d5c;
   /* Tech tag accent */
-  --tech-accent: #e0f2fe; /* Light cyan for elegant contrast */
+  --tech-accent: #e0f2fe;
 }
 
 [data-theme="dark"] {
@@ -40,7 +40,7 @@
   --bg-card: var(--bg-card-dark);
   --border-color: var(--border-color-dark);
   --hero-bg: linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(59, 130, 246, 0.06) 50%, rgba(13, 148, 136, 0.1) 100%);
-  --tech-accent: #1e40af; /* Darker blue for dark mode */
+  --tech-accent: #1e40af;
 }
 
 * {
@@ -142,7 +142,6 @@ html {
   color: white;
   font-size: 1.25rem;
   cursor: pointer;
-  display: block;
   padding: 0.5rem;
   border-radius: 8px;
   width: 2.5rem;
@@ -407,7 +406,15 @@ html {
 @media (max-width: 767px) {
   .header {
     padding: 1rem 4%;
-    padding-top: 4rem;
+    padding-top: 4.5rem; /* Increased to avoid overlap with mobile menu */
+    position: relative;
+  }
+
+  .header-controls {
+    position: absolute;
+    top: 1rem;
+    right: 4rem; /* Position to the left of mobile menu button */
+    z-index: 25; /* Below mobile menu button */
   }
 }
 
@@ -440,6 +447,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 26; /* Ensure visibility */
 }
 
 .theme-toggle:hover {
@@ -2062,30 +2070,4 @@ textarea.form-control {
     max-height: 60vh;
     padding: 1rem;
   }
-}
-
-.header-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.theme-toggle {
-  background: var(--bg-secondary);
-  border: none;
-  color: var(--text-secondary);
-  padding: 0.5rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.theme-toggle:hover {
-  background: var(--primary-light);
-  color: var(--primary-dark);
 }
