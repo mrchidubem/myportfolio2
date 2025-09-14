@@ -433,7 +433,7 @@ html {
   .header-controls {
     position: absolute;
     top: 1rem;
-    right: 3rem; /* Adjusted previously to prevent overlap with hamburger menu */
+    right: 3rem; /* Adjusted to prevent overlap with hamburger menu */
     z-index: 25;
     display: flex;
     gap: 0.5rem;
@@ -485,7 +485,7 @@ html {
   padding: 2rem 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   background: var(--hero-bg);
   overflow: hidden;
@@ -495,7 +495,7 @@ html {
 @media (min-width: 768px) {
   .hero {
     padding: 2rem;
-    margin-right: 2rem; /* Adjusted to match sidebar padding */
+    margin-right: 2rem;
   }
 }
 
@@ -538,21 +538,28 @@ html {
 .hero-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
-  max-width: 800px;
+  max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
+  margin-left: 0;
+  margin-right: 2rem;
   position: relative;
   z-index: 2;
-  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .hero-content {
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 @media (min-width: 1024px) {
   .hero-content {
-    text-align: left;
-    align-items: flex-start;
-    max-width: 900px;
+    max-width: 1200px;
   }
 }
 
@@ -605,16 +612,16 @@ html {
 .hero-cta {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards 0.8s;
   flex-wrap: wrap;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .hero-cta {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
 
@@ -658,15 +665,15 @@ html {
 
 .social-links {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards 1s;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .social-links {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
 
@@ -721,13 +728,13 @@ html {
 }
 
 @media (min-width: 768px) {
-  #education, #experience, #projects, #interests {
-    margin-right: 2rem; /* Adjusted to match sidebar padding */
+  #education, #experience, #projects, #interests, #about, #skills, #testimonials, #blog, #contact {
+    margin-right: 2rem;
   }
 }
 
 .section-header {
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto 1.5rem;
   text-align: center;
 }
@@ -756,6 +763,7 @@ html {
   color: var(--text-secondary);
   line-height: 1.6;
   font-weight: 300;
+  text-align: center;
 }
 
 /* About Section */
@@ -763,14 +771,19 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 2rem 0 0;
+}
+
+@media (max-width: 767px) {
+  .about-grid {
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 768px) {
   .about-grid {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 1200px;
   }
 }
 
@@ -822,7 +835,7 @@ html {
 }
 
 .about-description {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto 1.5rem;
   padding: 1.2rem;
   background: var(--bg-card);
@@ -832,7 +845,7 @@ html {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  text-align: justify;
+  text-align: center;
   position: relative;
 }
 
@@ -877,16 +890,19 @@ html {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  margin-top: 1.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1.5rem 2rem 0 0;
+  max-width: 1200px;
+}
+
+@media (max-width: 767px) {
+  .skills-grid {
+    margin: 1.5rem auto 0;
+  }
 }
 
 @media (min-width: 768px) {
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 1200px;
     gap: 1rem;
   }
 }
@@ -946,7 +962,7 @@ html {
 }
 
 .skills-description {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto 1.5rem;
   padding: 1.2rem;
   background: var(--bg-card);
@@ -956,7 +972,7 @@ html {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  text-align: justify;
+  text-align: center;
   position: relative;
 }
 
@@ -999,14 +1015,14 @@ html {
 /* Experience Section */
 .experience-timeline {
   position: relative;
-  margin: 1.5rem auto 0;
+  margin: 1.5rem 2rem 0 0;
   border-left: 3px solid var(--primary-light);
-  max-width: 600px;
+  max-width: 1200px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .experience-timeline {
-    max-width: 1000px;
+    margin: 1.5rem auto 0;
   }
 }
 
@@ -1125,14 +1141,19 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 1.5rem 2rem 0 0;
+}
+
+@media (max-width: 767px) {
+  .testimonials-grid {
+    margin: 1.5rem auto 0;
+  }
 }
 
 @media (min-width: 768px) {
   .testimonials-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-width: 1200px;
     gap: 1rem;
   }
 }
@@ -1199,16 +1220,19 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
-  margin-top: 1.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1.5rem 2rem 0 0;
+  max-width: 1200px;
+}
+
+@media (max-width: 767px) {
+  .projects-grid {
+    margin: 1.5rem auto 0;
+  }
 }
 
 @media (min-width: 768px) {
   .projects-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-width: 1200px;
     gap: 1rem;
   }
 }
@@ -1367,14 +1391,19 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 1.5rem 2rem 0 0;
+}
+
+@media (max-width: 767px) {
+  .blog-grid {
+    margin: 1.5rem auto 0;
+  }
 }
 
 @media (min-width: 768px) {
   .blog-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    max-width: 1200px;
     gap: 1rem;
   }
 }
@@ -1569,16 +1598,19 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
-  margin-top: 1.5rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 1.5rem 2rem 0 0;
+  max-width: 1200px;
+}
+
+@media (max-width: 767px) {
+  .interests-grid {
+    margin: 1.5rem auto 0;
+  }
 }
 
 @media (min-width: 768px) {
   .interests-grid {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 1200px;
     gap: 1rem;
   }
 }
@@ -1626,8 +1658,8 @@ html {
 
 /* Contact Section */
 .contact-content {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 2rem 0 0;
   padding: 2rem 1.5rem;
   background: var(--bg-card);
   border-radius: 12px;
@@ -1641,6 +1673,12 @@ html {
   }
 }
 
+@media (max-width: 767px) {
+  .contact-content {
+    margin: 0 auto;
+  }
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1651,7 +1689,6 @@ html {
 @media (min-width: 1024px) {
   .contact-grid {
     grid-template-columns: 1fr 1fr;
-    max-width: 1000px;
   }
 }
 
@@ -1790,14 +1827,19 @@ textarea.form-control {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 2rem 0 0;
+}
+
+@media (max-width: 767px) {
+  .education-cards {
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 768px) {
   .education-cards {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    max-width: 1200px;
     gap: 1rem;
   }
 }
@@ -1862,13 +1904,12 @@ textarea.form-control {
 @media (min-width: 768px) {
   .footer {
     padding: 2rem;
-    margin-right: 2rem; /* Adjusted to match sidebar padding */
   }
 }
 
 .footer-content {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 2rem 0 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
@@ -1879,6 +1920,12 @@ textarea.form-control {
   .footer-content {
     grid-template-columns: 1fr 1fr 1fr;
     text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-content {
+    margin: 0 auto;
   }
 }
 
@@ -1996,8 +2043,8 @@ textarea.form-control {
   }
 
   .hero-content {
-    text-align: center;
     align-items: center;
+    text-align: center;
     gap: 1rem;
     padding: 2rem 1.5rem;
   }

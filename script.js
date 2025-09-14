@@ -137,7 +137,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
 // Contact Form Handling
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const formData = new FormData(e.target);
+  const formData = new FormFormData(e.target);
   const submitBtn = e.target.querySelector('.submit-btn');
   const originalText = submitBtn.textContent;
   submitBtn.textContent = 'Sending...';
