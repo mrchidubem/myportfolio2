@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stripe Payment</title>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <h1>Pay with Stripe</h1>
+  <div id="card-element"></div>
+  <button id="pay-button">Pay</button>
+
+  <script>
+    const stripe = Stripe("pk_test_12345"); // publishable key
+    const elements = stripe.elements();
+    const card = elements.create("card");
+    card.mount("#card-element");
+
+    async function startPayment() {
+      // 1. Ask Django backend for client_secret
+      const response = await fetch("/create-payment-intent/", { method: "POST" });
+      const { client_secret } = await response.json();
+
+      // 2. Confirm payment
+      const { paymentIntent, error } = await stripe.confirmCardPayment(
+        client_secret,
+        { payment_method: { card: card } }
+      );
+
+      if (error) {
+        alert("Payment failed: " + error.message);
+      } else if (paymentIntent.status === "succeeded") {
+        alert("Payment successful 🎉");
+      }
+    }
+
+    document.getElementById("pay-button").addEventListener("click", startPayment);
+  </script>
+</body>
+</html>
