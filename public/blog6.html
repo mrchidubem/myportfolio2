@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Building Scalable Web Apps | Joseph Chidubem Okafor</title>
-  <meta name="description" content="Best practices for performance and robust architecture in web applications" />
-  <meta property="og:title" content="Building Scalable Web Apps | Joseph Chidubem Okafor" />
-  <meta property="og:description" content="Best practices for performance and robust architecture in web applications" />
-  <meta property="og:image" content="public/blog1.jpg" />
+  <title>Scaling Node.js Applications | Joseph Chidubem Okafor</title>
+  <meta name="description" content="Strategies for handling high traffic and performance in Node.js apps" />
+  <meta property="og:title" content="Scaling Node.js Applications | Joseph Chidubem Okafor" />
+  <meta property="og:description" content="Strategies for handling high traffic and performance in Node.js apps" />
+  <meta property="og:image" content="public/blog6.jpg" />
   <link rel="icon" href="public/favicon.ico" type="image/x-icon">
 
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=wap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
   <!-- Styles -->
@@ -61,33 +61,33 @@
       <div class="container">
         <div class="blog-post-header">
           <h3 class="sub">Blog Post</h3>
-          <h1 class="title">Building Scalable Web Apps</h1>
-          <p class="muted small">Sep 10, 2025 • Joseph Chidubem Okafor</p>
-          <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Building Scalable Web Apps" />
+          <h1 class="title">Scaling Node.js Applications</h1>
+          <p class="muted small">Apr 15, 2025 • Joseph Chidubem Okafor</p>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc0ejUSo0T4WbysrFX0fJuyf6EPCacwRsfR02W_cVjw5QoWNbYgw5Sh-7DKGfpnFhVwJ8&usqp=CAU" alt="Scaling Node.js Applications" />
         </div>
         <div class="blog-post-content">
           <h2>Introduction</h2>
-          <p>Building scalable web applications is critical in today’s fast-paced digital world. Scalability ensures that your application can handle increased traffic, data, and complexity without compromising performance. This post explores best practices for designing and implementing scalable web architectures.</p>
+          <p>Node.js is a powerful runtime for building fast, scalable applications, but high traffic can expose its limitations. This post covers strategies for scaling Node.js apps to handle increased demand.</p>
           
-          <h2>Key Principles</h2>
+          <h2>Scaling Techniques</h2>
           <ul>
-            <li><strong>Microservices Architecture</strong>: Break down your application into smaller, independent services to improve modularity and scalability.</li>
-            <li><strong>Load Balancing</strong>: Distribute traffic across multiple servers to prevent bottlenecks.</li>
-            <li><strong>Caching</strong>: Use tools like Redis or Memcached to store frequently accessed data, reducing database load.</li>
-            <li><strong>Database Optimization</strong>: Choose the right database (SQL vs. NoSQL) and optimize queries for performance.</li>
+            <li><strong>Clustering</strong>: Use the Node.js `cluster` module to leverage multiple CPU cores.</li>
+            <li><strong>Load Balancing</strong>: Deploy multiple Node.js instances with NGINX or AWS ELB.</li>
+            <li><strong>Microservices</strong>: Split monolithic apps into smaller services for better scalability.</li>
+            <li><strong>Caching</strong>: Implement Redis to cache frequent queries and reduce server load.</li>
           </ul>
 
-          <h2>Practical Implementation</h2>
-          <p>Consider a Node.js application using Express and MongoDB. To scale, you can deploy it on AWS with Elastic Load Balancer, use Docker for containerization, and implement Redis for caching. Monitoring tools like New Relic can help identify performance bottlenecks.</p>
+          <h2>Implementation Example</h2>
+          <p>For an Express app, use PM2 for process management and clustering. Deploy on AWS with an Application Load Balancer and integrate Redis for caching. Monitor performance with tools like New Relic.</p>
           
-          <h2>Challenges and Solutions</h2>
-          <p>Common challenges include managing state in distributed systems and ensuring data consistency. Solutions like eventual consistency models and message queues (e.g., RabbitMQ) can mitigate these issues.</p>
+          <h2>Challenges</h2>
+          <p>Handling session persistence and database bottlenecks are common issues. Use Redis for session storage and optimize database queries with indexing.</p>
           
           <h2>Conclusion</h2>
-          <p>Scalability requires careful planning and the right tools. By adopting microservices, optimizing databases, and leveraging cloud infrastructure, you can build web apps that grow with your user base.</p>
+          <p>Scaling Node.js apps requires a combination of clustering, load balancing, and caching. With the right strategies, Node.js can handle high-traffic workloads effectively.</p>
         </div>
         <div class="blog-post-footer">
-          <a href="/index2.html#blog" class="btn btn-primary" aria-label="Go Back to Blog">Go Back</a>
+          <a href="index2.html#blog" class="btn btn-primary" aria-label="Go Back to Blog">Go Back</a>
         </div>
       </div>
     </section>

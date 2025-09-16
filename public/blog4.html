@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Building Scalable Web Apps | Joseph Chidubem Okafor</title>
-  <meta name="description" content="Best practices for performance and robust architecture in web applications" />
-  <meta property="og:title" content="Building Scalable Web Apps | Joseph Chidubem Okafor" />
-  <meta property="og:description" content="Best practices for performance and robust architecture in web applications" />
-  <meta property="og:image" content="public/blog1.jpg" />
+  <title>Mastering React Hooks | Joseph Chidubem Okafor</title>
+  <meta name="description" content="Leveraging hooks for cleaner, more efficient code" />
+  <meta property="og:title" content="Mastering React Hooks | Joseph Chidubem Okafor" />
+  <meta property="og:description" content="Leveraging hooks for cleaner, more efficient code" />
+  <meta property="og:image" content="public/blog4.jpg" />
   <link rel="icon" href="public/favicon.ico" type="image/x-icon">
 
   <!-- Fonts & Icons -->
@@ -61,33 +61,33 @@
       <div class="container">
         <div class="blog-post-header">
           <h3 class="sub">Blog Post</h3>
-          <h1 class="title">Building Scalable Web Apps</h1>
-          <p class="muted small">Sep 10, 2025 • Joseph Chidubem Okafor</p>
-          <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Building Scalable Web Apps" />
+          <h1 class="title">Mastering React Hooks</h1>
+          <p class="muted small">Jun 5, 2025 • Joseph Chidubem Okafor</p>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXz5XxGYWH8a8ZLGSUFBzAtpHJeNVM8T-BbXco1Xzs6e23XxOdwLFSKt9kGfBXKs1_CJY&usqp=CAU" alt="Mastering React Hooks" />
         </div>
         <div class="blog-post-content">
           <h2>Introduction</h2>
-          <p>Building scalable web applications is critical in today’s fast-paced digital world. Scalability ensures that your application can handle increased traffic, data, and complexity without compromising performance. This post explores best practices for designing and implementing scalable web architectures.</p>
+          <p>React Hooks revolutionized how developers build components by enabling functional components to manage state and side effects. This post dives into mastering hooks for cleaner, more efficient code.</p>
           
-          <h2>Key Principles</h2>
+          <h2>Core Hooks</h2>
           <ul>
-            <li><strong>Microservices Architecture</strong>: Break down your application into smaller, independent services to improve modularity and scalability.</li>
-            <li><strong>Load Balancing</strong>: Distribute traffic across multiple servers to prevent bottlenecks.</li>
-            <li><strong>Caching</strong>: Use tools like Redis or Memcached to store frequently accessed data, reducing database load.</li>
-            <li><strong>Database Optimization</strong>: Choose the right database (SQL vs. NoSQL) and optimize queries for performance.</li>
+            <li><strong>useState</strong>: Manage component state with simple syntax.</li>
+            <li><strong>useEffect</strong>: Handle side effects like data fetching or subscriptions.</li>
+            <li><strong>useContext</strong>: Access context for global state management.</li>
+            <li><strong>useReducer</strong>: Manage complex state logic.</li>
           </ul>
 
-          <h2>Practical Implementation</h2>
-          <p>Consider a Node.js application using Express and MongoDB. To scale, you can deploy it on AWS with Elastic Load Balancer, use Docker for containerization, and implement Redis for caching. Monitoring tools like New Relic can help identify performance bottlenecks.</p>
+          <h2>Custom Hooks</h2>
+          <p>Create reusable logic with custom hooks. For example, a `useFetch` hook can encapsulate API calls, handling loading states and errors.</p>
           
-          <h2>Challenges and Solutions</h2>
-          <p>Common challenges include managing state in distributed systems and ensuring data consistency. Solutions like eventual consistency models and message queues (e.g., RabbitMQ) can mitigate these issues.</p>
+          <h2>Best Practices</h2>
+          <p>Follow rules of hooks (e.g., only call hooks at the top level), keep hooks focused, and combine them for complex functionality. Avoid overusing `useEffect` for simple updates.</p>
           
           <h2>Conclusion</h2>
-          <p>Scalability requires careful planning and the right tools. By adopting microservices, optimizing databases, and leveraging cloud infrastructure, you can build web apps that grow with your user base.</p>
+          <p>Hooks simplify React development by reducing boilerplate and improving code reuse. Mastering them unlocks powerful, maintainable frontends.</p>
         </div>
         <div class="blog-post-footer">
-          <a href="/index2.html#blog" class="btn btn-primary" aria-label="Go Back to Blog">Go Back</a>
+          <a href="index2.html#blog" class="btn btn-primary" aria-label="Go Back to Blog">Go Back</a>
         </div>
       </div>
     </section>
