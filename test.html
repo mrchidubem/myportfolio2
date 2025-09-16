@@ -1,39 +1,1231 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Stripe Payment</title>
-  <script src="https://js.stripe.com/v3/"></script>
-</head>
-<body>
-  <h1>Pay with Stripe</h1>
-  <div id="card-element"></div>
-  <button id="pay-button">Pay</button>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website - Joseph Chidubem Okafor</title>
+    <meta
+      name="description"
+      content="Joseph Chidubem Okafor - Full Stack Developer & Electronics Engineer | Building scalable apps, AI automations, and innovative solutions."
+    />
+    <meta name="keywords" content="full stack developer, AI automation, Python, Django, AWS, electronics engineer, portfolio" />
+    <meta property="og:title" content="Joseph Chidubem Okafor - Full Stack Developer" />
+    <meta property="og:description" content="Passionate Full Stack Software Engineer specializing in AI-driven solutions." />
+    <meta property="og:image" content="https://your-hosted-image.com/dube.jpg" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>"
+    />
 
-  <script>
-    const stripe = Stripe("pk_test_12345"); // publishable key
-    const elements = stripe.elements();
-    const card = elements.create("card");
-    card.mount("#card-element");
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts - Asap for body, Quicksand for headings -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Asap:wght@200;300;400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    async function startPayment() {
-      // 1. Ask Django backend for client_secret
-      const response = await fetch("/create-payment-intent/", { method: "POST" });
-      const { client_secret } = await response.json();
+    <link rel="stylesheet" href="style2.css" />
+  </head>
+  <body>
+    <div class="bg-animation"></div>
 
-      // 2. Confirm payment
-      const { paymentIntent, error } = await stripe.confirmCardPayment(
-        client_secret,
-        { payment_method: { card: card } }
-      );
+    <!-- Mobile Menu Toggle -->
+    <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
+    <label for="mobile-menu-toggle" class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </label>
 
-      if (error) {
-        alert("Payment failed: " + error.message);
-      } else if (paymentIntent.status === "succeeded") {
-        alert("Payment successful 🎉");
-      }
-    }
+    <!-- Sidebar Overlay -->
+    <label for="mobile-menu-toggle" class="sidebar-overlay"></label>
 
-    document.getElementById("pay-button").addEventListener("click", startPayment);
-  </script>
-</body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <label for="mobile-menu-toggle" class="close-btn">
+        <i class="fas fa-times"></i>
+      </label>
+
+      <div class="profile-section">
+        <div class="profile-image-container">
+          <div class="profile-image">
+            <img
+              src="public/dube.jpg"
+              data-src="public/dube.jpg"
+              alt="Joseph Chidubem Okafor - Professional headshot"
+              class="profile-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="profile-status" aria-label="Online status"></div>
+        </div>
+
+        <div class="profile-info">
+          <h3 class="profile-name">Joseph Chidubem Okafor</h3>
+          <p class="profile-title">Full Stack Developer</p>
+          <p class="profile-tagline">Electronics Engineer</p>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#blog" class="nav-link">Blog</a>
+        <a href="#interests" class="nav-link">Interests</a>
+        <a href="#contact" class="nav-link">connect</a>
+        <a
+          href="https://drive.google.com/file/d/1gIt2RXeE2AI_CZJwtQHcHfwi1OP84M4i/view?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link resume-link"
+        >
+          <i class="fas fa-download"></i> Resume
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="logo">Dubicventures</h1>
+        <div class="header-controls">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-text">
+            <p class="hero-greeting">Hello, I'm Joseph! 👋</p>
+            <h1 class="hero-title">
+              Full Stack Software Engineer & AI Automation Specialist
+            </h1>
+            <p class="hero-description">
+             I am a passionate Full Stack Software Engineer with 5 years of experience bridging hardware expertise and cloud architecture. 
+             I specialize in building elegant, efficient solutions that combine innovative design, 
+             AI-driven programming, and cutting-edge technologies to deliver seamless user experiences. 
+             My focus is on leveraging technology to create impactful solutions that drive business growth and elevate user satisfaction.
+            </p>
+
+            <div class="hero-cta">
+              <a href="#contact" class="cta-button cta-primary">
+                <i class="fas fa-envelope"></i> Work with Me
+              </a>
+              <a href="#projects" class="cta-button cta-secondary">
+                <i class="fas fa-eye"></i> View My Work
+              </a>
+            </div>
+
+            <div class="social-links">
+              <a
+                href="https://twitter.com/ChidubemOkafor17"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Twitter"
+                aria-label="Twitter profile"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="https://github.com/mrchidubem"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="GitHub"
+                aria-label="GitHub profile"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/dubicventures/"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="LinkedIn"
+                aria-label="LinkedIn profile"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/dubicventures?igsh=MWoyc2ZldGtqNnA4eA=="
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Instagram"
+                aria-label="Instagram profile"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="section">
+        <div class="section-header">
+          <p class="small-heading">About Me</p>
+          <h2 class="heading">Who I Am</h2>
+          <div class="about-description">
+            <p>
+              I’m a <span class="highlight">multi-disciplinary developer</span> who combines engineering precision with creative design thinking to build exceptional digital experiences. 
+              With a <strong>B.Eng. in Electronic Engineering</strong> from the University of Nigeria Nsukka, I blend hardware expertise with software innovation, specializing in 
+              <span class="highlight">Full Stack Development, Cloud Architecture, and Generative AI</span>. Trained through ALX, 3MTT, IHS, and PLP Academy, I leverage tools like 
+              Django, AWS, Make.com, n8n, and Zapier to craft scalable, user-focused solutions—from HIPAA-compliant healthcare platforms like CareCycle to AI-automated workflows 
+              that streamline business operations. Driven by purpose, I create transformative tech that optimizes experiences and <em>mentors aspiring devs</em> in global communities.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="card-header">
+              <i class="fas fa-code" aria-hidden="true"></i>
+              <h4>Developer</h4>
+            </div>
+            <p>
+              With 5 years of experience in full-stack development, 
+              I specialize in creating scalable web applications using modern technologies like Python, Django, and Javascript. 
+              I'm passionate about writing clean, efficient code and following best practices, 
+              blending hardware expertise with AI-driven automation to craft innovative, user-focused solutions.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="card-header">
+              <i class="fas fa-palette" aria-hidden="true"></i>
+              <h4>AI Automation Specialist</h4>
+            </div>
+            <p>
+              My background in electronics engineering has given me a unique perspective on problem-solving and attention to detail.
+              I apply AI automation principles to create intelligent, efficient systems that prioritize seamless workflows and business value, 
+              leveraging tools like n8n, Zapier, and generative models to bridge strategy with execution.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="card-header">
+              <i class="fas fa-cogs" aria-hidden="true"></i>
+              <h4>Engineer</h4>
+            </div>
+            <p>
+              My electronics engineering background has equipped me with strong analytical and problem-solving skills. 
+              I approach software development with the same precision and systematic thinking that electronics engineering demands, 
+              ensuring robust integrations from circuit-level optimizations to scalable AI-driven architectures.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <div class="card-header">
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <h4>Mentor</h4>
+            </div>
+            <p>
+              As a graduate of ALX Africa and advocate for inclusive STEM, I'm passionate about sharing knowledge and helping others grow in their tech journey. 
+              Drawing from my electronics engineering roots and hands-on projects in AI automation,
+               I guide aspiring developers on building scalable solutions with tools like Django and n8n. 
+               I believe in the power of community and collaborative learning to drive inclusive innovation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education Section -->
+      <section id="education" class="section">
+        <div class="section-header">
+          <p class="small-heading">Education & Trainings</p>
+          <h2 class="heading">Academic Background</h2>
+        </div>
+
+        <div class="education-cards">
+          <div class="education-card">
+            <div class="education-icon">
+              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+            </div>
+            <h3 class="education-degree">Bachelor of Engineering</h3>
+            <p class="education-school">University of Nigeria, Nsukka</p>
+            <p class="education-year">Electronics Engineering • 2016 - 2022</p>
+          </div>
+
+          <div class="education-card">
+            <div class="education-icon">
+              <i class="fas fa-certificate" aria-hidden="true"></i>
+            </div>
+            <h3 class="education-degree">Tech Certifications & Trainings</h3>
+            <p class="education-school">ALX Africa, 3MTT Nigeria, IHS Academy, PLP Academy</p>
+            <p class="education-year">Full Stack Development & AI • 2022 - 2025</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section - Enhanced -->
+      <section id="skills" class="section">
+        <div class="section-header">
+          <p class="small-heading">Skillset</p>
+          <h2 class="heading">My Specialty</h2>
+          <div class="skills-description">
+            <p>
+              Over the past few years, I've honed a diverse skill set that empowers me to deliver <span class="highlight">impactful, scalable solutions</span>. 
+              My expertise spans <strong>Python (Expert)</strong>, <strong>Django (Expert)</strong>, <strong>Flask (Expert)</strong>, 
+              <strong>Node.js (Intermediate)</strong>, <strong>C Programming (Expert)</strong>, <strong>JavaScript (Intermediate)</strong>, 
+              <strong>React (Intermediate)</strong>, <strong>AWS (Intermediate)</strong>, <strong>Docker (Intermediate)</strong>, 
+              <strong>MySQL (Expert)</strong>, <strong>MongoDB (Intermediate)</strong>, <strong>Zapier (Intermediate)</strong>, 
+              <strong>n8n (Intermediate)</strong>, <strong>Make.com (Intermediate)</strong>, and <strong>Hugging Face (Basic)</strong>. 
+              I specialize in crafting full-stack applications, AI-driven automations, and cloud-based architectures that drive <em>real-world impact</em>.
+            </p>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-item">
+            <i class="fab fa-python skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Python</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-code skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Django</p>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-js-square skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">JavaScript</p>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-react skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">React</p>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-docker skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Docker</p>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-git-alt skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Git</p>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-github skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">GitHub</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-database skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">MySQL</p>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-aws skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">AWS</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-robot skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">AI</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-hammer skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Hugging Face</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-magic skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Make.com</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-sitemap skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">n8n</p>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-bolt skill-icon" aria-hidden="true"></i>
+            <p class="skill-label">Zapier</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="section">
+        <div class="section-header">
+          <p class="small-heading">Experience</p>
+          <h2 class="heading">Work Experience</h2>
+        </div>
+
+        <div class="experience-timeline">
+          <div class="experience-item">
+            <time class="experience-date">April 2024 - March 2025</time>
+            <h3 class="experience-title">Solutions Architect @ Chemical and Allied Products (CAP)</h3>
+            <h4 class="experience-role">Key Contributions</h4>
+            <p class="experience-description">
+              As a Solutions Architect,
+               I design scalable cloud solutions on AWS and contribute to team development through guidance on infrastructure, 
+               AI integrations, and project optimization,
+               fostering technical growth and efficiency.
+             </p>
+             <ul class="experience-tasks">
+               <li>
+                Worked with cross-functional teams in creating scalable web applications using Django and Python, 
+                focusing on performance and automation  
+               </li>
+               <li>
+                 Provided technical support and feedback on code quality, project architecture, 
+                 and DevOps pipelines with tools like n8n and Zapier  
+               </li>
+               <li>
+                 Facilitated workshops on best practices in full-stack development, cloud deployment, 
+                 and AI automation for business workflows
+               </li>
+             </ul>
+          </div>
+
+          <div class="experience-item">
+            <time class="experience-date">Febuary 2022 - December 2023</time>
+            <h3 class="experience-title">
+              Junior Python Developer @ Pacuss Global Ventures
+            </h3>
+            <h4 class="experience-role">Role Highlights</h4>
+            <p class="experience-description">
+              Led short-term development efforts on web applications, 
+              advocating for efficient tech stacks and allocating tasks to maximize team output in
+               responsive design and API integrations.
+            </p>
+            <ul class="experience-tasks">
+              <li>
+                Organized and led sprints to develop interactive features using Python, Django, and JavaScript for enhanced user engagement  
+              </li>
+              <li>
+                Coordinated with stakeholders to implement optimized RESTful APIs, 
+                reducing data retrieval time by 20%  
+              </li>
+              <li>
+                 Utilized Django and JavaScript to build dynamic components for application prototypes and automation tools
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <time class="experience-date">June 2022 - December 2022</time>
+            <h3 class="experience-title">
+              Software Engineer Intern @ alx_africa
+            </h3>
+            <h4 class="experience-role">Intern</h4>
+            <p class="experience-description">
+              Contributed to full-stack projects as an ALX graduate, 
+              applying Python and cloud tools for scalable applications.
+            </p>
+            <ul class="experience-tasks">
+              <li>
+                Developed and maintained features for web applications using Django and AWS  
+              </li>
+              <li>
+                Collaborated with the team to ensure efficient and scalable backend development  
+              </li>
+              <li>
+                Utilized Python and MySQL for data handling and implementing robust architecture principles
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <time class="experience-date">May 2021 - August 2022</time>
+            <h3 class="experience-title">Frontend Mentee @ Wetech</h3>
+            <h4 class="experience-role">Mentee</h4>
+            <p class="experience-description">
+               Focused on creating intuitive user interfaces and was recognized
+               as the Best Project Pitch Winner.
+            </p>
+            <ul class="experience-tasks">
+              <li>
+                Developed responsive UI components using React.js and Tailwind
+                CSS
+              </li>
+              <li>
+                Applied UX principles to enhance user experience and interface
+                design
+              </li>
+              <li>
+                Presented and pitched project ideas, demonstrating effective
+                communication skills
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <time class="experience-date">Fabuary 2020 - June 2021</time>
+            <h3 class="experience-title">
+              Python Developer Intern @ Evergreen Technologies
+            </h3>
+            <h4 class="experience-role">Intern</h4>
+            <p class="experience-description">
+               Focused on backend development and was recognized for innovative automation solutions in project pitches.
+            </p>
+            <ul class="experience-tasks">
+              <li>
+                Developed scalable backend components using Python, Flask, and automation tools like Zapier  
+              </li>
+              <li>
+                Collaborated with the team to ensure efficient and scalable
+                front-end development
+              </li>
+              <li>
+                Applied engineering principles to enhance workflow efficiency and system design
+              </li>
+              <li>
+                Presented and pitched AI-driven project ideas, demonstrating strong communication in technical demos
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials" class="section">
+        <div class="section-header">
+          <p class="small-heading">Testimonials</p>
+          <h2 class="heading">What Clients Say</h2>
+          <p class="section-description">
+            Don't just take my word for it—hear from those I've collaborated with.
+          </p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Joseph's AI automation expertise transformed our workflow—reduced processing time by 40%!"</p>
+            <div class="testimonial-author">
+              <img src="public/nelson.jpg" data-src="public/nelson.jpg" alt="Engr. Nelson, CTO at Pacuss Global Ventures" class="author-img" loading="lazy" />
+              <div>
+                <h4>Engr. Nelson</h4>
+                <p>CTO, Pacuss Global Ventures</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Outstanding full-stack skills and a true mentor. His guidance elevated our team's projects."</p>
+            <p class="testimonial-text">"Highly recommend for any scalable app needs."</p>
+            <div class="testimonial-author">
+              <img src="https://www.alxafrica.com/wp-content/uploads/2024/02/photo_2024-01-29_15-32-52-landscape.jpg" data-src="https://www.alxafrica.com/wp-content/uploads/2024/02/photo_2024-01-29_15-32-52-landscape.jpg" alt="Bebbier, Lead Developer at ALX Africa" class="author-img" loading="lazy" />
+              <div>
+                <h4>Bebbier</h4>
+                <p>Lead Developer, ALX Africa</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"From concept to deployment, Joseph's blend of engineering and creativity delivered exceptional results."</p>
+            <div class="testimonial-author">
+              <img src="https://www.capplc.com/static/media/wac1.ad6e957945687ea4fecd.png" data-src="https://www.capplc.com/static/media/wac1.ad6e957945687ea4fecd.png" alt="Aderemi, Product Manager at CAP" class="author-img" loading="lazy" />
+              <div>
+                <h4>Aderemi</h4>
+                <p>Product Manager, CAP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section">
+        <div class="section-header">
+          <p class="small-heading">My Projects</p>
+          <h2 class="heading">Recent Projects</h2>
+          <p class="section-description">
+            I have experience working on multiple projects, some of which I have
+            highlighted below. Each project showcases different aspects of my
+            technical skills and problem-solving abilities, including challenges faced and outcomes achieved.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <a
+            href="https://hospital-management-app-web.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                src="https://media.istockphoto.com/id/2165857670/nl/foto/trainee-doctors-and-consultant-discussing-diagnosis.jpg?s=612x612&w=0&k=20&c=dX_Mj36Ia2Pfg_curOXdLIu_cOE4qEHh7UmfFVmNurs="
+                data-src="https://media.istockphoto.com/id/2165857670/nl/foto/trainee-doctors-and-consultant-discussing-diagnosis.jpg?s=612x612&w=0&k=20&c=dX_Mj36Ia2Pfg_curOXdLIu_cOE4qEHh7UmfFVmNurs="
+                alt="Life Plus - Personalized Healthcare Platform Dashboard"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h4 class="project-title">Life Plus - Personalized Healthcare Platform</h4>
+              <p class="project-description">
+                A Django-based web app for managing patient care cycles, with real-time data integration and secure authentication.
+              </p>
+              <div class="project-case">
+                <p><strong>Challenge:</strong> Ensuring HIPAA compliance while enabling real-time updates.</p>
+                <p><strong>Outcome:</strong> Reduced admin time by 30% for 500+ users.</p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://delve.fun"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                src="public/shell.png"
+                data-src="public/shell.png"
+                alt="Simple Shell - Unix Command-Line Interface"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h4 class="project-title">Simple Shell</h4>
+              <p class="project-description">
+                A custom Unix command-line interpreter built from scratch as part of the ALX Software Engineering program.
+              </p>
+              <div class="project-case">
+                <p><strong>Challenge:</strong> Implementing system calls without libraries.</p>
+                <p><strong>Outcome:</strong> Efficient parser handling 50+ commands.</p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">C</span>
+                <span class="tech-tag">Linux System Calls</span>
+                <span class="tech-tag">GCC</span>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://github.com/mrchidubem"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                src="https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWlyYm5ifGVufDB8fDB8fHww"
+                data-src="https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWlyYm5ifGVufDB8fDB8fHww"
+                alt="Airbnb Clone - Property Listing Platform"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h4 class="project-title">Airbnb Clone (In Progress)</h4>
+              <p class="project-description">
+                A scalable web application built with Django and JavaScript, featuring user authentication, 
+                property listings, and booking functionality. Reduced load time by 20% with optimized APIs.
+              </p>
+              <div class="project-case">
+                <p><strong>Challenge:</strong> Handling concurrent bookings securely.</p>
+                <p><strong>Outcome:</strong> Scalable to 1K+ listings with 99% uptime.</p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">MySQL</span>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://budget-buddy-vibe-coding.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                src="https://media.istockphoto.com/id/594451682/nl/foto/man-on-a-budget.jpg?s=612x612&w=0&k=20&c=67eqaoLyOWLMbDVhnOKuwYH6X2fjsmhDZUPeYGk_EQs="
+                data-src="https://media.istockphoto.com/id/594451682/nl/foto/man-on-a-budget.jpg?s=612x612&w=0&k=20&c=67eqaoLyOWLMbDVhnOKuwYH6X2fjsmhDZUPeYGk_EQs="
+                alt="Budget Buddy - Personal Finance Management App"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h4 class="project-title">Budget Buddy</h4>
+              <p class="project-description">
+                A comprehensive personal finance management application built with Django and React.
+                 Features expense tracking, budget planning, financial analytics, and automated categorization using AI.
+              </p>
+              <div class="project-case">
+                <p><strong>Challenge:</strong> Integrating AI for accurate categorization.</p>
+                <p><strong>Outcome:</strong> 95% accuracy in expense tracking for users.</p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">AI Integration</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">Django</span>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="https://bis-payer.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                src="https://t4.ftcdn.net/jpg/12/73/63/61/240_F_1273636197_bLxdIlc8k0LnSS2LFOGJBKnwQ8wQ7ABD.jpg"
+                data-src="https://t4.ftcdn.net/jpg/12/73/63/61/240_F_1273636197_bLxdIlc8k0LnSS2LFOGJBKnwQ8wQ7ABD.jpg"
+                alt="Recipe Reminder - Meal Planning App"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h4 class="project-title">Recipe Reminder</h4>
+              <p class="project-description">
+                A smart recipe management app that helps users organize their favorite recipes, plan meals, and get cooking reminders. 
+                Features AI-powered ingredient suggestions and nutritional analysis.
+              </p>
+              <div class="project-case">
+                <p><strong>Challenge:</strong> Personalizing suggestions with limited data.</p>
+                <p><strong>Outcome:</strong> 25% increase in user retention via reminders.</p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">AI Integration</span>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="http://study-assistant-ai.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-image">
+              <img
+                src="https://t3.ftcdn.net/jpg/14/21/05/00/240_F_1421050018_YAdwGBCcpHky5EyT0vKeUuQYLbLFbcIq.jpg"
+                data-src="https://t3.ftcdn.net/jpg/14/21/05/00/240_F_1421050018_YAdwGBCcpHky5EyT0vKeUuQYLbLFbcIq.jpg"
+                alt="AI Study Buddy - Learning Companion App"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h4 class="project-title">AI Study Buddy</h4>
+              <p class="project-description">
+                An intelligent study companion that creates personalized study plans, tracks learning progress, 
+                and provides AI-powered explanations. Features spaced repetition and adaptive learning algorithms.
+              </p>
+              <div class="project-case">
+                <p><strong>Challenge:</strong> Adapting to diverse learning styles.</p>
+                <p><strong>Outcome:</strong> Improved quiz scores by 35% in beta tests.</p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">Supabase</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Blog Section -->
+      <section id="blog" class="section">
+        <div class="section-header">
+          <p class="small-heading">Insights</p>
+          <h2 class="heading">Latest Blog Posts</h2>
+          <p class="section-description">
+            Sharing knowledge on AI, full-stack dev, and tech trends to help fellow developers grow.
+          </p>
+        </div>
+        <div class="blog-grid">
+          <article class="blog-card" data-blog-id="1">
+            <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdxYR7FU8A293e2eZQ4EWzrFzIyZ2rrLtq6ADtn1-hQABJH8Z3a3suXncWB_qa1PSfKmCj6GMgvuE24_NIkUJj1IHbhVSe3wvDGXpnq4h91xKnhyRm_4W0ch2pJYucEDO0-DtM_bA?key=NZ08G4TSt0ztcXaXn9IiGe0Q" data-src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdxYR7FU8A293e2eZQ4EWzrFzIyZ2rrLtq6ADtn1-hQABJH8Z3a3suXncWB_qa1PSfKmCj6GMgvuE24_NIkUJj1IHbhVSe3wvDGXpnq4h91xKnhyRm_4W0ch2pJYucEDO0-DtM_bA?key=NZ08G4TSt0ztcXaXn9IiGe0Q" alt="Building AI Workflows blog cover" loading="lazy" />
+            <div class="blog-content">
+              <h4>Building Scalable AI Workflows with n8n and Zapier</h4>
+              <p>Explore how no-code tools integrate with Python for efficient automations.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="1" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link read-more" data-target="1">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="blog-full" id="blog-1">
+              <h2>Building Scalable AI Workflows with n8n and Zapier: A 2025 Guide</h2>
+              <p><em>Published: September 10, 2025 | By Joseph Chidubem Okafor</em></p>
+              <p>In the fast-evolving landscape of 2025, where AI isn't just a buzzword but a core driver of business efficiency, workflow automation tools like n8n and Zapier have become indispensable. As a Full Stack Developer with a background in electronics engineering, I've seen firsthand how blending no-code platforms with custom Python scripts can transform clunky processes into seamless, scalable systems. Whether you're automating customer support, data pipelines, or AI-driven content generation, these tools offer a gateway to productivity without sacrificing control.</p>
+              <h3>Why AI Workflows Matter in 2025</h3>
+              <p>According to recent industry reports, businesses adopting AI automation see up to 40% reductions in operational costs. With the rise of generative AI models like those from Hugging Face, workflows now go beyond simple if-this-then-that logic. They incorporate intelligent decision-making, error recovery, and real-time scaling. n8n, an open-source powerhouse, excels in complex, developer-friendly setups, while Zapier democratizes AI for non-technical teams with its intuitive interface and 6,000+ integrations.</p>
+              <h3>Getting Started: Core Concepts</h3>
+              <p>Start with the basics: A workflow is a sequence of triggers, actions, and conditions. In n8n, think node-based architecture—each "node" is a step, like fetching data from an API or processing it with an AI model. Zapier uses "Zaps," which are linear but now enhanced with AI Copilot for natural language creation. For scalability, n8n's execution-based pricing (not per-task) keeps costs low for multi-step AI flows, unlike Zapier's task limits that can balloon expenses.</p>
+              <h3>Best Practices for Scalability</h3>
+              <ul>
+                <li><strong>Modular Design:</strong> Break workflows into reusable nodes or Zaps. In n8n, use sub-workflows for AI tasks like sentiment analysis via Hugging Face integration.</li>
+                <li><strong>Error Handling:</strong> Implement retries and notifications. n8n's dedicated Error nodes outshine Zapier's basic alerts.</li>
+                <li><strong>Python Integration:</strong> For custom logic, embed Python scripts. Example: In n8n, a Code node can process LLM outputs before routing to Slack.</li>
+                <li><strong>Security First:</strong> Use API keys securely and enable role-based access. Both tools support this, but n8n's self-hosting option gives full data control.</li>
+                <li><strong>Monitoring & Scaling:</strong> Track executions with built-in logs. For high-volume, n8n's cloud scales infinitely without per-task fees.</li>
+              </ul>
+              <h3>A Simple Example: AI Lead Qualification Workflow</h3>
+              <p>Trigger: New form submission in Typeform. Action: Send to OpenAI for qualification scoring. If high-score, route to CRM via Zapier; else, nurture via email. In n8n, this is a 5-node flow; in Zapier, a multi-step Zap with AI steps. Pro tip: Hybridize—use Zapier for quick fronts and n8n for backend heavy-lifting.</p>
+              <p>As we push into 2025, tools like these bridge the gap between no-code ease and code-level power. Start small, iterate, and watch your workflows evolve into AI powerhouses. What's your go-to automation hack? Share in the comments!</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="1" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link back-link" data-target="1">Back to Teasers <i class="fas fa-arrow-left"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card" data-blog-id="2">
+            <img src="https://cdn.moontechnolabs.com/live/blog/wp-content/uploads/2024/12/30024054/Django-Best-Practices.jpg" data-src="https://cdn.moontechnolabs.com/live/blog/wp-content/uploads/2024/12/30024054/Django-Best-Practices.jpg" alt="Django Best Practices 2025 blog cover" loading="lazy" />
+            <div class="blog-content">
+              <h4>Django Best Practices for 2025: Security and Performance</h4>
+              <p>Tips on securing APIs and optimizing queries for high-traffic apps.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="2" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link read-more" data-target="2">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="blog-full" id="blog-2">
+              <h2>Django Best Practices for 2025: Security and Performance</h2>
+              <p><em>Published: September 5, 2025 | By Joseph Chidubem Okafor</em></p>
+              <p>Django, the web framework that's powered countless scalable apps since 2005, enters 2025 stronger than ever. With rising threats like AI-augmented attacks and the demand for sub-second load times, adhering to best practices isn't optional—it's essential. Drawing from my experience building HIPAA-compliant platforms, here's a deep dive into securing and optimizing Django for the modern era.</p>
+              <h3>Security: Lock It Down from Day One</h3>
+              <p>The golden rule? Never trust user input. Django's built-in protections against XSS, CSRF, and SQL injection are robust, but configuration is key. Always run the latest version—major releases every 9 months bring critical patches. Enable SECURE_HSTS_SECONDS, SECURE_SSL_REDIRECT, and X-Frame-Options middleware to thwart clickjacking.</p>
+              <ul>
+                <li><strong>Authentication & Authorization:</strong> Use Django's auth system with groups for RBAC. For APIs, JWT with django-rest-framework-jwt; avoid sessions in stateless setups.</li>
+                <li><strong>Input Validation:</strong> Sanitize with forms and serializers. For file uploads, validate MIME types to prevent malicious HTML disguised as images.</li>
+                <li><strong>Secrets Management:</strong> Ditch hard-coded keys; use environment variables via django-environ. Rotate regularly and audit third-party libs.</li>
+                <li><strong>Rate Limiting & Monitoring:</strong> Integrate django-ratelimit and tools like Sentry for real-time threat detection.</li>
+              </ul>
+              <h3>Performance: Optimize for Scale</h3>
+              <p>In 2025, users expect blazing-fast apps. Django's ORM is great, but unoptimized queries can kill performance. Profile with django-debug-toolbar (dev only) and aim for N+1 query elimination via select_related/prefetch_related.</p>
+              <ul>
+                <li><strong>Caching:</strong> Layer Redis/Memcached for views and querysets. Use django-cacheops for ORM-level smarts.</li>
+                <li><strong>Async Views:</strong> Leverage ASGI with channels for real-time features; offload heavy tasks to Celery.</li>
+                <li><strong>Database Tuning:</strong> Index wisely, use connection pooling, and consider read replicas for high-traffic.</li>
+                <li><strong>Static Assets:</strong> Minify with Whitenoise; serve via CDN for global scale.</li>
+              </ul>
+              <h3>Real-World Example: Securing a High-Traffic API</h3>
+              <p>For my CareCycle project, I implemented attribute-based auth and query optimization, slashing response times by 50% while passing security audits. Code snippet: Use @permission_classes in DRF views for granular control.</p>
+              <p>Embrace these practices, and your Django apps will thrive in 2025's demanding ecosystem. Questions? Drop a comment below.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="2" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link back-link" data-target="2">Back to Teasers <i class="fas fa-arrow-left"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card" data-blog-id="3">
+            <img src="https://www.shutterstock.com/image-vector/hitech-banner-virtual-reality-technologies-260nw-2274594101.jpg" data-src="https://www.shutterstock.com/image-vector/hitech-banner-virtual-reality-technologies-260nw-2274594101.jpg" alt="From Electronics to Software blog cover" loading="lazy" />
+            <div class="blog-content">
+              <h4>From Electronics Engineering to Full-Stack Dev: My Journey</h4>
+              <p>How hardware roots shaped my approach to software innovation.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="3" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link read-more" data-target="3">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+            <div class="blog-full" id="blog-3">
+              <h2>From Electronics Engineering to Full-Stack Dev: My Journey and Tips for 2025</h2>
+              <p><em>Published: August 30, 2025 | By Joseph Chidubem Okafor</em></p>
+              <p>Six years ago, I graduated with a B.Eng. in Electronics from the University of Nigeria, Nsukka, ready to design circuits and debug hardware. Fast-forward to 2025: I'm a Full-Stack Developer crafting AI-powered apps at CAP. This pivot wasn't easy, but my hardware foundation gave me an edge in systematic thinking and problem-solving. If you're an electronics engineer eyeing software, here's my roadmap—blending personal anecdotes with actionable tips.</p>
+              <h3>The Spark: Why the Switch?</h3>
+              <p>Electronics taught me precision—optimizing signals, managing power constraints—but the field felt siloed. Software offered scalability and creativity. The transition took 6-12 months of dedicated learning, aligning with industry averages. My ALX training bridged the gap, turning circuit diagrams into code flows.</p>
+              <h3>Key Skills to Bridge the Gap</h3>
+              <ul>
+                <li><strong>Programming Fundamentals:</strong> Start with Python—its logic mirrors circuit design. I leveraged C from embedded systems for backend efficiency.</li>
+                <li><strong>Front-End Basics:</strong> HTML/CSS/JS via freeCodeCamp; React for dynamic UIs. Hardware's UI (displays, interfaces) made this intuitive.</li>
+                <li><strong>Back-End & Databases:</strong> Django/Flask for servers; SQL for data "wiring." Think of databases as memory banks in MCUs.</li>
+                <li><strong>Full-Stack Integration:</strong> Build projects like IoT dashboards—my electronics background shone here, integrating sensors with web apps.</li>
+                <li><strong>Soft Skills:</strong> Version control (Git) and agile—vital for team dev, unlike solo hardware prototyping.</li>
+              </ul>
+              <h3>Challenges and How I Overcame Them</h3>
+              <p>The paradigm shift from finite hardware to infinite software scalability was tough. Tip: Prototype small—my first project was a Raspberry Pi web controller, blending worlds. Network via LinkedIn and bootcamps; internships eased entry. In 2025, AI tools like GitHub Copilot accelerate learning, but focus on fundamentals first.</p>
+              <h3>Tips for a Smooth Transition in 2025</h3>
+              <ol>
+                <li><strong>Time Commitment:</strong> 10-15 hours/week; aim for bootcamps like ALX or Springboard.</li>
+                <li><strong>Portfolio Power:</strong> Build 3-5 projects showcasing full-stack (e.g., an AI study buddy).</li>
+                <li><strong>Leverage Your Edge:</strong> Electronics pros excel in embedded full-stack—target IoT roles.</li>
+                <li><strong>Certifications:</strong> AWS Certified Developer; no degree needed, but CS basics help.</li>
+                <li><strong>Mindset Shift:</strong> Embrace iteration over perfection—software deploys fast, unlike hardware revisions.</li>
+              </ol>
+              <p>My journey proves hardware roots supercharge software innovation. If you're transitioning, start today— the dev world needs your analytical prowess. What's holding you back? Let's chat in the comments.</p>
+              <div class="blog-actions">
+                <button class="like-btn" data-blog-id="3" aria-label="Like this post">
+                  <i class="fas fa-heart"></i> <span class="like-count">0</span>
+                </button>
+                <a href="#" class="blog-link back-link" data-target="3">Back to Teasers <i class="fas fa-arrow-left"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Interests Section -->
+      <section id="interests" class="section">
+        <div class="section-header">
+          <p class="small-heading">Interests</p>
+          <h2 class="heading">What Drives Me</h2>
+          <p class="section-description">
+            Beyond coding, I'm passionate about various aspects of technology
+            and innovation that shape our digital future.
+          </p>
+        </div>
+
+        <div class="interests-grid">
+          <div class="interest-item">
+            <div class="interest-icon">
+              <i class="fas fa-laptop-code" aria-hidden="true"></i>
+            </div>
+            <h4 class="interest-title">Web Development</h4>
+            <p class="interest-description">
+              Exploring modern frameworks, performance optimization, and
+              creating exceptional user experiences through clean, efficient
+              code.
+            </p>
+          </div>
+
+          <div class="interest-item">
+            <div class="interest-icon">
+              <i class="fas fa-robot" aria-hidden="true"></i>
+            </div>
+            <h4 class="interest-title">AI & Machine Learning</h4>
+            <p class="interest-description">
+              Fascinated by artificial intelligence applications and how they
+              can be integrated into web applications to solve real-world
+              problems.
+            </p>
+          </div>
+
+          <div class="interest-item">
+            <div class="interest-icon">
+              <i class="fas fa-users" aria-hidden="true"></i>
+            </div>
+            <h4 class="interest-title">Tech Community</h4>
+            <p class="interest-description">
+              Building and supporting inclusive tech communities, especially
+              empowering women and underrepresented groups in STEM fields.
+            </p>
+          </div>
+
+          <div class="interest-item">
+            <div class="interest-icon">
+              <i class="fas fa-lightbulb" aria-hidden="true"></i>
+            </div>
+            <h4 class="interest-title">Innovation</h4>
+            <p class="interest-description">
+              Staying current with emerging technologies and trends, always
+              looking for innovative solutions to improve user experiences.
+            </p>
+          </div>
+
+          <div class="interest-item">
+            <div class="interest-icon">
+              <i class="fas fa-code-branch" aria-hidden="true"></i>
+            </div>
+            <h4 class="interest-title">Open Source Contributions</h4>
+            <p class="interest-description">
+              Actively participating in open-source projects to foster collaboration, share knowledge, and contribute to tools that benefit the global developer community.
+            </p>
+          </div>
+
+          <div class="interest-item">
+            <div class="interest-icon">
+              <i class="fas fa-rocket" aria-hidden="true"></i>
+            </div>
+            <h4 class="interest-title">Tech Entrepreneurship</h4>
+            <p class="interest-description">
+              Exploring startup ideas, prototyping MVPs, and bridging technology with business to launch innovative products that solve real-world challenges.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section">
+        <div class="section-header">
+          <p class="small-heading">Get In Touch</p>
+          <h2 class="heading">Contact Me</h2>
+          <p class="section-description">
+            Impressed with my work & skills? Want to collaborate on innovative projects? Reach out through the form below or connect with me on social media.
+          </p>
+        </div>
+
+        <div class="contact-content">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <div class="contact-item">
+                <a
+                  href="mailto:mrchidubem8@gmail.com"
+                  class="contact-icon"
+                  aria-label="Send email"
+                >
+                  <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+                <div class="contact-details">
+                  <h4>Email</h4>
+                  <a
+                    href="mailto:mrchidubem8@gmail.com"
+                    class="contact-link"
+                  >
+                    mrchidubem8@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <a
+                  href="https://www.linkedin.com/in/dubicventures/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-icon"
+                  aria-label="LinkedIn profile"
+                >
+                  <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                </a>
+                <div class="contact-details">
+                  <h4>LinkedIn</h4>
+                  <a
+                    href="https://www.linkedin.com/in/dubicventures"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                  >
+                    Joseph Chidubem Okafor
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <a
+                  href="https://github.com/mrchidubem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-icon"
+                  aria-label="GitHub profile"
+                >
+                  <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <div class="contact-details">
+                  <h4>GitHub</h4>
+                  <a
+                    href="https://github.com/mrchidubem"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                  >
+                    mrchidubem
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <a
+                  href="https://twitter.com/ChidubemOkafor17"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="contact-icon"
+                  aria-label="Twitter profile"
+                >
+                  <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+                <div class="contact-details">
+                  <h4>Twitter</h4>
+                  <a
+                    href="https://twitter.com/ChidubemOkafor17"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-link"
+                  >
+                    ChidubemOkafor17
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form">
+              <h3 class="form-title">Send Me a Message</h3>
+              <form id="contact-form">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    required
+                    aria-required="true"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    required
+                    aria-required="true"
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    class="form-control"
+                    required
+                    aria-required="true"
+                    placeholder="What's this about?"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-control"
+                    required
+                    aria-required="true"
+                    placeholder="Write your message here..."
+                  ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+  <div class="footer-content">
+    <!-- Brand Section -->
+    <div class="footer-brand">
+      <h3 class="footer-logo">Dubicventures</h3>
+      <p class="footer-tagline">
+        Pioneering the Future with Code & AI
+      </p>
+      <ul class="footer-values">
+        <li><i class="fas fa-code"></i> Innovative Solutions</li>
+        <li><i class="fas fa-shield-alt"></i> Reliability & Trust</li>
+        <li><i class="fas fa-users"></i> Growth & Empowerment</li>
+        <li><i class="fas fa-rocket"></i> Bold & Futuristic</li>
+      </ul>
+      <div class="footer-cta">
+        <a href="#contact" class="cta-button cta-primary">
+          <i class="fas fa-envelope"></i> Connect with Me
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4 class="footer-heading">Explore</h4>
+      <a href="#home" class="footer-link">Home</a>
+      <a href="#about" class="footer-link">About</a>
+      <a href="#projects" class="footer-link">Projects</a>
+      <a href="#blog" class="footer-link">Blog</a>
+      <a href="#contact" class="footer-link">Contact</a>
+    </div>
+
+    <!-- Social Links -->
+    <div class="footer-social">
+      <h4 class="footer-heading">Follow Me</h4>
+      <div class="social-links">
+        <a
+          href="https://twitter.com/ChidubemOkafor17"
+          class="social-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Twitter"
+          aria-label="Twitter profile"
+        >
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a
+          href="https://github.com/mrchidubem"
+          class="social-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub"
+          aria-label="GitHub profile"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/dubicventures/"
+          class="social-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn"
+          aria-label="LinkedIn profile"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="footer-newsletter">
+      <h4 class="footer-heading">Stay Updated</h4>
+      <p class="newsletter-description">
+        Subscribe for insights on AI, coding, and tech innovation.
+      </p>
+      <form id="newsletter-form" class="newsletter-form">
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          class="newsletter-input"
+          required
+          aria-required="true"
+        />
+        <button type="submit" class="newsletter-btn">
+          <i class="fas fa-paper-plane"></i> Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Joseph Chidubem Okafor. All rights reserved.</p>
+    <p class="footer-credit">Designed & Built by Dubicventures</p>
+  </div>
+</footer>
+
+      
+      <span class="tick" aria-hidden="true"></span>
+    </main>
+
+    <script src="script2.js"></script>
+  </body>
 </html>
