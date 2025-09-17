@@ -29,11 +29,12 @@ themeToggle?.addEventListener('click', () => {
   const isDark = html.getAttribute('data-theme') === 'dark';
   const newTheme = isDark ? 'light' : 'dark';
   html.setAttribute('data-theme', newTheme);
-  // Swap icon
+  // Swap icon and ARIA label
   const icon = themeToggle.querySelector('i');
   if (icon) {
     icon.classList.toggle('fa-moon', isDark);
     icon.classList.toggle('fa-sun', !isDark);
+    themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'dark' : 'light'} theme`);
   }
   localStorage.setItem('site-theme', newTheme);
 });
@@ -46,15 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (icon) {
     icon.classList.toggle('fa-moon', saved === 'dark');
     icon.classList.toggle('fa-sun', saved === 'light');
+    themeToggle.setAttribute('aria-label', `Switch to ${saved === 'dark' ? 'light' : 'dark'} theme`);
   }
 });
 
 // Smooth scroll for internal nav links
 document.querySelectorAll('.nav-link').forEach(a => {
-  a.addEventListener('click', e => {
+  a.addEventListener('click', async e => {
     e.preventDefault();
     const href = a.getAttribute('href');
-    if (href === 'public/resume.pdf') {
+    if (href === './public/resume.pdf') {
       // Trigger download for resume
       const link = document.createElement('a');
       link.href = href;
@@ -69,20 +71,71 @@ document.querySelectorAll('.nav-link').forEach(a => {
       const navToggle = document.getElementById('nav-toggle');
       if (navToggle && navToggle.checked) navToggle.checked = false;
     } else {
-      // Navigate to blog post pages
-      window.location.href = href;
+      // Navigate to blog post pages with error handling
+      try {
+        const response = await fetch(href, { method: 'HEAD' });
+        if (response.ok) {
+          window.location.href = href;
+        } else {
+          console.error(`Failed to load ${href}: ${response.status}`);
+          alert('Sorry, this blog post is not available. Please try another.');
+        }
+      } catch (error) {
+        console.error(`Error navigating to ${href}:`, error);
+        alert('Sorry, this blog post is not available. Please try another.');
+      }
     }
+    // Update aria-current
+    document.querySelectorAll('.nav-link').forEach(link => link.removeAttribute('aria-current'));
+    if (href.startsWith('#')) a.setAttribute('aria-current', 'page');
   });
 });
 
-// Hero parallax effect (debounced)
+// Mobile menu focus management
+document.getElementById('nav-toggle')?.addEventListener('change', e => {
+  const navList = document.querySelector('.nav-list');
+  if (e.target.checked) {
+    navList.querySelector('.nav-link').focus();
+  }
+});
+
+// Hero parallax effect (debounced, optimized for mobile)
 window.addEventListener('scroll', debounce(() => {
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
+  if (heroBg && window.innerWidth > 768) {
     const scrollPosition = window.scrollY;
-    heroBg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+    heroBg.style.transform = `translateY(${scrollPosition * 0.2}px)`;
   }
 }, 16));
+
+// Project and Blog overlays
+document.querySelectorAll('.project').forEach(project => {
+  const overlay = project.querySelector('.project-overlay');
+  if (overlay) {
+    project.addEventListener('mouseenter', () => {
+      overlay.style.display = 'flex';
+      overlay.style.opacity = '1';
+    });
+    project.addEventListener('mouseleave', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    });
+  }
+});
+
+document.querySelectorAll('.blog-post').forEach(post => {
+  const overlay = post.querySelector('.blog-overlay');
+  if (overlay) {
+    post.addEventListener('mouseenter', () => {
+      overlay.style.display = 'flex';
+      overlay.style.opacity = '1';
+    });
+    post.addEventListener('mouseleave', () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    });
+  }
+});
 
 // Contact form: validation & UX
 const contactForm = document.getElementById('contact-form');
@@ -138,22 +191,23 @@ if (contactForm) {
     btn.textContent = 'Sending...';
 
     try {
-      // Simulated API call (replace with real API call in production)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Example real API call (uncomment and customize):
+      // Replace with your API endpoint (e.g., Formspree, Netlify Forms)
       /*
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://your-api-endpoint', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.value, email: email.value, message: message.value })
+        body: JSON.stringify({
+          name: name.value.trim(),
+          email: email.value.trim(),
+          message: message.value.trim(),
+        }),
       });
-      if (!response.ok) throw new Error('Failed to send message');
+      if (!response.ok) throw new Error('Network error');
       */
-
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
       errorEl.textContent = 'Message sent successfully!';
       errorEl.classList.add('show');
-      errorEl.style.color = 'var(--accent)';
+      errorEl.style.color = 'var(--theme-accent)';
       contactForm.reset();
     } catch (error) {
       errorEl.textContent = 'Failed to send message. Please try again.';
@@ -200,22 +254,19 @@ if (newsletterForm) {
     btn.textContent = 'Subscribing...';
 
     try {
-      // Simulated API call (replace with real API call in production)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Example real API call (uncomment and customize):
+      // Replace with your API endpoint (e.g., Mailchimp, Netlify Forms)
       /*
-      const response = await fetch('/api/newsletter', {
+      const response = await fetch('https://your-api-endpoint', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.value })
+        body: JSON.stringify({ email: email.value.trim() }),
       });
-      if (!response.ok) throw new Error('Failed to subscribe');
+      if (!response.ok) throw new Error('Network error');
       */
-
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
       errorEl.textContent = 'Subscribed successfully!';
       errorEl.classList.add('show');
-      errorEl.style.color = 'var(--accent)';
+      errorEl.style.color = 'var(--theme-accent)';
       newsletterForm.reset();
     } catch (error) {
       errorEl.textContent = 'Failed to subscribe. Please try again.';
@@ -237,3 +288,24 @@ document.querySelectorAll('.nav-link, .btn, .social-link, .dropdown-toggle').for
     }
   });
 });
+
+// Update ARIA-expanded for dropdown
+document.querySelectorAll('.dropdown-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', !expanded);
+  });
+});
+
+// Highlight timeline markers on scroll
+window.addEventListener('scroll', debounce(() => {
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  timelineItems.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+}, 100));
