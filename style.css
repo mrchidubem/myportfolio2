@@ -1,17 +1,15 @@
 /* ----------------------------------------- 
    Mature UI — Sophisticated Light & Dark Themes
-   Light Theme: Adjusted to muted blue-gray (#d9dce1), softer cards (#eceef2), muted navy text (#1e2a44), soft gold accent (#c9a33b)
+   Light Theme: Darkened to #2c3e50 (darker blue-gray), cards #34495e, text #ecf0f1, gold accent #f39c12
    Dark Theme: Deep charcoal (#121212), teal accent (#00a4a6)
+   Mobile: Light theme default (darkened), Desktop: Dark theme default
+   Enhanced mobile responsiveness - no overscroll, stable blog section
    Polished, square buttons with subtle gradients
-   Professional cards with minimal radius and depth
-   Playfair Display for headings, DM Sans for body
-   Uniform container width (max 1200px)
-   Enhanced animations for cards, timeline, and menu
    ----------------------------------------- */
 
 /* Reset & Base */
 :root {
-  /* Dark Theme */
+  /* Dark Theme (Desktop Default) */
   --dark-bg: #121212;           /* Deep charcoal background */
   --dark-panel: #1c1c1c;       /* Dark card/panel */
   --dark-text: #e8ecef;        /* Soft white text */
@@ -19,13 +17,13 @@
   --accent: #00a4a6;           /* Teal accent */
   --accent-strong: #008b8d;    /* Darker teal */
 
-  /* Light Theme */
-  --light-bg: #d9dce1;         /* Muted blue-gray background (was #e6e8eb) */
-  --light-panel: #eceef2;      /* Softer card color (was #f5f5f7) */
-  --light-text: #1e2a44;       /* Muted navy text */
-  --light-muted: #5e6a82;      /* Muted gray text */
-  --light-accent: #c9a33b;     /* Soft gold accent */
-  --light-accent-strong: #a88734; /* Darker gold */
+  /* Light Theme (Mobile Default - Darkened) */
+  --light-bg: #2c3e50;         /* Darker blue-gray background */
+  --light-panel: #34495e;      /* Darker card color */
+  --light-text: #ecf0f1;       /* Light text for contrast */
+  --light-muted: #bdc3c7;      /* Muted light gray text */
+  --light-accent: #f39c12;     /* Darker gold accent */
+  --light-accent-strong: #e67e22; /* Darker gold */
 
   /* Shared */
   --maxw: 1200px;             /* Uniform container width */
@@ -37,7 +35,7 @@
   --large: 20px;
   --xlarge: 28px;
   --xxlarge: 40px;
-  --error: #d32f2f;          /* Professional red for errors */
+  --error: #e74c3c;          /* Professional red for errors */
 
   /* Theme Defaults */
   --bg: var(--dark-bg);
@@ -48,7 +46,6 @@
   --theme-accent-strong: var(--accent-strong);
 }
 
-/* Rest of the CSS remains unchanged */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -57,6 +54,7 @@
 
 html, body {
   height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {
@@ -68,6 +66,7 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none; /* Prevent overscroll rubber-banding */
 }
 
 /* Utility */
@@ -75,6 +74,19 @@ body {
   width: 90%;
   max-width: var(--maxw);
   margin: 0 auto;
+  position: relative; /* Stabilize layout */
+}
+
+/* Mobile Light Theme Default */
+@media (max-width: 768px) {
+  :root {
+    --bg: var(--light-bg);
+    --panel: var(--light-panel);
+    --text: var(--light-text);
+    --muted: var(--light-muted);
+    --theme-accent: var(--light-accent);
+    --theme-accent-strong: var(--light-accent-strong);
+  }
 }
 
 /* HEADER / NAV */
@@ -85,6 +97,7 @@ body {
   top: 0;
   z-index: 60;
   transition: background 0.3s;
+  backdrop-filter: blur(10px); /* Smooth blur for mobile */
 }
 
 .header-inner {
@@ -123,6 +136,7 @@ body {
   padding: 12px 16px;
   border-radius: var(--radius);
   transition: color 0.3s, transform 0.2s, background 0.3s;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -155,6 +169,7 @@ body {
   align-items: center;
   gap: 10px;
   transition: color 0.3s, border-color 0.3s, background 0.3s;
+  white-space: nowrap;
 }
 
 .dropdown-toggle:hover, .dropdown-toggle:focus {
@@ -197,7 +212,7 @@ body {
 
 /* Theme Toggle */
 .theme-btn {
-  background: var(--theme-accent); /* Permanent background */
+  background: var(--theme-accent);
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   width: 40px;
@@ -210,7 +225,7 @@ body {
 }
 
 .theme-btn:hover, .theme-btn:focus {
-  background: var(--theme-accent-strong); /* Darker shade on hover */
+  background: var(--theme-accent-strong);
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -218,7 +233,7 @@ body {
 .theme-icon {
   width: 24px;
   height: 24px;
-  color: #fff; /* White icon for contrast */
+  color: #fff;
   transition: color 0.3s;
 }
 
@@ -361,6 +376,7 @@ body {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  touch-action: manipulation; /* Improve mobile touch */
 }
 
 .btn-primary {
@@ -466,10 +482,10 @@ body {
 }
 
 .about-photo {
-  width: 200px; /* Increased size */
-  height: 200px; /* Increased size */
+  width: 200px;
+  height: 200px;
   margin: 0 auto 24px;
-  border-radius: 50%; /* Circular image */
+  border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--theme-accent);
 }
@@ -488,16 +504,16 @@ body {
 }
 
 .about-description {
-  font-family: 'Playfair Display', serif; /* Stylish font */
-  font-weight: 700; /* Thick font */
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
   font-size: var(--medium);
-  letter-spacing: 1.2px; /* Spaced-out text */
-  line-height: 1.9; /* Improved readability */
+  letter-spacing: 1.2px;
+  line-height: 1.9;
   color: var(--text);
   margin-bottom: 24px;
 }
 
-/* GRID */
+/* GRID - Enhanced for Mobile Stability */
 .grid {
   display: grid;
 }
@@ -539,6 +555,7 @@ body {
   gap: 24px;
 }
 
+/* Mobile: Single column, Desktop: 3 columns */
 @media (min-width: 820px) {
   .projects-grid,
   .skills-grid,
@@ -595,7 +612,7 @@ body {
   padding: 20px;
 }
 
-/* CARDS */
+/* CARDS - Enhanced for Mobile */
 .card {
   background: var(--panel);
   border-radius: var(--radius);
@@ -605,6 +622,8 @@ body {
   transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
   opacity: 0;
   animation: fadeIn 0.5s ease forwards;
+  position: relative; /* Stabilize positioning */
+  overflow: hidden; /* Prevent content overflow */
 }
 
 .card:nth-child(2) { animation-delay: 0.1s; }
@@ -629,12 +648,13 @@ body {
   to { opacity: 1; }
 }
 
-/* PROJECTS */
+/* PROJECTS - Enhanced for Mobile */
 .project {
   display: flex;
   flex-direction: column;
   gap: 16px;
   position: relative;
+  overflow: hidden; /* Prevent overflow */
 }
 
 .project-title {
@@ -655,7 +675,7 @@ body {
   padding: 24px;
   opacity: 0;
   transition: opacity 0.3s;
-  pointer-events: none; /* Allow clicks to pass through */
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -667,12 +687,14 @@ body {
   opacity: 1;
 }
 
-/* BLOG */
+/* BLOG - Enhanced Mobile Stability */
 .blog-post {
   display: flex;
   flex-direction: column;
   gap: 16px;
   position: relative;
+  overflow: hidden; /* Prevent overflow */
+  height: 100%; /* Equal height for stability */
 }
 
 .blog-thumbnail {
@@ -680,6 +702,7 @@ body {
   height: 160px;
   overflow: hidden;
   border-radius: var(--radius);
+  position: relative; /* Stabilize image */
 }
 
 .thumbnail-img {
@@ -687,6 +710,7 @@ body {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s;
+  position: relative; /* Prevent image shake */
 }
 
 .blog-post:hover .thumbnail-img {
@@ -697,6 +721,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex: 1; /* Take remaining space */
 }
 
 .blog-overlay {
@@ -711,7 +736,7 @@ body {
   padding: 24px;
   opacity: 0;
   transition: opacity 0.3s;
-  pointer-events: none; /* Allow clicks to pass through */
+  pointer-events: none;
   align-items: center;
   justify-content: center;
   font-size: var(--small);
@@ -786,7 +811,7 @@ body {
   font-size: var(--medium);
 }
 
-/* CONTACT */
+/* CONTACT - Enhanced Mobile */
 .contact-grid {
   grid-template-columns: 1fr;
   gap: 24px;
@@ -832,11 +857,11 @@ body {
 }
 
 .contact-description {
-  font-family: 'Playfair Display', serif; /* Stylish font */
-  font-weight: 700; /* Thick font */
-  font-size: var(--medium); /* Larger for prominence */
-  letter-spacing: 1.5px; /* Spaced-out text */
-  line-height: 2; /* Improved readability */
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: var(--medium);
+  letter-spacing: 1.5px;
+  line-height: 2;
   color: var(--text);
   margin-bottom: 16px;
 }
@@ -848,6 +873,7 @@ body {
   box-shadow: var(--shadow);
   border: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
+  overflow: hidden; /* Prevent form overflow */
 }
 
 .contact-form input,
@@ -865,6 +891,7 @@ body {
   margin-bottom: 16px;
   outline: none;
   transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  resize: vertical; /* Only vertical resize for textarea */
 }
 
 .contact-form input::placeholder,
@@ -912,7 +939,7 @@ body {
   min-width: 160px;
 }
 
-/* FOOTER */
+/* FOOTER - Enhanced Mobile */
 .footer {
   background: var(--bg);
   padding: 80px 0 24px;
@@ -1080,7 +1107,7 @@ body {
   font-style: italic;
 }
 
-/* Responsive Nav */
+/* Responsive Nav - Enhanced Mobile */
 @media (max-width: 920px) {
   .header-inner {
     position: relative;
@@ -1103,6 +1130,8 @@ body {
     box-shadow: var(--shadow);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
+    max-height: calc(100vh - 100px); /* Prevent overflow */
+    overflow-y: auto; /* Scroll if needed */
   }
 
   .nav-toggle:checked ~ .nav .nav-list {
@@ -1154,8 +1183,16 @@ body {
   }
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness - Enhanced Stability */
 @media (max-width: 768px) {
+  html, body {
+    overscroll-behavior-y: none; /* Prevent vertical overscroll */
+  }
+
+  .container {
+    width: 95%; /* Wider on mobile for better use of space */
+  }
+
   .hero {
     padding: 60px 0;
   }
@@ -1182,12 +1219,40 @@ body {
     font-size: var(--medium);
   }
 
+  .section {
+    padding: 60px 0; /* Reduced padding on mobile */
+  }
+
   .projects-grid,
   .skills-grid,
   .services-grid,
   .testimonials-grid,
   .blog-grid {
     grid-template-columns: 1fr;
+    gap: 20px; /* Reduced gap on mobile */
+  }
+
+  /* Blog Section - Enhanced Mobile Stability */
+  .blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .blog-post {
+    min-height: 280px; /* Fixed minimum height for consistency */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .blog-thumbnail {
+    height: 140px; /* Slightly smaller on mobile */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+
+  .blog-content {
+    flex: 1;
+    min-height: 120px; /* Ensure content area stability */
   }
 
   .footer-content {
@@ -1233,6 +1298,15 @@ body {
   .blog-post-header img {
     max-width: 100%;
   }
+
+  /* Prevent horizontal scroll on mobile */
+  .card,
+  .project,
+  .blog-post,
+  .contact-form {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 }
 
 /* Accessibility */
@@ -1252,7 +1326,7 @@ body {
   margin-top: 20px;
 }
 
-/* Light Theme */
+/* Light Theme Override (Desktop only when toggled) */
 [data-theme="light"] {
   --bg: var(--light-bg);
   --panel: var(--light-panel);
@@ -1269,11 +1343,11 @@ body {
 }
 
 [data-theme="light"] .hero {
-  background: linear-gradient(180deg, var(--light-bg), #c9ccd3);
+  background: linear-gradient(180deg, var(--light-bg), #34495e);
 }
 
 [data-theme="light"] .section.alt {
-  background: #c9ccd3;
+  background: #34495e;
 }
 
 [data-theme="light"] .card {
@@ -1325,4 +1399,11 @@ body {
 @keyframes slideIn {
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
+}
+
+/* Prevent iOS bounce */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    height: -webkit-fill-available;
+  }
 }

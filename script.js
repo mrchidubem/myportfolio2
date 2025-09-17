@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
   }
 });
 
-// Theme toggle + save
+// Theme toggle + save - Mobile defaults to light, desktop to dark
 const themeToggle = document.getElementById('theme-toggle');
 themeToggle?.addEventListener('click', () => {
   const html = document.documentElement;
@@ -39,16 +39,38 @@ themeToggle?.addEventListener('click', () => {
   localStorage.setItem('site-theme', newTheme);
 });
 
-// Load saved theme
+// Load saved theme with mobile/desktop detection
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('site-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
+  const isMobile = window.innerWidth <= 768;
+  const saved = localStorage.getItem('site-theme');
+  
+  // Mobile default: light theme, Desktop default: dark theme
+  const defaultTheme = isMobile ? 'light' : 'dark';
+  const themeToUse = saved || defaultTheme;
+  
+  document.documentElement.setAttribute('data-theme', themeToUse);
   const icon = themeToggle?.querySelector('i');
   if (icon) {
-    icon.classList.toggle('fa-moon', saved === 'dark');
-    icon.classList.toggle('fa-sun', saved === 'light');
-    themeToggle.setAttribute('aria-label', `Switch to ${saved === 'dark' ? 'light' : 'dark'} theme`);
+    icon.classList.toggle('fa-moon', themeToUse === 'dark');
+    icon.classList.toggle('fa-sun', themeToUse === 'light');
+    themeToggle.setAttribute('aria-label', `Switch to ${themeToUse === 'dark' ? 'light' : 'dark'} theme`);
   }
+  
+  // Listen for window resize to handle orientation changes
+  window.addEventListener('resize', debounce(() => {
+    const currentIsMobile = window.innerWidth <= 768;
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const shouldBeMobileTheme = currentIsMobile ? 'light' : 'dark';
+    
+    if (!saved && currentTheme !== shouldBeMobileTheme) {
+      document.documentElement.setAttribute('data-theme', shouldBeMobileTheme);
+      if (icon) {
+        icon.classList.toggle('fa-moon', shouldBeMobileTheme === 'dark');
+        icon.classList.toggle('fa-sun', shouldBeMobileTheme === 'light');
+        themeToggle.setAttribute('aria-label', `Switch to ${shouldBeMobileTheme === 'dark' ? 'light' : 'dark'} theme`);
+      }
+    }
+  }, 250));
 });
 
 // Smooth scroll for internal nav links, footer links, and blog links
@@ -105,7 +127,7 @@ document.getElementById('nav-toggle')?.addEventListener('change', e => {
   }
 });
 
-// Hero parallax effect (debounced, optimized for mobile)
+// Hero parallax effect (disabled on mobile for stability)
 window.addEventListener('scroll', debounce(() => {
   const heroBg = document.querySelector('.hero-bg');
   if (heroBg && window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -114,32 +136,24 @@ window.addEventListener('scroll', debounce(() => {
   }
 }, 16));
 
-// Project and Blog overlays
-document.querySelectorAll('.project').forEach(project => {
-  const overlay = project.querySelector('.project-overlay');
+// Project and Blog overlays - Disabled on mobile for stability
+document.querySelectorAll('.project, .blog-post').forEach(item => {
+  const overlay = item.querySelector('.project-overlay, .blog-overlay');
   if (overlay) {
-    project.addEventListener('mouseenter', () => {
-      overlay.style.display = 'flex';
-      overlay.style.opacity = '1';
-    });
-    project.addEventListener('mouseleave', () => {
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.style.display = 'none'; }, 300);
-    });
-  }
-});
-
-document.querySelectorAll('.blog-post').forEach(post => {
-  const overlay = post.querySelector('.blog-overlay');
-  if (overlay) {
-    post.addEventListener('mouseenter', () => {
-      overlay.style.display = 'flex';
-      overlay.style.opacity = '1';
-    });
-    post.addEventListener('mouseleave', () => {
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.style.display = 'none'; }, 300);
-    });
+    // Only add hover effects on desktop
+    if (window.innerWidth > 768) {
+      item.addEventListener('mouseenter', () => {
+        overlay.style.display = 'flex';
+        overlay.style.opacity = '1';
+      });
+      item.addEventListener('mouseleave', () => {
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 300);
+      });
+    } else {
+      // Hide overlays on mobile
+      overlay.style.display = 'none';
+    }
   }
 });
 
@@ -294,15 +308,25 @@ document.querySelectorAll('.dropdown-toggle').forEach(button => {
   });
 });
 
-// Highlight timeline markers on scroll
+// Highlight timeline markers on scroll - Disabled on mobile for stability
 window.addEventListener('scroll', debounce(() => {
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  timelineItems.forEach(item => {
-    const rect = item.getBoundingClientRect();
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
-  });
+  if (window.innerWidth > 768) {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
 }, 100));
+
+// Prevent mobile overscroll on specific elements
+document.addEventListener('touchstart', e => {
+  const target = e.target.closest('.blog-post, .project, .card');
+  if (target) {
+    target.style.overscrollBehavior = 'contain';
+  }
+}, { passive: true });
