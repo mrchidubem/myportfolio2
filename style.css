@@ -1,6 +1,6 @@
-/* -----------------------------------------
+/* ----------------------------------------- 
    Mature UI — Sophisticated Light & Dark Themes
-   Light Theme: Soft gray (#e6e8eb), off-white panels (#f5f5f7), muted navy text (#1e2a44), soft gold accent (#c9a33b)
+   Light Theme: Adjusted to muted blue-gray (#d9dce1), softer cards (#eceef2), muted navy text (#1e2a44), soft gold accent (#c9a33b)
    Dark Theme: Deep charcoal (#121212), teal accent (#00a4a6)
    Polished, square buttons with subtle gradients
    Professional cards with minimal radius and depth
@@ -20,8 +20,8 @@
   --accent-strong: #008b8d;    /* Darker teal */
 
   /* Light Theme */
-  --light-bg: #e6e8eb;         /* Soft gray background */
-  --light-panel: #f5f5f7;      /* Off-white card */
+  --light-bg: #d9dce1;         /* Muted blue-gray background (was #e6e8eb) */
+  --light-panel: #eceef2;      /* Softer card color (was #f5f5f7) */
   --light-text: #1e2a44;       /* Muted navy text */
   --light-muted: #5e6a82;      /* Muted gray text */
   --light-accent: #c9a33b;     /* Soft gold accent */
@@ -48,6 +48,7 @@
   --theme-accent-strong: var(--accent-strong);
 }
 
+/* Rest of the CSS remains unchanged */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -1252,11 +1253,11 @@ body {
 }
 
 [data-theme="light"] .hero {
-  background: linear-gradient(180deg, var(--light-bg), #d8dae0);
+  background: linear-gradient(180deg, var(--light-bg), #c9ccd3);
 }
 
 [data-theme="light"] .section.alt {
-  background: #d8dae0;
+  background: #c9ccd3;
 }
 
 [data-theme="light"] .card {

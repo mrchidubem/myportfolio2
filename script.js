@@ -29,14 +29,13 @@ themeToggle?.addEventListener('click', () => {
   const isDark = html.getAttribute('data-theme') === 'dark';
   const newTheme = isDark ? 'light' : 'dark';
   html.setAttribute('data-theme', newTheme);
-  // Swap icon visibility
-  const darkIcon = themeToggle.querySelector('.theme-icon-dark');
-  const lightIcon = themeToggle.querySelector('.theme-icon-light');
-  if (darkIcon && lightIcon) {
-    darkIcon.style.display = isDark ? 'none' : 'block';
-    lightIcon.style.display = isDark ? 'block' : 'none';
+  // Swap icon and ARIA label
+  const icon = themeToggle.querySelector('i');
+  if (icon) {
+    icon.classList.toggle('fa-moon', isDark);
+    icon.classList.toggle('fa-sun', !isDark);
+    themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'dark' : 'light'} theme`);
   }
-  themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'dark' : 'light'} theme`);
   localStorage.setItem('site-theme', newTheme);
 });
 
@@ -44,31 +43,34 @@ themeToggle?.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('site-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
-  const darkIcon = themeToggle?.querySelector('.theme-icon-dark');
-  const lightIcon = themeToggle?.querySelector('.theme-icon-light');
-  if (darkIcon && lightIcon) {
-    darkIcon.style.display = saved === 'dark' ? 'block' : 'none';
-    lightIcon.style.display = saved === 'dark' ? 'none' : 'block';
+  const icon = themeToggle?.querySelector('i');
+  if (icon) {
+    icon.classList.toggle('fa-moon', saved === 'dark');
+    icon.classList.toggle('fa-sun', saved === 'light');
     themeToggle.setAttribute('aria-label', `Switch to ${saved === 'dark' ? 'light' : 'dark'} theme`);
   }
 });
 
 // Smooth scroll for internal nav links, footer links, and blog links
-document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href^="./blog/"]').forEach(a => {
-  a.addEventListener('click', async e => {
+document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href*="#"], .blog-post-footer a[href*="#"]').forEach(a => {
+  a.addEventListener('click', e => {
     e.preventDefault();
     const href = a.getAttribute('href');
-    if (href === './public/resume.pdf') {
+    if (href === './public/resume.pdf' || href === 'public/resume.pdf') {
       // Trigger download for resume
       const link = document.createElement('a');
       link.href = href;
       link.download = 'Joseph_Okafor_Resume.pdf';
       link.click();
-    } else if (href.startsWith('#')) {
+    } else if (href.includes('#')) {
       // Handle internal anchor links
-      const target = document.querySelector(href);
+      const [path, hash] = href.split('#');
+      const target = hash ? document.querySelector(`#${hash}`) : null;
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (path && path !== window.location.pathname) {
+        // Navigate to the correct page and then scroll
+        window.location.href = href;
       }
       // Close mobile menu
       const navToggle = document.getElementById('nav-toggle');
@@ -78,24 +80,13 @@ document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href^="./blo
         document.querySelectorAll('.nav-link').forEach(link => link.removeAttribute('aria-current'));
         a.setAttribute('aria-current', 'page');
       }
-    } else if (href.startsWith('./blog/')) {
+    } else {
       // Handle blog post navigation
       try {
-        // Use HEAD request to check if the blog file exists
-        const response = await fetch(href, { method: 'HEAD' });
-        if (response.ok) {
-          window.location.href = href;
-        } else {
-          console.error(`Failed to load ${href}: ${response.status}`);
-          alert('Sorry, this blog post is not available. Please try another.');
-          // Fallback: Attempt direct navigation
-          window.location.href = href;
-        }
+        window.location.href = href;
       } catch (error) {
         console.error(`Error navigating to ${href}:`, error);
-        alert('Sorry, this blog post is not available. Please try again later.');
-        // Fallback: Attempt direct navigation
-        window.location.href = href;
+        alert('Sorry, this page is not available. Please try again later.');
       }
     }
   });
@@ -201,7 +192,7 @@ if (contactForm) {
     btn.textContent = 'Sending...';
 
     try {
-      // Simulated API call (replace with your API endpoint, e.g., Formspree, Netlify Forms)
+      // Simulated API call (replace with your API endpoint)
       await new Promise(resolve => setTimeout(resolve, 1000));
       errorEl.textContent = 'Message sent successfully!';
       errorEl.classList.add('show');
@@ -252,7 +243,7 @@ if (newsletterForm) {
     btn.textContent = 'Subscribing...';
 
     try {
-      // Simulated API call (replace with your API endpoint, e.g., Mailchimp, Netlify Forms)
+      // Simulated API call (replace with your API endpoint)
       await new Promise(resolve => setTimeout(resolve, 1000));
       errorEl.textContent = 'Subscribed successfully!';
       errorEl.classList.add('show');
