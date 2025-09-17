@@ -29,13 +29,14 @@ themeToggle?.addEventListener('click', () => {
   const isDark = html.getAttribute('data-theme') === 'dark';
   const newTheme = isDark ? 'light' : 'dark';
   html.setAttribute('data-theme', newTheme);
-  // Swap icon and ARIA label
-  const icon = themeToggle.querySelector('i');
-  if (icon) {
-    icon.classList.toggle('fa-moon', isDark);
-    icon.classList.toggle('fa-sun', !isDark);
-    themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'dark' : 'light'} theme`);
+  // Swap icon visibility
+  const darkIcon = themeToggle.querySelector('.theme-icon-dark');
+  const lightIcon = themeToggle.querySelector('.theme-icon-light');
+  if (darkIcon && lightIcon) {
+    darkIcon.style.display = isDark ? 'none' : 'block';
+    lightIcon.style.display = isDark ? 'block' : 'none';
   }
+  themeToggle.setAttribute('aria-label', `Switch to ${isDark ? 'dark' : 'light'} theme`);
   localStorage.setItem('site-theme', newTheme);
 });
 
@@ -43,16 +44,17 @@ themeToggle?.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem('site-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', saved);
-  const icon = themeToggle?.querySelector('i');
-  if (icon) {
-    icon.classList.toggle('fa-moon', saved === 'dark');
-    icon.classList.toggle('fa-sun', saved === 'light');
+  const darkIcon = themeToggle?.querySelector('.theme-icon-dark');
+  const lightIcon = themeToggle?.querySelector('.theme-icon-light');
+  if (darkIcon && lightIcon) {
+    darkIcon.style.display = saved === 'dark' ? 'block' : 'none';
+    lightIcon.style.display = saved === 'dark' ? 'none' : 'block';
     themeToggle.setAttribute('aria-label', `Switch to ${saved === 'dark' ? 'light' : 'dark'} theme`);
   }
 });
 
-// Smooth scroll for internal nav links
-document.querySelectorAll('.nav-link').forEach(a => {
+// Smooth scroll for internal nav links, footer links, and blog links
+document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href^="./blog/"]').forEach(a => {
   a.addEventListener('click', async e => {
     e.preventDefault();
     const href = a.getAttribute('href');
@@ -63,6 +65,7 @@ document.querySelectorAll('.nav-link').forEach(a => {
       link.download = 'Joseph_Okafor_Resume.pdf';
       link.click();
     } else if (href.startsWith('#')) {
+      // Handle internal anchor links
       const target = document.querySelector(href);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -70,24 +73,31 @@ document.querySelectorAll('.nav-link').forEach(a => {
       // Close mobile menu
       const navToggle = document.getElementById('nav-toggle');
       if (navToggle && navToggle.checked) navToggle.checked = false;
-    } else {
-      // Navigate to blog post pages with error handling
+      // Update aria-current for nav links only
+      if (a.classList.contains('nav-link')) {
+        document.querySelectorAll('.nav-link').forEach(link => link.removeAttribute('aria-current'));
+        a.setAttribute('aria-current', 'page');
+      }
+    } else if (href.startsWith('./blog/')) {
+      // Handle blog post navigation
       try {
+        // Use HEAD request to check if the blog file exists
         const response = await fetch(href, { method: 'HEAD' });
         if (response.ok) {
           window.location.href = href;
         } else {
           console.error(`Failed to load ${href}: ${response.status}`);
           alert('Sorry, this blog post is not available. Please try another.');
+          // Fallback: Attempt direct navigation
+          window.location.href = href;
         }
       } catch (error) {
         console.error(`Error navigating to ${href}:`, error);
-        alert('Sorry, this blog post is not available. Please try another.');
+        alert('Sorry, this blog post is not available. Please try again later.');
+        // Fallback: Attempt direct navigation
+        window.location.href = href;
       }
     }
-    // Update aria-current
-    document.querySelectorAll('.nav-link').forEach(link => link.removeAttribute('aria-current'));
-    if (href.startsWith('#')) a.setAttribute('aria-current', 'page');
   });
 });
 
@@ -191,20 +201,8 @@ if (contactForm) {
     btn.textContent = 'Sending...';
 
     try {
-      // Replace with your API endpoint (e.g., Formspree, Netlify Forms)
-      /*
-      const response = await fetch('https://your-api-endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name.value.trim(),
-          email: email.value.trim(),
-          message: message.value.trim(),
-        }),
-      });
-      if (!response.ok) throw new Error('Network error');
-      */
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
+      // Simulated API call (replace with your API endpoint, e.g., Formspree, Netlify Forms)
+      await new Promise(resolve => setTimeout(resolve, 1000));
       errorEl.textContent = 'Message sent successfully!';
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--theme-accent)';
@@ -254,16 +252,8 @@ if (newsletterForm) {
     btn.textContent = 'Subscribing...';
 
     try {
-      // Replace with your API endpoint (e.g., Mailchimp, Netlify Forms)
-      /*
-      const response = await fetch('https://your-api-endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.value.trim() }),
-      });
-      if (!response.ok) throw new Error('Network error');
-      */
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
+      // Simulated API call (replace with your API endpoint, e.g., Mailchimp, Netlify Forms)
+      await new Promise(resolve => setTimeout(resolve, 1000));
       errorEl.textContent = 'Subscribed successfully!';
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--theme-accent)';
@@ -280,7 +270,7 @@ if (newsletterForm) {
 }
 
 // Keyboard navigation for accessibility
-document.querySelectorAll('.nav-link, .btn, .social-link, .dropdown-toggle').forEach(element => {
+document.querySelectorAll('.nav-link, .footer-link, .btn, .social-link, .dropdown-toggle').forEach(element => {
   element.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();

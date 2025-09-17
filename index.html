@@ -55,7 +55,25 @@
                 <li><a class="nav-link resume" href="./public/resume.pdf" download aria-label="Download Resume"><i class="fa-regular fa-file-lines"></i> Resume</a></li>
               </ul>
             </li>
-            <li><button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme"><i class="fa-solid fa-moon"></i></button></li>
+            <li>
+              <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme">
+                <svg class="theme-icon theme-icon-dark" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 2V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M12 20V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4.93 4.93L6.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M17.66 17.66L19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M2 12H4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M20 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M6.34 17.66L4.93 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M19.07 4.93L17.66 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="theme-icon theme-icon-light" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
@@ -466,23 +484,23 @@
       <div class="container">
         <div class="section-head">
           <h3 class="sub">Contact</h3>
-          <h2 class="title">Get in Touch</h2>
-          <p class="muted">Let's collaborate on your next project.</p>
+          <h2 class="title">Let's Connect</h2>
+          <p class="muted">Reach out to collaborate on your next project.</p>
         </div>
         <div class="grid cols-2 gap-md contact-grid">
           <div class="card contact-info">
-            <h4>Email</h4>
-            <a href="mailto:joseph@example.com" aria-label="Email Dubicventures">joseph@example.com</a>
-            <h4 class="mt">Phone</h4>
-            <a href="tel:+1234567890" aria-label="Call Dubicventures">+123-456-7890</a>
+            <h4 class="contact-title">Email</h4>
+            <a href="mailto:joseph@example.com" aria-label="Email Dubicventures" class="contact-link">joseph@example.com</a>
+            <h4 class="contact-title mt">Phone</h4>
+            <a href="tel:+1234567890" aria-label="Call Dubicventures" class="contact-link">+123-456-7890</a>
           </div>
           <form id="contact-form" class="card contact-form" novalidate>
             <label class="sr-only" for="name">Name</label>
-            <input id="name" type="text" placeholder="Your name" required aria-required="true">
+            <input id="name" type="text" placeholder="Your Name" required aria-required="true">
             <label class="sr-only" for="email">Email</label>
-            <input id="email" type="email" placeholder="Your email" required aria-required="true">
+            <input id="email" type="email" placeholder="Your Email" required aria-required="true">
             <label class="sr-only" for="message">Message</label>
-            <textarea id="message" rows="5" placeholder="Your message" required aria-required="true"></textarea>
+            <textarea id="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
             <div class="form-actions">
               <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message</button>
             </div>
@@ -509,16 +527,18 @@
         </div>
         <div class="footer-links">
           <h4 class="footer-heading">Explore</h4>
-          <a href="#home" class="footer-link" aria-label="Home">Home</a>
-          <a href="#about" class="footer-link" aria-label="About">About</a>
-          <a href="#skills" class="footer-link" aria-label="Skills">Skills</a>
-          <a href="#experience" class="footer-link" aria-label="Experience">Experience</a>
-          <a href="#education" class="footer-link" aria-label="Education">Education</a>
-          <a href="#services" class="footer-link" aria-label="Services">Services</a>
-          <a href="#projects" class="footer-link" aria-label="Projects">Projects</a>
-          <a href="#testimonials" class="footer-link" aria-label="Testimonials">Testimonials</a>
-          <a href="#blog" class="footer-link" aria-label="Blog">Blog</a>
-          <a href="#contact" class="footer-link" aria-label="Contact">Contact</a>
+          <nav aria-label="Footer navigation">
+            <a href="#home" class="footer-link" aria-label="Home">Home</a>
+            <a href="#about" class="footer-link" aria-label="About">About</a>
+            <a href="#skills" class="footer-link" aria-label="Skills">Skills</a>
+            <a href="#experience" class="footer-link" aria-label="Experience">Experience</a>
+            <a href="#education" class="footer-link" aria-label="Education">Education</a>
+            <a href="#services" class="footer-link" aria-label="Services">Services</a>
+            <a href="#projects" class="footer-link" aria-label="Projects">Projects</a>
+            <a href="#testimonials" class="footer-link" aria-label="Testimonials">Testimonials</a>
+            <a href="#blog" class="footer-link" aria-label="Blog">Blog</a>
+            <a href="#contact" class="footer-link" aria-label="Contact">Contact</a>
+          </nav>
         </div>
         <div class="footer-social">
           <h4 class="footer-heading">Follow Me</h4>
