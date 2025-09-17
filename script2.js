@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
   }
 });
 
-// Theme toggle + save
+// Theme toggle + save - Mobile defaults to light, desktop to dark
 const themeToggle = document.getElementById('theme-toggle');
 themeToggle?.addEventListener('click', () => {
   const html = document.documentElement;
@@ -39,55 +39,83 @@ themeToggle?.addEventListener('click', () => {
   localStorage.setItem('site-theme', newTheme);
 });
 
-// Load saved theme
+// Load saved theme with mobile/desktop detection
 document.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('site-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
+  const isMobile = window.innerWidth <= 768;
+  const saved = localStorage.getItem('site-theme');
+  
+  // Mobile default: light theme, Desktop default: dark theme
+  const defaultTheme = isMobile ? 'light' : 'dark';
+  const themeToUse = saved || defaultTheme;
+  
+  document.documentElement.setAttribute('data-theme', themeToUse);
   const icon = themeToggle?.querySelector('i');
   if (icon) {
-    icon.classList.toggle('fa-moon', saved === 'dark');
-    icon.classList.toggle('fa-sun', saved === 'light');
-    themeToggle.setAttribute('aria-label', `Switch to ${saved === 'dark' ? 'light' : 'dark'} theme`);
+    icon.classList.toggle('fa-moon', themeToUse === 'dark');
+    icon.classList.toggle('fa-sun', themeToUse === 'light');
+    themeToggle.setAttribute('aria-label', `Switch to ${themeToUse === 'dark' ? 'light' : 'dark'} theme`);
   }
+  
+  // Listen for window resize to handle orientation changes
+  window.addEventListener('resize', debounce(() => {
+    const currentIsMobile = window.innerWidth <= 768;
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const shouldBeMobileTheme = currentIsMobile ? 'light' : 'dark';
+    
+    if (!saved && currentTheme !== shouldBeMobileTheme) {
+      document.documentElement.setAttribute('data-theme', shouldBeMobileTheme);
+      if (icon) {
+        icon.classList.toggle('fa-moon', shouldBeMobileTheme === 'dark');
+        icon.classList.toggle('fa-sun', shouldBeMobileTheme === 'light');
+        themeToggle.setAttribute('aria-label', `Switch to ${shouldBeMobileTheme === 'dark' ? 'light' : 'dark'} theme`);
+      }
+    }
+  }, 250));
 });
 
-// Smooth scroll for internal nav links
-document.querySelectorAll('.nav-link').forEach(a => {
-  a.addEventListener('click', async e => {
+// Smooth scroll for internal nav links, footer links, and blog links
+document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href*="#"], .blog-post-footer a[href*="#"]').forEach(a => {
+  a.addEventListener('click', e => {
     e.preventDefault();
     const href = a.getAttribute('href');
-    if (href === './public/resume.pdf') {
+    if (href.includes('resume.pdf')) {
       // Trigger download for resume
       const link = document.createElement('a');
       link.href = href;
       link.download = 'Joseph_Okafor_Resume.pdf';
       link.click();
-    } else if (href.startsWith('#')) {
-      const target = document.querySelector(href);
-      if (target) {
+    } else if (href.includes('#')) {
+      // Handle internal anchor links
+      const [path, hash] = href.split('#');
+      const target = hash ? document.querySelector(`#${hash}`) : null;
+      if (target && (!path || path === '../index.html' || path === 'index.html')) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        // Navigate to the correct page and then scroll
+        window.location.href = href;
       }
       // Close mobile menu
       const navToggle = document.getElementById('nav-toggle');
       if (navToggle && navToggle.checked) navToggle.checked = false;
+      // Update aria-current for nav links only
+      if (a.classList.contains('nav-link')) {
+        document.querySelectorAll('.nav-link').forEach(link => link.removeAttribute('aria-current'));
+        a.setAttribute('aria-current', 'page');
+      }
     } else {
-      // Navigate to blog post pages with error handling
-      try {
-        const response = await fetch(href, { method: 'HEAD' });
-        if (response.ok) {
+      // Handle external navigation (e.g., blog or project pages)
+      if (href === '#') {
+        // Placeholder links for projects
+        alert('Project page coming soon! Please check back later.');
+      } else {
+        try {
           window.location.href = href;
-        } else {
-          console.error(`Failed to load ${href}: ${response.status}`);
-          alert('Sorry, this blog post is not available. Please try another.');
+        } catch (error) {
+          console.error(`Error navigating to ${href}:`, error);
+          alert('Sorry, this page is not available. Please try again later.');
         }
-      } catch (error) {
-        console.error(`Error navigating to ${href}:`, error);
-        alert('Sorry, this blog post is not available. Please try another.');
       }
     }
-    // Update aria-current
-    document.querySelectorAll('.nav-link').forEach(link => link.removeAttribute('aria-current'));
-    if (href.startsWith('#')) a.setAttribute('aria-current', 'page');
   });
 });
 
@@ -99,41 +127,33 @@ document.getElementById('nav-toggle')?.addEventListener('change', e => {
   }
 });
 
-// Hero parallax effect (debounced, optimized for mobile)
+// Hero parallax effect (disabled on mobile for stability)
 window.addEventListener('scroll', debounce(() => {
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg && window.innerWidth > 768) {
+  if (heroBg && window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const scrollPosition = window.scrollY;
     heroBg.style.transform = `translateY(${scrollPosition * 0.2}px)`;
   }
 }, 16));
 
-// Project and Blog overlays
-document.querySelectorAll('.project').forEach(project => {
-  const overlay = project.querySelector('.project-overlay');
+// Project and Blog overlays - Disabled on mobile for stability
+document.querySelectorAll('.project, .blog-post').forEach(item => {
+  const overlay = item.querySelector('.project-overlay, .blog-overlay');
   if (overlay) {
-    project.addEventListener('mouseenter', () => {
-      overlay.style.display = 'flex';
-      overlay.style.opacity = '1';
-    });
-    project.addEventListener('mouseleave', () => {
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.style.display = 'none'; }, 300);
-    });
-  }
-});
-
-document.querySelectorAll('.blog-post').forEach(post => {
-  const overlay = post.querySelector('.blog-overlay');
-  if (overlay) {
-    post.addEventListener('mouseenter', () => {
-      overlay.style.display = 'flex';
-      overlay.style.opacity = '1';
-    });
-    post.addEventListener('mouseleave', () => {
-      overlay.style.opacity = '0';
-      setTimeout(() => { overlay.style.display = 'none'; }, 300);
-    });
+    // Only add hover effects on desktop
+    if (window.innerWidth > 768) {
+      item.addEventListener('mouseenter', () => {
+        overlay.style.display = 'flex';
+        overlay.style.opacity = '1';
+      });
+      item.addEventListener('mouseleave', () => {
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 300);
+      });
+    } else {
+      // Hide overlays on mobile
+      overlay.style.display = 'none';
+    }
   }
 });
 
@@ -191,24 +211,16 @@ if (contactForm) {
     btn.textContent = 'Sending...';
 
     try {
-      // Replace with your API endpoint (e.g., Formspree, Netlify Forms)
-      /*
-      const response = await fetch('https://your-api-endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name.value.trim(),
-          email: email.value.trim(),
-          message: message.value.trim(),
-        }),
-      });
-      if (!response.ok) throw new Error('Network error');
-      */
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
+      // Simulated API call (replace with your API endpoint)
+      await new Promise(resolve => setTimeout(resolve, 1000));
       errorEl.textContent = 'Message sent successfully!';
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--theme-accent)';
       contactForm.reset();
+      setTimeout(() => {
+        errorEl.textContent = '';
+        errorEl.classList.remove('show');
+      }, 5000);
     } catch (error) {
       errorEl.textContent = 'Failed to send message. Please try again.';
       errorEl.classList.add('show');
@@ -254,20 +266,16 @@ if (newsletterForm) {
     btn.textContent = 'Subscribing...';
 
     try {
-      // Replace with your API endpoint (e.g., Mailchimp, Netlify Forms)
-      /*
-      const response = await fetch('https://your-api-endpoint', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.value.trim() }),
-      });
-      if (!response.ok) throw new Error('Network error');
-      */
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulated API call
+      // Simulated API call (replace with your API endpoint)
+      await new Promise(resolve => setTimeout(resolve, 1000));
       errorEl.textContent = 'Subscribed successfully!';
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--theme-accent)';
       newsletterForm.reset();
+      setTimeout(() => {
+        errorEl.textContent = '';
+        errorEl.classList.remove('show');
+      }, 5000);
     } catch (error) {
       errorEl.textContent = 'Failed to subscribe. Please try again.';
       errorEl.classList.add('show');
@@ -280,7 +288,7 @@ if (newsletterForm) {
 }
 
 // Keyboard navigation for accessibility
-document.querySelectorAll('.nav-link, .btn, .social-link, .dropdown-toggle').forEach(element => {
+document.querySelectorAll('.nav-link, .footer-link, .btn, .social-link, .dropdown-toggle').forEach(element => {
   element.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -294,18 +302,31 @@ document.querySelectorAll('.dropdown-toggle').forEach(button => {
   button.addEventListener('click', () => {
     const expanded = button.getAttribute('aria-expanded') === 'true';
     button.setAttribute('aria-expanded', !expanded);
+    if (!expanded) {
+      button.nextElementSibling.querySelector('.nav-link').focus();
+    }
   });
 });
 
-// Highlight timeline markers on scroll
+// Highlight timeline markers on scroll - Disabled on mobile for stability
 window.addEventListener('scroll', debounce(() => {
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  timelineItems.forEach(item => {
-    const rect = item.getBoundingClientRect();
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-      item.classList.add('active');
-    } else {
-      item.classList.remove('active');
-    }
-  });
+  if (window.innerWidth > 768) {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
 }, 100));
+
+// Prevent mobile overscroll on specific elements
+document.addEventListener('touchstart', e => {
+  const target = e.target.closest('.blog-post, .project, .card');
+  if (target) {
+    target.style.overscrollBehavior = 'contain';
+  }
+}, { passive: true });

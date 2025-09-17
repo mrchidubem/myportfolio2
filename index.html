@@ -18,46 +18,53 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- Preloader -->
   <div id="preloader" class="preloader">
     <div class="spinner"></div>
   </div>
 
-  <div class="site-wrapper">
-    <!-- NAV -->
+  <div class="site-wrapper" id="main-content" role="main">
+    <!-- NAV - FIXED -->
     <header class="site-header" role="banner">
       <div class="container header-inner">
         <div class="brand">
-          <h1 class="logo">Dubicventures</h1>
+          <a href="#home" class="logo" aria-label="Dubicventures Home">Dubicventures</a>
         </div>
 
         <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
-        <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle menu">
-          <i class="fa-solid fa-bars"></i>
+        <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
           <span class="nav-burger-close"><i class="fa-solid fa-times"></i></span>
         </label>
 
         <nav class="nav" role="navigation" aria-label="Main navigation">
           <ul class="nav-list">
-            <li><a class="nav-link" href="#home" aria-label="Home" aria-current="page">Home</a></li>
-            <li><a class="nav-link" href="#about" aria-label="About">About</a></li>
-            <li><a class="nav-link" href="#projects" aria-label="Projects">Projects</a></li>
-            <li><a class="nav-link" href="#contact" aria-label="Contact">Contact</a></li>
+            <li><a class="nav-link" href="#home" aria-label="Home section">Home</a></li>
+            <li><a class="nav-link" href="#about" aria-label="About section">About</a></li>
+            <li><a class="nav-link" href="#projects" aria-label="Projects section">Projects</a></li>
+            <li><a class="nav-link" href="#contact" aria-label="Contact section">Contact</a></li>
             <li class="dropdown">
-              <button class="dropdown-toggle" aria-label="More Sections" aria-expanded="false">More <i class="fa-solid fa-chevron-down"></i></button>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="#skills" aria-label="Skills">Skills</a></li>
-                <li><a class="nav-link" href="#experience" aria-label="Experience">Experience</a></li>
-                <li><a class="nav-link" href="#education" aria-label="Education">Education</a></li>
-                <li><a class="nav-link" href="#services" aria-label="Services">Services</a></li>
-                <li><a class="nav-link" href="#testimonials" aria-label="Testimonials">Testimonials</a></li>
-                <li><a class="nav-link" href="#blog" aria-label="Blog">Blog</a></li>
-                <li><a class="nav-link resume" href="./public/resume.pdf" download aria-label="Download Resume"><i class="fa-regular fa-file-lines"></i> Resume</a></li>
+              <button class="dropdown-toggle" aria-label="More sections" aria-expanded="false" aria-haspopup="true">
+                More <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a class="nav-link" href="#skills" role="menuitem" aria-label="Skills section">Skills</a></li>
+                <li><a class="nav-link" href="#experience" role="menuitem" aria-label="Experience section">Experience</a></li>
+                <li><a class="nav-link" href="#education" role="menuitem" aria-label="Education section">Education</a></li>
+                <li><a class="nav-link" href="#services" role="menuitem" aria-label="Services section">Services</a></li>
+                <li><a class="nav-link" href="#testimonials" role="menuitem" aria-label="Testimonials section">Testimonials</a></li>
+                <li><a class="nav-link" href="#blog" role="menuitem" aria-label="Blog section">Blog</a></li>
+                <li><a class="nav-link resume" href="./public/resume.pdf" download role="menuitem" aria-label="Download resume PDF">Resume</a></li>
               </ul>
             </li>
             <li>
               <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme">
-                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
               </button>
             </li>
           </ul>
@@ -65,7 +72,7 @@
       </div>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO - YOUR ORIGINAL SECTION PRESERVED -->
     <section id="home" class="hero" role="region" aria-label="Hero">
       <div class="hero-bg"></div>
       <div class="container hero-inner">
@@ -86,46 +93,40 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT - FIXED -->
     <section id="about" class="section" role="region" aria-label="About">
       <div class="container">
         <div class="section-head">
-          <h3 class="sub" >About</h3>
+          <h3 class="sub">About</h3>
           <h2 class="title">Who I Am</h2>
-<p style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; color: #6c757d; font-size: 0.95em; line-height: 1.6; letter-spacing: 0.5px; text-align: center;">
- <b>   My name is Joseph Chidubem Okafor, a Software Engineer and Electronics Engineer with expertise in Full-Stack Development,<br> 
-  Artificial Intelligence, and Automation. I am passionate about creating innovative solutions that improve efficiency, <br>
-  optimize systems, and deliver real-world impact.</b>
-</p>        </div>
+          <p style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; color: var(--muted); font-size: 0.95em; line-height: 1.6; letter-spacing: 0.5px; text-align: center; margin-bottom: 2rem;">
+            <b>My name is Joseph Chidubem Okafor, a Software Engineer and Electronics Engineer with expertise in Full-Stack Development,<br> 
+            Artificial Intelligence, and Automation. I am passionate about creating innovative solutions that improve efficiency, <br>
+            optimize systems, and deliver real-world impact.</b>
+          </p>
+        </div>
         <div class="about-content">
           <div class="about-grid">
             <div class="about-photo">
-              <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor Headshot" class="profile-img">
+              <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor professional headshot" class="profile-img" loading="lazy">
             </div>
             <div class="about-text">
-
-              <!-- <p class="about-description">Dubicventures, founded by Joseph Chidubem Okafor, represents my passion for building scalable, 
+              <p style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; color: var(--muted); font-size: 0.95em; line-height: 1.6; letter-spacing: 0.5px;">
+                <b>Dubicventures, founded by Joseph Chidubem Okafor, represents my passion for building scalable, 
                 user-centric applications as a Full-Stack Developer and AI Automation Specialist.
                  With over 5 years of experience, I specialize in modern frameworks like React, Node.js, and Django, combined with AI 
-                 integration to streamline workflows and enhance user experiences. I’m driven to solve complex challenges with clean, 
-                 efficient code and innovative design, delivering measurable value to clients and users.</p> -->
-
-                 <p style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; color: #6c757d; font-size: 0.95em; line-height: 1.6; letter-spacing: 0.5px;">
- <b>  Dubicventures, founded by Joseph Chidubem Okafor, represents my passion for building scalable, 
-                user-centric applications as a Full-Stack Developer and AI Automation Specialist.
-                 With over 5 years of experience, I specialize in modern frameworks like React, Node.js, and Django, combined with AI 
-                 integration to streamline workflows and enhance user experiences. I’m driven to solve complex challenges with clean, 
+                 integration to streamline workflows and enhance user experiences. I'm driven to solve complex challenges with clean, 
                  efficient code and innovative design, delivering measurable value to clients and users.</b>
-</p>        </div>
-              <div class="grid cols-2 gap-md">
-                <div class="card">
-                  <h4>Development Expertise</h4>
-                  <p>Building responsive, high-performance applications using React, Node.js, Django, and modern DevOps practices.</p>
-                </div>
-                <div class="card">
-                  <h4>AI Automation</h4>
-                  <p>Integrating AI-driven solutions to automate processes and create intuitive, intelligent user experiences.</p>
-                </div>
+              </p>
+            </div>
+            <div class="grid cols-2 gap-md">
+              <div class="card">
+                <h4>Development Expertise</h4>
+                <p>Building responsive, high-performance applications using React, Node.js, Django, and modern DevOps practices.</p>
+              </div>
+              <div class="card">
+                <h4>AI Automation</h4>
+                <p>Integrating AI-driven solutions to automate processes and create intuitive, intelligent user experiences.</p>
               </div>
             </div>
           </div>
@@ -167,7 +168,7 @@
             <p>Problem-Solving, Team Collaboration, Project Management</p>
           </div>
         </div>
-        <div class="achievements" style="margin-top: 40px;">
+        <div class="achievements" style="margin-top: 2rem;">
           <h3 class="sub">Achievements & Certifications</h3>
           <div class="grid cols-3 gap-md">
             <div class="card">
@@ -184,7 +185,7 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- EXPERIENCE - FIXED SPACING -->
     <section id="experience" class="section" role="region" aria-label="Professional Experience">
       <div class="container">
         <div class="section-head">
@@ -194,17 +195,14 @@
         </div>
         <div class="timeline">
           <div class="timeline-line"></div>
-          <div class="grid cols-1 gap-md experience-grid">
+          <div class="grid cols-1 gap-sm experience-grid">
             <div class="card timeline-item" aria-label="Experience at TechCorp Solutions">
               <div class="timeline-marker"></div>
               <div class="timeline-content">
                 <h4>Solutions Architect @ Chemical and Allied Products (CAP)</h4>
-                <p class="muted small"> • Apr 2024 - Mar 2025</p>
+                <p class="muted small">• Apr 2024 - Mar 2025</p>
                 <p class="muted small">Key Contributions</p>
-                <p> As a Solutions Architect,
-               I design scalable cloud solutions on AWS and contribute to team development through guidance on infrastructure, 
-               AI integrations, and project optimization,
-               fostering technical growth and efficiency.</p>
+                <p>As a Solutions Architect, I design scalable cloud solutions on AWS and contribute to team development through guidance on infrastructure, AI integrations, and project optimization, fostering technical growth and efficiency.</p>
               </div>
             </div>
             <div class="card timeline-item" aria-label="Experience at InnovateAI">
@@ -212,37 +210,27 @@
               <div class="timeline-content">
                 <h4>Junior Python Developer @ Pacuss Global Ventures</h4>
                 <p class="muted small">• Jun 2019 - Dec 2021</p>
-                 <p class="muted small"> Role Highlights</p>
-
-                <p>  Led short-term development efforts on web applications, 
-              advocating for efficient tech stacks and allocating tasks to maximize team output in
-               responsive design and API integrations.</p>
+                <p class="muted small">Role Highlights</p>
+                <p>Led short-term development efforts on web applications, advocating for efficient tech stacks and allocating tasks to maximize team output in responsive design and API integrations.</p>
               </div>
             </div>
-
             <div class="card timeline-item" aria-label="Experience at StartUpX">
               <div class="timeline-marker"></div>
               <div class="timeline-content">
                 <h4>Software Engineer Intern @ alx_africa</h4>
                 <p class="muted small">• Jun 2022 - Sep 2023</p>
                 <p class="muted small">Intern</p>
-                <p> Contributed to full-stack projects as an ALX graduate, 
-              applying Python and cloud tools for scalable applications.</p>
+                <p>Contributed to full-stack projects as an ALX graduate, applying Python and cloud tools for scalable applications.</p>
               </div>
-              
             </div>
-              <div class="card timeline-item" aria-label="Experience at StartUpX">
+            <div class="card timeline-item" aria-label="Experience at StartUpX">
               <div class="timeline-marker"></div>
               <div class="timeline-content">
                 <h4>Python Developer Intern @ Evergreen Technologies</h4>
                 <p class="muted small">• Feb 2020 - Jun 2021</p>
-
                 <p class="muted small">Intern</p>
-                <p> Focused on backend development and was recognized for innovative automation solutions in project pitches.</p>
-                <p>Applied engineering principles to enhance workflow efficiency and system design</p>
-
+                <p>Focused on backend development and was recognized for innovative automation solutions in project pitches. Applied engineering principles to enhance workflow efficiency and system design.</p>
               </div>
-              
             </div>
           </div>
         </div>
@@ -303,7 +291,7 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS - FIXED POINTER -->
     <section id="projects" class="section" role="region" aria-label="Projects">
       <div class="container">
         <div class="section-head">
@@ -312,93 +300,83 @@
           <p class="muted">Showcasing my expertise through impactful projects.</p>
         </div>
         <div class="grid projects-grid gap-md">
-          <article class="project card">
+          <article class="project card" tabindex="0">
             <div class="project-content">
               <h4 class="project-title">CareCycle HMS</h4>
               <p class="muted small">Django + MySQL hospital management system with HIPAA-compliant workflows.</p>
               <p><strong>Challenge:</strong> Ensuring HIPAA compliance while enabling real-time updates.</p>
-                <p><strong>Outcome:</strong> Reduced admin time by 30% for 500+ users.</p>
-
+              <p><strong>Outcome:</strong> Reduced admin time by 30% for 500+ users.</p>
               <div class="project-overlay">
                 <p>Tech: Django, MySQL, JavaScript</p>
                 <p>Role: Developer</p>
               </div>
             </div>
-            <a href="https://hospital-management-app-web.vercel.app/" class="btn btn-outline btn-sm" aria-label="View CareCycle HMS Project">View Project</a>
+            <a href="https://hospital-management-app-web.vercel.app/" class="btn btn-outline btn-sm project-link" target="_blank" rel="noopener" aria-label="View CareCycle HMS project live demo">View Project</a>
           </article>
-          <article class="project card">
+          <article class="project card" tabindex="0">
             <div class="project-content">
               <h4 class="project-title">Simple Shell</h4>
               <p class="muted small">A custom Unix command-line interpreter built from scratch as part of the ALX Software Engineering program.</p>
               <p><strong>Challenge:</strong> Implementing system calls without libraries.</p>
               <p><strong>Outcome:</strong> Efficient parser handling 50+ commands.</p>
-
               <div class="project-overlay">
                 <p>Tech: C, GCC, Linux System Calls</p>
                 <p>Role: Full-Stack Developer</p>
               </div>
             </div>
-            <a href="https://github.com/mrchidubem" class="btn btn-outline btn-sm" aria-label="View E-Commerce Platform Project">View Project</a>
+            <a href="https://github.com/mrchidubem" class="btn btn-outline btn-sm project-link" target="_blank" rel="noopener" aria-label="View Simple Shell project on GitHub">View Project</a>
           </article>
-          <article class="project card">
+          <article class="project card" tabindex="0">
             <div class="project-content">
               <h4 class="project-title">Airbnb Clone (In Progress)</h4>
-              <p class="muted small">A scalable web application built with Django and JavaScript, featuring user authentication, 
-                property listings, and booking functionality. Reduced load time by 20% with optimized APIs.</p>
-                <p><strong>Challenge:</strong> Handling concurrent bookings securely.</p>
-                <p><strong>Outcome:</strong> Scalable to 1K+ listings with 99% uptime.</p>
+              <p class="muted small">A scalable web application built with Django and JavaScript, featuring user authentication, property listings, and booking functionality. Reduced load time by 20% with optimized APIs.</p>
+              <p><strong>Challenge:</strong> Handling concurrent bookings securely.</p>
+              <p><strong>Outcome:</strong> Scalable to 1K+ listings with 99% uptime.</p>
               <div class="project-overlay">
                 <p>Tech: Python, JavaScript, MYSQL</p>
-                <p>Role:  Developer</p>
+                <p>Role: Developer</p>
               </div>
             </div>
-            <a href="https://bis-payer.vercel.app/" class="btn btn-outline btn-sm" aria-label="View AI Chatbot Project">View Project</a>
+            <a href="https://bis-payer.vercel.app/" class="btn btn-outline btn-sm project-link" target="_blank" rel="noopener" aria-label="View Airbnb Clone project demo">View Project</a>
           </article>
-          <article class="project card">
+          <article class="project card" tabindex="0">
             <div class="project-content">
               <h4 class="project-title">Budget Buddy</h4>
-              <p class="muted small">A comprehensive personal finance management application built with Django and React.
-                 Features expense tracking, budget planning, financial analytics, and automated categorization using AI.</p>
-                  <p><strong>Challenge:</strong> Integrating AI for accurate categorization.</p>
+              <p class="muted small">A comprehensive personal finance management application built with Django and React. Features expense tracking, budget planning, financial analytics, and automated categorization using AI.</p>
+              <p><strong>Challenge:</strong> Integrating AI for accurate categorization.</p>
               <p><strong>Outcome:</strong> 95% accuracy in expense tracking for users.</p>
               <div class="project-overlay">
                 <p>Tech: React, Firebase, AI Integration, Django</p>
                 <p>Role: AI Developer</p>
               </div>
             </div>
-            <a href="https://budget-buddy-vibe-coding.onrender.com/" class="btn btn-outline btn-sm" aria-label="View TaskSync App Project">View Project</a>
+            <a href="https://budget-buddy-vibe-coding.onrender.com/" class="btn btn-outline btn-sm project-link" target="_blank" rel="noopener" aria-label="View Budget Buddy project live demo">View Project</a>
           </article>
-          <article class="project card">
+          <article class="project card" tabindex="0">
             <div class="project-content">
               <h4 class="project-title">Recipe Reminder</h4>
-              <p class="muted small">A smart recipe management app that helps users organize their favorite recipes, plan meals, and get cooking reminders. 
-                Features AI-powered ingredient suggestions and nutritional analysis.</p>
-                <p><strong>Challenge:</strong> Personalizing suggestions with limited data.</p>
-                <p><strong>Outcome:</strong> 25% increase in user retention via reminders.</p>
-
-
+              <p class="muted small">A smart recipe management app that helps users organize their favorite recipes, plan meals, and get cooking reminders. Features AI-powered ingredient suggestions and nutritional analysis.</p>
+              <p><strong>Challenge:</strong> Personalizing suggestions with limited data.</p>
+              <p><strong>Outcome:</strong> 25% increase in user retention via reminders.</p>
               <div class="project-overlay">
                 <p>Tech: Django, Superbase, AI</p>
                 <p>Role: Backend Developer</p>
               </div>
             </div>
-            <a href="public/project5.html" class="btn btn-outline btn-sm" aria-label="View Smart Inventory Project">View Project</a>
+            <a href="public/project5.html" class="btn btn-outline btn-sm project-link" aria-label="View Recipe Reminder project details">View Project</a>
           </article>
-          <article class="project card">
+          <article class="project card" tabindex="0">
             <div class="project-content">
               <h4 class="project-title">AI Study Buddy</h4>
-              <p class="muted small"> An intelligent study companion that creates personalized study plans, tracks learning progress, 
-                and provides AI-powered explanations. Features spaced repetition and adaptive learning algorithms.</p>
-                <p><strong>Challenge:</strong> Adapting to diverse learning styles.</p>
-                <p><strong>Outcome:</strong> Improved quiz scores by 35% in beta tests.</p>
-
-
+              <p class="muted small">An intelligent study companion that creates personalized study plans, tracks learning progress, and provides AI-powered explanations. Features spaced repetition and adaptive learning algorithms.</p>
+              <p><strong>Challenge:</strong> Adapting to diverse learning styles.</p>
+              <p><strong>Outcome:</strong> Improved quiz scores by 35% in beta tests.</p>
               <div class="project-overlay">
                 <p>Tech: MYSQL, Hugging Face, React, Node.js</p>
                 <p>Role: Full-Stack Developer</p>
               </div>
             </div>
-            <a href="http://study-assistant-ai.vercel.app" class="btn btn-outline btn-sm" aria-label="View Portfolio Dashboard Project">View Project</a>
+            <a href="http://study-assistant-ai.vercel.app" class="btn btn-outline btn-sm project-link" target="_blank" rel="noopener" aria-label="View AI Study Buddy project live demo">View Project</a>
           </article>
         </div>
       </div>
@@ -415,7 +393,7 @@
         <div class="grid cols-3 gap-md testimonials-grid">
           <div class="card testimonial">
             <p class="muted">"Dubicventures delivered a robust e-commerce platform that exceeded our expectations. The attention to detail is unmatched."</p>
-            <p class="small">— Engr Nelson, CEO, Pacuss Global ventures </p>
+            <p class="small">— Engr Nelson, CEO, Pacuss Global ventures</p>
           </div>
           <div class="card testimonial">
             <p class="muted">"The AI chatbot transformed our customer support, reducing response times significantly."</p>
@@ -429,7 +407,7 @@
       </div>
     </section>
 
-    <!-- BLOG -->
+    <!-- BLOG - FIXED POINTER -->
     <section id="blog" class="section" role="region" aria-label="Blog">
       <div class="container">
         <div class="section-head">
@@ -438,9 +416,9 @@
           <p class="muted">Thoughts on coding, AI, and building the future.</p>
         </div>
         <div class="grid blog-grid gap-md">
-          <article class="card blog-post" role="article">
+          <article class="card blog-post" role="article" tabindex="0">
             <div class="blog-thumbnail">
-              <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Building Scalable Web Apps" class="thumbnail-img">
+              <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Building scalable web applications illustration" class="thumbnail-img" loading="lazy">
             </div>
             <div class="blog-content">
               <h4>Building Scalable Web Apps</h4>
@@ -448,12 +426,12 @@
               <div class="blog-overlay">
                 <p>Learn how to optimize web apps for scale.</p>
               </div>
-              <a href="blog1.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog1.html" class="btn btn-outline btn-sm blog-link" aria-label="Read more about Building Scalable Web Apps">Read More</a>
             </div>
           </article>
-          <article class="card blog-post" role="article">
+          <article class="card blog-post" role="article" tabindex="0">
             <div class="blog-thumbnail">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTUelVM0CjtTSfKcsCZ37oO6REZJIKaiBWVS53yw7V4IuV3wwPtLv6wWcjCktJEzqkexM&usqp=CAU" alt="Illustration of AI-powered application interfaces" />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTUelVM0CjtTSfKcsCZ37oO6REZJIKaiBWVS53yw7V4IuV3wwPtLv6wWcjCktJEzqkexM&usqp=CAU" alt="Illustration of AI-powered application interfaces" loading="lazy">
             </div>
             <div class="blog-content">
               <h4>AI in Everyday Apps</h4>
@@ -461,12 +439,12 @@
               <div class="blog-overlay">
                 <p>Explore AI integration techniques.</p>
               </div>
-              <a href="blog2.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog2.html" class="btn btn-outline btn-sm blog-link" aria-label="Read more about AI in Everyday Apps">Read More</a>
             </div>
           </article>
-          <article class="card blog-post" role="article">
+          <article class="card blog-post" role="article" tabindex="0">
             <div class="blog-thumbnail">
-          <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Illustration of scalable web architecture components" class="thumbnail-img">
+              <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Illustration of scalable web architecture components" class="thumbnail-img" loading="lazy">
             </div>
             <div class="blog-content">
               <h4>Optimizing DevOps Workflows</h4>
@@ -474,12 +452,12 @@
               <div class="blog-overlay">
                 <p>Best practices for DevOps efficiency.</p>
               </div>
-              <a href="blog3.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog3.html" class="btn btn-outline btn-sm blog-link" aria-label="Read more about Optimizing DevOps Workflows">Read More</a>
             </div>
           </article>
-          <article class="card blog-post" role="article">
+          <article class="card blog-post" role="article" tabindex="0">
             <div class="blog-thumbnail">
-              <img src="https://blog.openreplay.com/images/understanding-react-hooks/images/hero.png" alt="Mastering React Hooks" class="thumbnail-img">
+              <img src="https://blog.openreplay.com/images/understanding-react-hooks/images/hero.png" alt="Mastering React Hooks illustration" class="thumbnail-img" loading="lazy">
             </div>
             <div class="blog-content">
               <h4>Mastering React Hooks</h4>
@@ -487,12 +465,12 @@
               <div class="blog-overlay">
                 <p>Deep dive into React Hooks usage.</p>
               </div>
-              <a href="blog4.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog4.html" class="btn btn-outline btn-sm blog-link" aria-label="Read more about Mastering React Hooks">Read More</a>
             </div>
           </article>
-          <article class="card blog-post" role="article">
+          <article class="card blog-post" role="article" tabindex="0">
             <div class="blog-thumbnail">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQddz262X2_0hUlqrSABa8166W6tYuydFUg2HT-zC1-oU3LjSPtBsdCNZri3rLDAPZ4tI&usqp=CAU" alt="AI Ethics in Development" class="thumbnail-img">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQddz262X2_0hUlqrSABa8166W6tYuydFUg2HT-zC1-oU3LjSPtBsdCNZri3rLDAPZ4tI&usqp=CAU" alt="AI Ethics in Development illustration" class="thumbnail-img" loading="lazy">
             </div>
             <div class="blog-content">
               <h4>AI Ethics in Development</h4>
@@ -500,21 +478,20 @@
               <div class="blog-overlay">
                 <p>Ethical considerations for AI projects.</p>
               </div>
-              <a href="blog5.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog5.html" class="btn btn-outline btn-sm blog-link" aria-label="Read more about AI Ethics in Development">Read More</a>
             </div>
           </article>
-          <article class="card blog-post" role="article">
+          <article class="card blog-post" role="article" tabindex="0">
             <div class="blog-thumbnail">
-              <img src="https://www.shutterstock.com/image-vector/hitech-banner-virtual-reality-technologies-260nw-2274594101.jpg" alt="Scaling Node.js Applications" class="thumbnail-img">
+              <img src="https://www.shutterstock.com/image-vector/hitech-banner-virtual-reality-technologies-260nw-2274594101.jpg" alt="Scaling Node.js Applications illustration" class="thumbnail-img" loading="lazy">
             </div>
             <div class="blog-content">
-              <h4> My Journey and Tips for 2025</h4>
+              <h4>My Journey and Tips for 2025</h4>
               <p class="muted small">August 30, 2025 • Joseph Chidubem Okafor</p>
-           
-
               <div class="blog-overlay">
+                <p>Personal insights and career advice.</p>
               </div>
-              <a href="public/blog6.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="public/blog6.html" class="btn btn-outline btn-sm blog-link" aria-label="Read more about My Journey and Tips for 2025">Read More</a>
             </div>
           </article>
         </div>
@@ -525,11 +502,14 @@
     <section id="cta" class="section alt" role="region" aria-label="Call to Action">
       <div class="container cta-inner">
         <h2 class="title">Ready to Build Something Amazing?</h2>
-<p>
-Let’s collaborate to bring your ideas to life with cutting-edge technology, <br>scalable solutions, and creative innovation. <br> 
-Whether you’re looking to launch a new product, <br>streamline your business with automation, or explore AI-powered possibilities,  
-<br>I’m here to turn your vision into reality.
-</p>          <div class="cta-buttons">
+        <p style="font-size: var(--medium); line-height: 1.7; margin-bottom: 2rem;">
+          Let's collaborate to bring your ideas to life with cutting-edge technology, <br>
+          scalable solutions, and creative innovation. <br>
+          Whether you're looking to launch a new product, <br>
+          streamline your business with automation, or explore AI-powered possibilities, <br>
+          I'm here to turn your vision into reality.
+        </p>
+        <div class="cta-buttons">
           <a class="btn btn-primary" href="#contact" aria-label="Get Started">Get Started</a>
           <a class="btn btn-outline" href="#projects" aria-label="View Projects">View Projects</a>
         </div>
@@ -552,9 +532,10 @@ Whether you’re looking to launch a new product, <br>streamline your business w
             <p class="contact-description"><strong>Location:</strong> Lagos, Nigeria</p>
           </div>
           <form id="contact-form" class="contact-form card">
-            <input type="text" id="name" placeholder="Your Name" aria-required="true" required>
-            <input type="email" id="email" placeholder="Your Email" aria-required="true" required>
-            <textarea id="message" placeholder="Your Message" rows="6" aria-required="true" required></textarea>
+            <div id="contact-form-error" class="form-error" aria-live="polite"></div>
+            <input type="text" id="name" name="name" placeholder="Your Name" aria-required="true" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" aria-required="true" required>
+            <textarea id="message" name="message" placeholder="Your Message" rows="6" aria-required="true" required></textarea>
             <div class="form-actions">
               <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message</button>
             </div>
@@ -582,16 +563,16 @@ Whether you’re looking to launch a new product, <br>streamline your business w
 
         <div class="footer-links">
           <h4 class="footer-heading">Explore</h4>
-          <a href="#home" class="footer-link" aria-label="Home">Home</a>
-          <a href="#about" class="footer-link" aria-label="About">About</a>
-          <a href="#skills" class="footer-link" aria-label="Skills">Skills</a>
-          <a href="#experience" class="footer-link" aria-label="Experience">Experience</a>
-          <a href="#education" class="footer-link" aria-label="Education">Education</a>
-          <a href="#services" class="footer-link" aria-label="Services">Services</a>
-          <a href="#projects" class="footer-link" aria-label="Projects">Projects</a>
-          <a href="#testimonials" class="footer-link" aria-label="Testimonials">Testimonials</a>
-          <a href="#blog" class="footer-link" aria-label="Blog">Blog</a>
-          <a href="#contact" class="footer-link" aria-label="Contact">Contact</a>
+          <a href="#home" class="footer-link" aria-label="Home section">Home</a>
+          <a href="#about" class="footer-link" aria-label="About section">About</a>
+          <a href="#skills" class="footer-link" aria-label="Skills section">Skills</a>
+          <a href="#experience" class="footer-link" aria-label="Experience section">Experience</a>
+          <a href="#education" class="footer-link" aria-label="Education section">Education</a>
+          <a href="#services" class="footer-link" aria-label="Services section">Services</a>
+          <a href="#projects" class="footer-link" aria-label="Projects section">Projects</a>
+          <a href="#testimonials" class="footer-link" aria-label="Testimonials section">Testimonials</a>
+          <a href="#blog" class="footer-link" aria-label="Blog section">Blog</a>
+          <a href="#contact" class="footer-link" aria-label="Contact section">Contact</a>
         </div>
 
         <div class="footer-social">
@@ -607,6 +588,7 @@ Whether you’re looking to launch a new product, <br>streamline your business w
           <h4 class="footer-heading">Stay Updated</h4>
           <p class="newsletter-description">Subscribe for insights on AI, coding, and tech innovation.</p>
           <form id="newsletter-form" class="newsletter-form">
+            <div id="newsletter-form-error" class="form-error" aria-live="polite"></div>
             <input type="email" name="email" placeholder="Enter your email" class="newsletter-input" required aria-required="true">
             <button type="submit" class="btn btn-primary" aria-label="Subscribe to Newsletter">Subscribe</button>
           </form>
