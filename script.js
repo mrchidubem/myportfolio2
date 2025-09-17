@@ -75,12 +75,12 @@ document.querySelectorAll('.nav-link').forEach(a => {
   });
 });
 
-// Hero parallax effect (debounced)
+// Hero parallax effect (debounced, optimized for mobile)
 window.addEventListener('scroll', debounce(() => {
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
+  if (heroBg && window.innerWidth > 768) {
     const scrollPosition = window.scrollY;
-    heroBg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+    heroBg.style.transform = `translateY(${scrollPosition * 0.2}px)`;
   }
 }, 16));
 
@@ -140,17 +140,6 @@ if (contactForm) {
     try {
       // Simulated API call (replace with real API call in production)
       await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Example real API call (uncomment and customize):
-      /*
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.value, email: email.value, message: message.value })
-      });
-      if (!response.ok) throw new Error('Failed to send message');
-      */
-
       errorEl.textContent = 'Message sent successfully!';
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--accent)';
@@ -202,17 +191,6 @@ if (newsletterForm) {
     try {
       // Simulated API call (replace with real API call in production)
       await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Example real API call (uncomment and customize):
-      /*
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.value })
-      });
-      if (!response.ok) throw new Error('Failed to subscribe');
-      */
-
       errorEl.textContent = 'Subscribed successfully!';
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--accent)';
@@ -235,5 +213,13 @@ document.querySelectorAll('.nav-link, .btn, .social-link, .dropdown-toggle').for
       e.preventDefault();
       element.click();
     }
+  });
+});
+
+// Update ARIA-expanded for dropdown
+document.querySelectorAll('.dropdown-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', !expanded);
   });
 });
