@@ -1,154 +1,90 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Optimizing DevOps Workflows | Joseph Chidubem Okafor</title>
-  <meta name="description" content="Streamlining CI/CD pipelines for faster deployments" />
-  <meta property="og:title" content="Optimizing DevOps Workflows | Joseph Chidubem Okafor" />
-  <meta property="og:description" content="Streamlining CI/CD pipelines for faster deployments" />
-  <meta property="og:image" content="public/blog3.jpg" />
-  <link rel="icon" href="public/favicon.ico" type="image/x-icon">
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style2.css" />
-</head>
-<body>
-  <div class="site-wrapper">
-    <!-- NAV -->
-    <header class="site-header" role="banner">
-      <div class="container header-inner">
-        <div class="brand">
-          <h1 class="logo">Joseph Okafor</h1>
-          <p class="tag">Full-Stack Developer • AI Automation Specialist</p>
+<!-- BLOG -->
+<section id="blog" class="section" role="region" aria-label="Blog">
+  <div class="container">
+    <div class="section-head">
+      <h3 class="sub">Blog</h3>
+      <h2 class="title">Insights & Notes</h2>
+      <p class="muted">Thoughts on coding, AI, and building the future.</p>
+    </div>
+    <div class="grid blog-grid gap-md">
+      <article class="card blog-post" role="article">
+        <div class="blog-thumbnail">
+          <img src="https://d2ms8rpfqc4h24.cloudfront.net/feature_image_872996ad87.jpg" alt="Illustration of scalable web architecture components" class="thumbnail-img">
         </div>
-
-        <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
-        <label for="nav-toggle" class="nav-burger" title="Menu" aria-label="Toggle menu">
-          <i class="fa-solid fa-bars"></i>
-        </label>
-
-        <nav class="nav" role="navigation">
-          <ul class="nav-list">
-            <li><a class="nav-link" href="index2.html#home" aria-label="Home">Home</a></li>
-            <li><a class="nav-link" href="index2.html#about" aria-label="About">About</a></li>
-            <li><a class="nav-link" href="index2.html#projects" aria-label="Projects">Projects</a></li>
-            <li><a class="nav-link" href="index2.html#contact" aria-label="Contact">Contact</a></li>
-            <li class="dropdown">
-              <button class="dropdown-toggle" aria-label="More Sections">More <i class="fa-solid fa-chevron-down"></i></button>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="index2.html#skills" aria-label="Skills">Skills</a></li>
-                <li><a class="nav-link" href="index2.html#experience" aria-label="Experience">Experience</a></li>
-                <li><a class="nav-link" href="index2.html#education" aria-label="Education">Education</a></li>
-                <li><a class="nav-link" href="index2.html#services" aria-label="Services">Services</a></li>
-                <li><a class="nav-link" href="index2.html#testimonials" aria-label="Testimonials">Testimonials</a></li>
-                <li><a class="nav-link" href="index2.html#blog" aria-label="Blog">Blog</a></li>
-                <li><a class="nav-link resume" href="public/resume.pdf" download aria-label="Download Resume"><i class="fa-regular fa-file-lines"></i> Resume</a></li>
-              </ul>
-            </li>
-            <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Blog Post Content -->
-    <section class="blog-post-page" role="region" aria-label="Blog Post">
-      <div class="container">
-        <div class="blog-post-header">
-          <h3 class="sub">Blog Post</h3>
-          <h1 class="title">Optimizing DevOps Workflows</h1>
-          <p class="muted small">Jul 20, 2025 • Joseph Chidubem Okafor</p>
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTFV4sTFfgp5_XlBxsprroSxvLGEt0QfUFbQ&s" alt="Optimizing DevOps Workflows" />
-        </div>
-        <div class="blog-post-content">
-          <h2>Introduction</h2>
-          <p>DevOps workflows are essential for rapid, reliable software delivery. Optimizing CI/CD pipelines can significantly reduce deployment times and improve team efficiency. This post covers strategies for streamlining DevOps processes.</p>
-          
-          <h2>Key Strategies</h2>
-          <ul>
-            <li><strong>Automate Everything</strong>: Use tools like Jenkins or GitHub Actions to automate builds, tests, and deployments.</li>
-            <li><strong>Containerization</strong>: Leverage Docker and Kubernetes for consistent environments and scalability.</li>
-            <li><strong>Monitoring and Logging</strong>: Implement tools like Prometheus and Grafana to track pipeline performance.</li>
-            <li><strong>Parallel Pipelines</strong>: Run tests in parallel to reduce CI/CD duration.</li>
-          </ul>
-
-          <h2>Implementation Example</h2>
-          <p>For a Node.js app, set up a GitHub Actions workflow to build, test, and deploy to AWS ECS. Use Docker to containerize the app and Prometheus for monitoring. This setup can reduce deployment time by up to 50%.</p>
-          
-          <h2>Challenges</h2>
-          <p>Common issues include pipeline bottlenecks and configuration drift. Address these with infrastructure-as-code (e.g., Terraform) and regular pipeline audits.</p>
-          
-          <h2>Conclusion</h2>
-          <p>Optimized DevOps workflows enable faster, more reliable deployments. By automating processes and leveraging modern tools, teams can focus on delivering value.</p>
-        </div>
-        <div class="blog-post-footer">
-          <a href="index2.html#blog" class="btn btn-primary" aria-label="Go Back to Blog">Go Back</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer" role="contentinfo">
-      <div class="container footer-content">
-        <div class="footer-brand">
-          <h3 class="footer-logo">Dubicventures</h3>
-          <p class="footer-tagline">Pioneering the Future with Code & AI</p>
-          <ul class="footer-values">
-            <li><i class="fas fa-code"></i> Innovative Solutions</li>
-            <li><i class="fas fa-shield-alt"></i> Reliability & Trust</li>
-            <li><i class="fas fa-users"></i> Growth & Empowerment</li>
-            <li><i class="fas fa-rocket"></i> Bold & Futuristic</li>
-          </ul>
-          <div class="footer-cta">
-            <a href="index2.html#contact" class="btn btn-primary" aria-label="Connect with Me">Connect with Me</a>
+        <div class="blog-content">
+          <h4>Building Scalable Web Apps</h4>
+          <p class="muted small">Sep 10, 2025 • Best practices for performance and robust architecture.</p>
+          <div class="blog-overlay">
+            <p>Learn how to optimize web apps for scale.</p>
           </div>
+          <a href="public/blog1.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
         </div>
-
-        <div class="footer-links">
-          <h4 class="footer-heading">Explore</h4>
-          <a href="index2.html#home" class="footer-link" aria-label="Home">Home</a>
-          <a href="index2.html#about" class="footer-link" aria-label="About">About</a>
-          <a href="index2.html#skills" class="footer-link" aria-label="Skills">Skills</a>
-          <a href="index2.html#experience" class="footer-link" aria-label="Experience">Experience</a>
-          <a href="index2.html#education" class="footer-link" aria-label="Education">Education</a>
-          <a href="index2.html#services" class="footer-link" aria-label="Services">Services</a>
-          <a href="index2.html#projects" class="footer-link" aria-label="Projects">Projects</a>
-          <a href="index2.html#testimonials" class="footer-link" aria-label="Testimonials">Testimonials</a>
-          <a href="index2.html#blog" class="footer-link" aria-label="Blog">Blog</a>
-          <a href="index2.html#contact" class="footer-link" aria-label="Contact">Contact</a>
+      </article>
+      <article class="card blog-post" role="article">
+        <div class="blog-thumbnail">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTUelVM0CjtTSfKcsCZ37oO6REZJIKaiBWVS53yw7V4IuV3wwPtLv6wWcjCktJEzqkexM&usqp=CAU" alt="Illustration of AI-powered application interfaces" class="thumbnail-img">
         </div>
-
-        <div class="footer-social">
-          <h4 class="footer-heading">Follow Me</h4>
-          <div class="social-links">
-            <a href="https://twitter.com/ChidubemOkafor17" class="social-link" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://github.com/mrchidubem" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/dubicventures" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <div class="blog-content">
+          <h4>AI in Everyday Apps</h4>
+          <p class="muted small">Aug 15, 2025 • Practical patterns for integrating AI into real-world products.</p>
+          <div class="blog-overlay">
+            <p>Explore AI integration techniques.</p>
           </div>
+          <a href="public/blog2.html" class="btn btn-outline btn-sm" aria-label="Read more about AI in Everyday Apps">Read More</a>
         </div>
-
-        <div class="footer-newsletter">
-          <h4 class="footer-heading">Stay Updated</h4>
-          <p class="newsletter-description">Subscribe for insights on AI, coding, and tech innovation.</p>
-          <form id="newsletter-form" class="newsletter-form">
-            <input type="email" name="email" placeholder="Enter your email" class="newsletter-input" required aria-required="true">
-            <button type="submit" class="btn btn-primary" aria-label="Subscribe to Newsletter">Subscribe</button>
-          </form>
+      </article>
+      <article class="card blog-post" role="article">
+        <div class="blog-thumbnail">
+          <img src="./public/blog3.jpg" alt="Illustration of DevOps CI/CD pipeline automation" class="thumbnail-img">
         </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2025 Joseph Chidubem Okafor. All rights reserved.</p>
-        <p class="footer-credit">Designed & Built by Dubicventures</p>
-      </div>
-    </footer>
+        <div class="blog-content">
+          <h4>Optimizing DevOps Workflows</h4>
+          <p class="muted small">July 20, 2025 • Streamlining CI/CD pipelines for faster deployments.</p>
+          <div class="blog-overlay">
+            <p>Best practices for DevOps efficiency.</p>
+          </div>
+          <a href="public/blog3.html" class="btn btn-outline btn-sm" aria-label="Read more about Optimizing DevOps Workflows">Read More</a>
+        </div>
+      </article>
+      <article class="card blog-post" role="article">
+        <div class="blog-thumbnail">
+          <img src="./public/blog4.jpg" alt="Mastering React Hooks" class="thumbnail-img">
+        </div>
+        <div class="blog-content">
+          <h4>Mastering React Hooks</h4>
+          <p class="muted small">Jun 5, 2025 • Leveraging hooks for cleaner, more efficient code.</p>
+          <div class="blog-overlay">
+            <p>Deep dive into React Hooks usage.</p>
+          </div>
+          <span class="btn btn-outline btn-sm disabled" aria-label="Coming soon: Mastering React Hooks">Coming Soon</span>
+        </div>
+      </article>
+      <article class="card blog-post" role="article">
+        <div class="blog-thumbnail">
+          <img src="./public/blog5.jpg" alt="AI Ethics in Development" class="thumbnail-img">
+        </div>
+        <div class="blog-content">
+          <h4>AI Ethics in Development</h4>
+          <p class="muted small">Jun 17, 2025 • Navigating ethical challenges in AI-driven projects.</p>
+          <div class="blog-overlay">
+            <p>Ethical considerations for AI projects.</p>
+          </div>
+          <span class="btn btn-outline btn-sm disabled" aria-label="Coming soon: AI Ethics in Development">Coming Soon</span>
+        </div>
+      </article>
+      <article class="card blog-post" role="article">
+        <div class="blog-thumbnail">
+          <img src="./public/blog6.jpg" alt="Scaling Node.js Applications" class="thumbnail-img">
+        </div>
+        <div class="blog-content">
+          <h4>Scaling Node.js Applications</h4>
+          <p class="muted small">Apr 15, 2025 • Strategies for handling high traffic and performance.</p>
+          <div class="blog-overlay">
+            <p>Techniques for scaling Node.js apps.</p>
+          </div>
+          <span class="btn btn-outline btn-sm disabled" aria-label="Coming soon: Scaling Node.js Applications">Coming Soon</span>
+        </div>
+      </article>
+    </div>
   </div>
-
-  <script src="script2.js" defer></script>
-</body>
-</html>
+</section>
