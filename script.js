@@ -56,7 +56,7 @@ document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href*="#"], 
   a.addEventListener('click', e => {
     e.preventDefault();
     const href = a.getAttribute('href');
-    if (href === './public/resume.pdf' || href === 'public/resume.pdf') {
+    if (href.includes('resume.pdf')) {
       // Trigger download for resume
       const link = document.createElement('a');
       link.href = href;
@@ -66,9 +66,9 @@ document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href*="#"], 
       // Handle internal anchor links
       const [path, hash] = href.split('#');
       const target = hash ? document.querySelector(`#${hash}`) : null;
-      if (target) {
+      if (target && (!path || path === '../index.html' || path === 'index.html')) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else if (path && path !== window.location.pathname) {
+      } else {
         // Navigate to the correct page and then scroll
         window.location.href = href;
       }
@@ -81,12 +81,17 @@ document.querySelectorAll('.nav-link, .footer-link, .blog-content a[href*="#"], 
         a.setAttribute('aria-current', 'page');
       }
     } else {
-      // Handle blog post navigation
-      try {
-        window.location.href = href;
-      } catch (error) {
-        console.error(`Error navigating to ${href}:`, error);
-        alert('Sorry, this page is not available. Please try again later.');
+      // Handle external navigation (e.g., blog or project pages)
+      if (href === '#') {
+        // Placeholder links for projects
+        alert('Project page coming soon! Please check back later.');
+      } else {
+        try {
+          window.location.href = href;
+        } catch (error) {
+          console.error(`Error navigating to ${href}:`, error);
+          alert('Sorry, this page is not available. Please try again later.');
+        }
       }
     }
   });
@@ -103,7 +108,7 @@ document.getElementById('nav-toggle')?.addEventListener('change', e => {
 // Hero parallax effect (debounced, optimized for mobile)
 window.addEventListener('scroll', debounce(() => {
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg && window.innerWidth > 768) {
+  if (heroBg && window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const scrollPosition = window.scrollY;
     heroBg.style.transform = `translateY(${scrollPosition * 0.2}px)`;
   }
@@ -198,6 +203,10 @@ if (contactForm) {
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--theme-accent)';
       contactForm.reset();
+      setTimeout(() => {
+        errorEl.textContent = '';
+        errorEl.classList.remove('show');
+      }, 5000);
     } catch (error) {
       errorEl.textContent = 'Failed to send message. Please try again.';
       errorEl.classList.add('show');
@@ -249,6 +258,10 @@ if (newsletterForm) {
       errorEl.classList.add('show');
       errorEl.style.color = 'var(--theme-accent)';
       newsletterForm.reset();
+      setTimeout(() => {
+        errorEl.textContent = '';
+        errorEl.classList.remove('show');
+      }, 5000);
     } catch (error) {
       errorEl.textContent = 'Failed to subscribe. Please try again.';
       errorEl.classList.add('show');
@@ -275,6 +288,9 @@ document.querySelectorAll('.dropdown-toggle').forEach(button => {
   button.addEventListener('click', () => {
     const expanded = button.getAttribute('aria-expanded') === 'true';
     button.setAttribute('aria-expanded', !expanded);
+    if (!expanded) {
+      button.nextElementSibling.querySelector('.nav-link').focus();
+    }
   });
 });
 

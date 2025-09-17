@@ -655,6 +655,7 @@ body {
   padding: 24px;
   opacity: 0;
   transition: opacity 0.3s;
+  pointer-events: none; /* Allow clicks to pass through */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -710,7 +711,7 @@ body {
   padding: 24px;
   opacity: 0;
   transition: opacity 0.3s;
-  display: flex;
+  pointer-events: none; /* Allow clicks to pass through */
   align-items: center;
   justify-content: center;
   font-size: var(--small);
