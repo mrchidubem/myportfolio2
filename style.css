@@ -1,8 +1,8 @@
 /* ----------------------------------------- 
-   Clean Modern Professional - Gracious Light Theme
+   Clean Modern Professional - Your Structure, Better Colors
    Dark: Pure black (#0a0a0a) + crisp white (#ffffff) + steel blue (#3b82f6)
-   Light: Soft off-white (#fafbfc) + warm gray (#f1f5f9) + steel blue (#3b82f6)
-   Gracious, eye-friendly light theme - not harsh white
+   Light: Pure white (#ffffff) + soft gray (#f8fafc) + steel blue (#3b82f6)
+   All original structure preserved, just cleaner colors
    ----------------------------------------- */
 
 /* Reset & Base */
@@ -16,19 +16,19 @@
   --accent-strong: #2563eb;     /* Darker blue */
   --dark-border: #374151;       /* Professional dark border */
 
-  /* Light Theme - Gracious & Soft */
-  --light-bg: #fafbfc;          /* Soft off-white (not harsh white) */
-  --light-panel: #f1f5f9;       /* Warm light gray panels */
-  --light-text: #1e293b;        /* Soft dark gray text */
-  --light-muted: #64748b;       /* Gentle medium gray */
+  /* Light Theme */
+  --light-bg: #ffffff;          /* Pure white background */
+  --light-panel: #f8fafc;       /* Soft gray panels */
+  --light-text: #1f2937;        /* Dark gray text */
+  --light-muted: #6b7280;       /* Medium gray text */
   --light-accent: #3b82f6;      /* Same steel blue */
   --light-accent-strong: #2563eb; /* Same darker blue */
-  --light-border: #e2e8f0;      /* Soft light border */
+  --light-border: #e5e7eb;      /* Light gray border */
 
   /* Shared */
   --maxw: 1200px;
   --radius: 6px;
-  --shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   --tiny: 13px;
   --small: 15px;
   --medium: 17px;
@@ -126,7 +126,7 @@ body {
 
 .nav-link:hover, .nav-link:focus {
   color: var(--theme-accent);
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(59, 130, 246, 0.1);
   transform: translateY(-2px);
 }
 
@@ -159,7 +159,7 @@ body {
 .dropdown-toggle:hover, .dropdown-toggle:focus {
   color: var(--theme-accent);
   border-color: var(--theme-accent);
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(59, 130, 246, 0.1);
 }
 
 .dropdown-menu {
@@ -191,7 +191,7 @@ body {
 
 .dropdown-menu .nav-link:hover,
 .dropdown-menu .nav-link:focus {
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(59, 130, 246, 0.1);
 }
 
 /* Theme Toggle */
@@ -382,7 +382,7 @@ body {
 
 .btn-outline:hover, .btn-outline:focus {
   color: var(--theme-accent);
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(59, 130, 246, 0.1);
   transform: translateY(-2px);
 }
 
@@ -614,7 +614,7 @@ body {
 
 .card:hover, .card:focus-within {
   transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .card h4 {
@@ -1270,7 +1270,7 @@ body {
   margin-top: 20px;
 }
 
-/* Light Theme - Gracious & Soft */
+/* Light Theme */
 [data-theme="light"] {
   --bg: var(--light-bg);
   --panel: var(--light-panel);
@@ -1288,16 +1288,15 @@ body {
 }
 
 [data-theme="light"] .hero {
-  background: linear-gradient(180deg, var(--light-bg), #f1f5f9);
+  background: linear-gradient(180deg, var(--light-bg), #f8fafc);
 }
 
 [data-theme="light"] .section.alt {
-  background: #f1f5f9;
+  background: #f8fafc;
 }
 
 [data-theme="light"] .card {
   border-color: var(--light-border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 [data-theme="light"] .contact-info,
@@ -1328,7 +1327,7 @@ body {
 
 [data-theme="light"] .dropdown-menu .nav-link:hover,
 [data-theme="light"] .dropdown-menu .nav-link:focus {
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(59, 130, 246, 0.1);
 }
 
 [data-theme="light"] .timeline-line {
