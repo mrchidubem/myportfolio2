@@ -238,7 +238,6 @@ body {
   min-width: 220px;
   z-index: 100;
   margin-top: 4px;
-  /* FIXED: Ensure dropdown doesn't affect layout when hidden */
   visibility: hidden;
   opacity: 0;
   transform: translateY(-10px);
@@ -1633,7 +1632,7 @@ body {
   color: var(--theme-accent);
 }
 
-/* Responsive Nav */
+/* Responsive Nav - FIXED MOBILE DROPDOWN */
 @media (max-width: 920px) {
   .header-inner {
     position: relative;
@@ -1673,38 +1672,61 @@ body {
     transform: translateY(-50%);
   }
 
+  /* FIXED: Mobile dropdown - proper nested submenu */
   .dropdown {
-    position: static;
+    position: relative;
     width: 100%;
   }
 
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    background: var(--surface);
-    padding: 0 0 0 16px;
-    display: none;
-    border: none;
-    margin-top: 8px;
-    /* FIXED: Mobile dropdown - ensure no layout impact when hidden */
-    visibility: hidden;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transform: translateY(-5px);
-    transition: all 0.3s ease;
+  .dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+    text-align: left;
   }
 
-  .dropdown:hover .dropdown-menu,
-  .dropdown-toggle:focus + .dropdown-menu,
-  .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    max-height: 300px;
-    transform: translateY(0);
-    padding: 8px 0;
-    margin: 4px 0 0 0;
+  .dropdown-menu {
+    position: static !important;
+    display: none !important;
+    box-shadow: none !important;
+    background: var(--surface) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: auto !important;
+    width: 100% !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    transform: none !important;
+    transition: all 0.3s ease !important;
+    z-index: 1 !important;
+  }
+
+  /* FIXED: Target the dropdown within mobile menu */
+  .nav-list .dropdown[aria-expanded="true"] .dropdown-menu {
+    display: block !important;
+    max-height: 300px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 12px 0 0 32px !important;
+    margin: 8px 0 0 0 !important;
+    background: transparent !important;
+  }
+
+  .nav-list .dropdown-menu .nav-link {
+    padding: 8px 16px;
+    margin: 0;
+    border-radius: 0;
+    font-size: var(--small);
+    font-weight: 500;
+  }
+
+  .nav-list .dropdown-menu .nav-link:hover,
+  .nav-list .dropdown-menu .nav-link:focus {
+    background: var(--surface);
+    color: var(--theme-accent);
   }
 
   .timeline {
