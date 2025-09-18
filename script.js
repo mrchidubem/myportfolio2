@@ -273,6 +273,16 @@ function closeMobileMenu() {
       navBurger.querySelector('.nav-burger-close').style.display = 'none';
     }
     document.body.style.overflow = '';
+
+    // Ensure all dropdowns are closed when menu closes
+    document.querySelectorAll('.dropdown-toggle').forEach(button => {
+      button.setAttribute('aria-expanded', 'false');
+      const icon = button.querySelector('i');
+      if (icon) icon.style.transform = 'rotate(0deg)';
+      const dropdown = button.closest('.dropdown');
+      const menu = dropdown ? dropdown.querySelector('.dropdown-menu') : null;
+      if (menu) menu.style.display = 'none';
+    });
   }
 }
 
