@@ -15,7 +15,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="style2.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Preloader -->
@@ -55,7 +55,7 @@
                 <li><a class="nav-link resume" href="./public/resume.pdf" download aria-label="Download Resume"><i class="fa-regular fa-file-lines"></i> Resume</a></li>
               </ul>
             </li>
-            <li>
+            <li class="mobile-theme-toggle">
               <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme">
                 <i class="fa-solid fa-moon"></i>
               </button>
@@ -91,30 +91,26 @@
       <div class="container">
         <div class="section-head">
           <h3 class="sub" >About</h3>
-          <h2 class="title">Who I Am</h2>
+          <h2 class="title">Who I Am</h2><br>
+          <div class="about-photo">
+              <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor Headshot" class="profile-img">
+            </div>
+            </div>
 <p style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; color: #6c757d; font-size: 0.95em; line-height: 1.6; letter-spacing: 0.5px; text-align: center;">
  <b>   My name is Joseph Chidubem Okafor, a Software Engineer and Electronics Engineer with expertise in Full-Stack Development,<br> 
   Artificial Intelligence, and Automation. I am passionate about creating innovative solutions that improve efficiency, <br>
-  optimize systems, and deliver real-world impact.</b>
-</p>        </div>
+  optimize systems, and deliver real-world impact.
+</p><br>
         <div class="about-content">
           <div class="about-grid">
-            <div class="about-photo">
-              <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor Headshot" class="profile-img">
-            </div>
+            
             <div class="about-text">
-
-              <!-- <p class="about-description">Dubicventures, founded by Joseph Chidubem Okafor, represents my passion for building scalable, 
-                user-centric applications as a Full-Stack Developer and AI Automation Specialist.
-                 With over 5 years of experience, I specialize in modern frameworks like React, Node.js, and Django, combined with AI 
-                 integration to streamline workflows and enhance user experiences. I’m driven to solve complex challenges with clean, 
-                 efficient code and innovative design, delivering measurable value to clients and users.</p> -->
 
                  <p style="font-family: 'Georgia', 'Times New Roman', serif; font-style: italic; color: #6c757d; font-size: 0.95em; line-height: 1.6; letter-spacing: 0.5px;">
  <b>  Dubicventures, founded by Joseph Chidubem Okafor, represents my passion for building scalable, 
                 user-centric applications as a Full-Stack Developer and AI Automation Specialist.
                  With over 5 years of experience, I specialize in modern frameworks like React, Node.js, and Django, combined with AI 
-                 integration to streamline workflows and enhance user experiences. I’m driven to solve complex challenges with clean, 
+                 integration to streamline workflows and enhance user experiences. I'm driven to solve complex challenges with clean, 
                  efficient code and innovative design, delivering measurable value to clients and users.</b>
 </p>        </div>
               <div class="grid cols-2 gap-md">
@@ -510,11 +506,11 @@
             <div class="blog-content">
               <h4> My Journey and Tips for 2025</h4>
               <p class="muted small">August 30, 2025 • Joseph Chidubem Okafor</p>
-           
+             
 
               <div class="blog-overlay">
               </div>
-              <a href="public/blog6.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog6.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
             </div>
           </article>
         </div>
@@ -527,8 +523,8 @@
         <h2 class="title">Ready to Build Something Amazing?</h2>
 <p>
 Let’s collaborate to bring your ideas to life with cutting-edge technology, <br>scalable solutions, and creative innovation. <br> 
-Whether you’re looking to launch a new product, <br>streamline your business with automation, or explore AI-powered possibilities,  
-<br>I’m here to turn your vision into reality.
+Whether you're looking to launch a new product, <br>streamline your business with automation, or explore AI-powered possibilities,  
+<br>I'm here to turn your vision into reality.
 </p>          <div class="cta-buttons">
           <a class="btn btn-primary" href="#contact" aria-label="Get Started">Get Started</a>
           <a class="btn btn-outline" href="#projects" aria-label="View Projects">View Projects</a>
@@ -536,32 +532,33 @@ Whether you’re looking to launch a new product, <br>streamline your business w
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section" role="region" aria-label="Contact">
-      <div class="container">
-        <div class="section-head">
-          <h3 class="sub">Contact</h3>
-          <h2 class="title">Get in Touch</h2>
-          <p class="muted">Reach out to discuss your project or collaboration.</p>
-        </div>
-        <div class="grid contact-grid gap-md">
-          <div class="contact-info card">
-            <h3 class="contact-title">Contact Info</h3>
-            <p class="contact-description"><strong>Email:</strong> <a href="mailto:jchidubemokafor@gmail.com" class="contact-link">jchidubemokafor@gmail.com</a></p>
-            <p class="contact-description"><strong>Phone:</strong> <a href="tel:+2347047869896" class="contact-link">+234 704 786 9896</a></p>
-            <p class="contact-description"><strong>Location:</strong> Lagos, Nigeria</p>
-          </div>
-          <form id="contact-form" class="contact-form card">
-            <input type="text" id="name" placeholder="Your Name" aria-required="true" required>
-            <input type="email" id="email" placeholder="Your Email" aria-required="true" required>
-            <textarea id="message" placeholder="Your Message" rows="6" aria-required="true" required></textarea>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message</button>
-            </div>
-          </form>
-        </div>
+    <!-- CONTACT SECTION -->
+<section id="contact" class="section" role="region" aria-label="Contact">
+  <div class="container">
+    <div class="section-head">
+      <h3 class="sub">Contact</h3>
+      <h2 class="title">Get in Touch</h2>
+      <p class="muted">Reach out to discuss your project or collaboration.</p>
+    </div>
+    <div class="grid contact-grid gap-sm">
+      <div class="contact-info card">
+        <h3 class="contact-title">Contact Info</h3>
+        <p class="contact-description"><strong>Email:</strong> <a href="mailto:jchidubemokafor@gmail.com" class="contact-link">jchidubemokafor@gmail.com</a></p>
+        <p class="contact-description"><strong>Phone:</strong> <a href="tel:+2347047869896" class="contact-link">+234 704 786 9896</a></p>
+        <p class="contact-description"><strong>Location:</strong> Lagos, Nigeria</p>
       </div>
-    </section>
+      <form id="contact-form" class="contact-form card">
+        <div id="contact-form-error" class="form-error" aria-live="polite"></div>
+        <input type="text" id="name" name="name" placeholder="Your Name" aria-required="true" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" aria-required="true" required>
+        <textarea id="message" name="message" placeholder="Your Message" rows="4" aria-required="true" required></textarea>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
     <!-- FOOTER -->
     <footer class="footer" role="contentinfo">
@@ -620,6 +617,6 @@ Whether you’re looking to launch a new product, <br>streamline your business w
     </footer>
   </div>
 
-  <script src="script2.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
