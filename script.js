@@ -101,6 +101,7 @@ function initMobileNavigation() {
       // Open menu
       navList.style.right = '0';
       document.body.style.overflow = 'hidden'; // Prevent background scroll
+      document.documentElement.style.overflow = 'hidden';
       // Focus first nav item
       setTimeout(() => {
         const firstLink = navList.querySelector('.nav-link');
@@ -110,6 +111,7 @@ function initMobileNavigation() {
       // Close menu
       navList.style.right = '-100%';
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   });
 
@@ -161,6 +163,7 @@ function initMobileNavigation() {
       navToggle.checked = false;
       navList.style.right = '-100%';
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       navBurger.querySelector('.fa-bars').style.display = 'inline';
       navBurger.querySelector('.nav-burger-close').style.display = 'none';
     }
@@ -172,6 +175,7 @@ function initMobileNavigation() {
       navToggle.checked = false;
       navList.style.right = '-100%';
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       navBurger.querySelector('.fa-bars').style.display = 'inline';
       navBurger.querySelector('.nav-burger-close').style.display = 'none';
       navBurger.focus();
@@ -184,6 +188,7 @@ function initMobileNavigation() {
       navToggle.checked = false;
       navList.style.right = '-100%';
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       navBurger.focus();
     }
   });
@@ -273,6 +278,7 @@ function closeMobileMenu() {
       navBurger.querySelector('.nav-burger-close').style.display = 'none';
     }
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
 
     // Ensure all dropdowns are closed when menu closes
     document.querySelectorAll('.dropdown-toggle').forEach(button => {
