@@ -238,12 +238,23 @@ body {
   min-width: 220px;
   z-index: 100;
   margin-top: 4px;
+  /* FIXED: Ensure dropdown doesn't affect layout when hidden */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  max-height: 0;
 }
 
 .dropdown:hover .dropdown-menu,
 .dropdown-toggle:focus + .dropdown-menu,
 .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
   display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 400px;
   animation: fadeInDown 0.3s ease;
 }
 
@@ -1674,12 +1685,23 @@ body {
     display: none;
     border: none;
     margin-top: 8px;
+    /* FIXED: Mobile dropdown - ensure no layout impact when hidden */
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
   }
 
   .dropdown:hover .dropdown-menu,
   .dropdown-toggle:focus + .dropdown-menu,
   .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
     display: block;
+    visibility: visible;
+    opacity: 1;
+    max-height: 300px;
+    transform: translateY(0);
   }
 
   .timeline {
@@ -1958,5 +1980,22 @@ body {
   .blog-post:focus-within {
     outline: 2px solid var(--theme-accent);
     outline-offset: 2px;
+  }
+}
+
+/* FIXED: Prevent horizontal scroll on mobile by ensuring body doesn't overflow */
+@media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  .site-header,
+  .container {
+    overflow-x: hidden;
   }
 }
