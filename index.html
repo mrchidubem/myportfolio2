@@ -514,7 +514,7 @@
 
               <div class="blog-overlay">
               </div>
-              <a href="public/blog6.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
+              <a href="blog6.html" class="btn btn-outline btn-sm" aria-label="Read more about Building Scalable Web Apps">Read More</a>
             </div>
           </article>
         </div>
@@ -537,31 +537,33 @@ Whether you’re looking to launch a new product, <br>streamline your business w
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section" role="region" aria-label="Contact">
-      <div class="container">
-        <div class="section-head">
-          <h3 class="sub">Contact</h3>
-          <h2 class="title">Get in Touch</h2>
-          <p class="muted">Reach out to discuss your project or collaboration.</p>
-        </div>
-        <div class="grid contact-grid gap-md">
-          <div class="contact-info card">
-            <h3 class="contact-title">Contact Info</h3>
-            <p class="contact-description"><strong>Email:</strong> <a href="mailto:jchidubemokafor@gmail.com" class="contact-link">jchidubemokafor@gmail.com</a></p>
-            <p class="contact-description"><strong>Phone:</strong> <a href="tel:+2347047869896" class="contact-link">+234 704 786 9896</a></p>
-            <p class="contact-description"><strong>Location:</strong> Lagos, Nigeria</p>
-          </div>
-          <form id="contact-form" class="contact-form card">
-            <input type="text" id="name" placeholder="Your Name" aria-required="true" required>
-            <input type="email" id="email" placeholder="Your Email" aria-required="true" required>
-            <textarea id="message" placeholder="Your Message" rows="6" aria-required="true" required></textarea>
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message</button>
-            </div>
-          </form>
-        </div>
+   <!-- CONTACT SECTION -->
+<section id="contact" class="section" role="region" aria-label="Contact">
+  <div class="container">
+    <div class="section-head">
+      <h3 class="sub">Contact</h3>
+      <h2 class="title">Get in Touch</h2>
+      <p class="muted">Reach out to discuss your project or collaboration.</p>
+    </div>
+    <div class="grid contact-grid gap-sm">
+      <div class="contact-info card">
+        <h3 class="contact-title">Contact Info</h3>
+        <p class="contact-description"><strong>Email:</strong> <a href="mailto:jchidubemokafor@gmail.com" class="contact-link">jchidubemokafor@gmail.com</a></p>
+        <p class="contact-description"><strong>Phone:</strong> <a href="tel:+2347047869896" class="contact-link">+234 704 786 9896</a></p>
+        <p class="contact-description"><strong>Location:</strong> Lagos, Nigeria</p>
       </div>
-    </section>
+      <form id="contact-form" class="contact-form card">
+        <div id="contact-form-error" class="form-error" aria-live="polite"></div>
+        <input type="text" id="name" name="name" placeholder="Your Name" aria-required="true" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" aria-required="true" required>
+        <textarea id="message" name="message" placeholder="Your Message" rows="4" aria-required="true" required></textarea>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" aria-label="Send Message">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
     <!-- FOOTER -->
     <footer class="footer" role="contentinfo">
