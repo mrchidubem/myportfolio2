@@ -79,7 +79,7 @@
   </div>
 
   <div class="site-wrapper">
-    <!-- FIXED: Navigation - Complete Rewrite -->
+    <!-- FIXED: Navigation - Complete HTML Structure Rewrite -->
     <header class="site-header" role="banner">
       <div class="header-inner">
         <div class="brand">
@@ -90,24 +90,38 @@
           </h1>
         </div>
 
-        <!-- FIXED: Cleaner mobile toggle structure -->
+        <!-- FIXED: Correct checkbox structure for mobile menu -->
         <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
         
-        <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu">
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-        </label>
-
-        <nav class="nav" role="navigation" aria-label="Main navigation">
-          <ul class="nav-list">
+        <!-- Desktop Navigation -->
+        <nav class="nav-desktop" role="navigation" aria-label="Main navigation">
+          <ul class="nav-list-desktop">
             <li><a class="nav-link" href="#home" data-scroll="home" aria-label="Home">Home</a></li>
             <li><a class="nav-link" href="#about" data-scroll="about" aria-label="About">About</a></li>
             <li><a class="nav-link" href="#expertise" data-scroll="expertise" aria-label="Expertise">Expertise</a></li>
             <li><a class="nav-link" href="#projects" data-scroll="projects" aria-label="Projects">Projects</a></li>
             <li><a class="nav-link" href="#thought-leadership" data-scroll="thought-leadership" aria-label="Thought Leadership">Insights</a></li>
             <li><a class="nav-link" href="#contact" data-scroll="contact" aria-label="Contact">Contact</a></li>
-            <li>
+          </ul>
+        </nav>
+
+        <!-- FIXED: Mobile Burger Menu -->
+        <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </label>
+
+        <!-- FIXED: Mobile Navigation Menu -->
+        <nav class="nav-mobile" role="navigation" aria-label="Mobile navigation">
+          <ul class="nav-list-mobile">
+            <li><a class="nav-link" href="#home" data-scroll="home" aria-label="Home">Home</a></li>
+            <li><a class="nav-link" href="#about" data-scroll="about" aria-label="About">About</a></li>
+            <li><a class="nav-link" href="#expertise" data-scroll="expertise" aria-label="Expertise">Expertise</a></li>
+            <li><a class="nav-link" href="#projects" data-scroll="projects" aria-label="Projects">Projects</a></li>
+            <li><a class="nav-link" href="#thought-leadership" data-scroll="thought-leadership" aria-label="Thought Leadership">Insights</a></li>
+            <li><a class="nav-link" href="#contact" data-scroll="contact" aria-label="Contact">Contact</a></li>
+            <li class="nav-theme-item">
               <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme">
                 <i class="fas fa-moon theme-icon"></i>
               </button>
@@ -117,7 +131,7 @@
       </div>
     </header>
 
-    <!-- FIXED: Hero Section - Complete Rewrite -->
+    <!-- FIXED: Hero Section - Enhanced Structure -->
     <section id="home" class="hero" role="region" aria-label="Hero">
       <div class="hero-bg"></div>
       <div class="hero-gradient"></div>
@@ -144,15 +158,15 @@
               
               <div class="hero-stats">
                 <div class="stat-item">
-                  <span class="stat-number" data-target="5">2</span>
+                  <span class="stat-number" data-target="5">0</span>
                   <span class="stat-label">+ Years Experience</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-number" data-target="25">10</span>
+                  <span class="stat-number" data-target="25">0</span>
                   <span class="stat-label">+ Projects Delivered</span>
                 </div>
                 <div class="stat-item">
-                  <span class="stat-number" data-target="99">90</span>
+                  <span class="stat-number" data-target="99">0</span>
                   <span class="stat-label">% Client Satisfaction</span>
                 </div>
               </div>
@@ -180,7 +194,8 @@
           <aside class="hero-aside">
             <div class="profile-card">
               <div class="profile-image-wrapper">
-                <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy">
+                <!-- FIXED: Use absolute CDN URLs for hosted reliability -->
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy">
                 <div class="profile-ring"></div>
               </div>
               <div class="profile-info">
@@ -441,9 +456,10 @@
         </div>
         
         <div class="projects-grid">
+          <!-- FIXED: Using reliable Unsplash/CDN images -->
           <article class="project-card" data-categories="web cloud" data-index="0">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://media.istockphoto.com/id/2165857670/nl/foto/trainee-doctors-and-consultant-discussing-diagnosis.jpg?s=612x612&w=0&k=20&c=dX_Mj36Ia2Pfg_curOXdLIu_cOE4qEHh7UmfFVmNurs=')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">CareCycle HMS</h3>
@@ -483,7 +499,7 @@
           
           <article class="project-card" data-categories="ai web" data-index="1">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://media.istockphoto.com/id/594451682/nl/foto/man-on-a-budget.jpg?s=612x612&w=0&k=20&c=67eqaoLyOWLMbDVhnOKuwYH6X2fjsmhDZUPeYGk_EQs=')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">Budget Buddy</h3>
@@ -523,7 +539,7 @@
           
           <article class="project-card" data-categories="web" data-index="2">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWlyYm5ifGVufDB8fDB8fHww')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">Airbnb Clone</h3>
@@ -563,7 +579,7 @@
           
           <article class="project-card" data-categories="ai" data-index="3">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://t3.ftcdn.net/jpg/14/21/05/00/240_F_1421050018_YAdwGBCcpHky5EyT0vKeUuQYLbLFbcIq.jpg')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">AI Study Buddy</h3>
@@ -625,6 +641,7 @@
         <div class="insights-grid">
           <article class="insight-card" data-index="0">
             <div class="insight-media">
+              <!-- FIXED: Using reliable Unsplash URLs -->
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Scalable architecture patterns" loading="lazy">
               <div class="insight-category">Architecture</div>
             </div>
