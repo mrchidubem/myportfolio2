@@ -1,6 +1,7 @@
 /**
  * Senior Portfolio 2025 - COMPLETE FIXED VERSION
  * All navigation, hero, and interactive issues permanently resolved
+ * FIXED: Professional Journey timeline visibility issue resolved
  */
 
 class PortfolioApp {
@@ -286,9 +287,10 @@ class PortfolioApp {
     }
   }
 
-  // FIXED: Enhanced Intersection Observer with header offset
+  // FIXED: Enhanced Scroll Animations - Professional Journey timeline visibility fixed
   initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
+    // General fade-in animations for most elements
+    const generalObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -299,25 +301,80 @@ class PortfolioApp {
       rootMargin: `-${this.headerHeight}px 0px ${this.observerOptions.rootMargin} 0px`
     });
     
-    document.querySelectorAll('.fade-in, .timeline-item, .expertise-card, .service-card').forEach(el => {
-      observer.observe(el);
+    // Observe general fade-in elements
+    document.querySelectorAll('.fade-in, .expertise-card, .service-card, .project-card, .insight-card').forEach(el => {
+      generalObserver.observe(el);
     });
     
+    // FIXED: Enhanced timeline observer for Professional Journey section
     const timelineObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('animate');
-          }, index * 150);
+          // FIXED: Ensure timeline container is visible first
+          const timelineContainer = entry.target.closest('.timeline-container');
+          if (timelineContainer) {
+            timelineContainer.style.opacity = '1';
+            timelineContainer.style.transform = 'translateY(0)';
+          }
+          
+          // FIXED: Staggered animation for timeline items with proper visibility
+          const timelineItems = entry.target.querySelectorAll('.timeline-item');
+          timelineItems.forEach((item, itemIndex) => {
+            setTimeout(() => {
+              item.classList.add('animate');
+              item.style.opacity = '1';
+              item.style.transform = 'translateX(0)';
+            }, itemIndex * 200); // Increased delay for better visibility
+          });
+          
+          // FIXED: Unobserve after animation to prevent conflicts
+          timelineObserver.unobserve(entry.target);
         }
       });
     }, { 
-      threshold: 0.5,
-      rootMargin: `-${this.headerHeight}px 0px 0px 0px`
+      threshold: 0.1, // Lower threshold for earlier triggering
+      rootMargin: `-${this.headerHeight}px 0px -20% 0px` // More generous root margin
     });
     
-    document.querySelectorAll('.timeline-item').forEach(item => {
-      timelineObserver.observe(item);
+    // FIXED: Observe timeline container instead of individual items
+    const timelineContainer = document.querySelector('.timeline-container');
+    if (timelineContainer) {
+      // FIXED: Set initial state for immediate visibility
+      timelineContainer.style.opacity = '1';
+      timelineContainer.style.transform = 'translateY(0)';
+      
+      // FIXED: Make timeline items immediately visible on load
+      const timelineItems = timelineContainer.querySelectorAll('.timeline-item');
+      timelineItems.forEach((item, index) => {
+        item.style.opacity = '1';
+        item.style.transform = 'translateX(0)';
+        // Add animate class after a short delay for smooth entrance
+        setTimeout(() => {
+          item.classList.add('animate');
+        }, index * 150);
+      });
+      
+      // Still observe for scroll-triggered re-animations if needed
+      timelineObserver.observe(timelineContainer);
+    }
+    
+    // FIXED: Additional observer for section headers to ensure smooth entrance
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionHeader = entry.target.querySelector('.section-header');
+          if (sectionHeader) {
+            sectionHeader.classList.add('visible');
+          }
+        }
+      });
+    }, {
+      threshold: 0.3,
+      rootMargin: `-${this.headerHeight}px 0px -30% 0px`
+    });
+    
+    document.querySelectorAll('.section').forEach(section => {
+      sectionObserver.observe(section);
     });
   }
 
@@ -682,6 +739,17 @@ class PortfolioApp {
   }
 
   startScrollAnimations() {
+    // FIXED: Ensure timeline items are visible on initial load
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+      item.style.opacity = '1';
+      item.style.transform = 'translateX(0)';
+      setTimeout(() => {
+        item.classList.add('animate');
+      }, index * 150);
+    });
+    
+    // General fade-in animations
     document.querySelectorAll('.fade-in').forEach((el, index) => {
       el.style.animationDelay = `${index * 80}ms`;
       el.classList.add('visible');
