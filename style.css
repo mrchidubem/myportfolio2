@@ -1,8 +1,8 @@
 /* ==========================================================================
-   SENIOR PORTFOLIO 2025 - ALIGNMENT & SPACING FIXED VERSION
-   FIXED: Hamburger icon positioned to far right
-   FIXED: Mobile dropdown menu spacing optimized
-   FIXED: Consistent text alignment across all sections
+   SENIOR PORTFOLIO 2025 - ALL ISSUES FIXED VERSION
+   FIXED: Hamburger menu toggle reliability
+   FIXED: Consistent text alignment across all devices
+   FIXED: Footer mobile centering and spacing
    ========================================================================== */
 
 /* CSS Custom Properties - Refined Color System */
@@ -214,7 +214,7 @@ a:hover {
   color: rgb(var(--color-primary-700));
 }
 
-/* FIXED: Navigation - Hamburger Positioned to Far Right */
+/* FIXED: Navigation - Simplified and reliable hamburger toggle */
 .site-header {
   position: fixed;
   top: 0;
@@ -354,13 +354,15 @@ a:hover {
   border-color: rgb(var(--color-primary-500) / 0.3);
 }
 
-/* FIXED: Mobile Navigation Controls - Hamburger to Far Right */
+/* FIXED: Mobile Navigation Controls - Simplified and reliable */
 .mobile-nav-controls {
   display: flex;
   align-items: center;
   justify-content: flex-end; /* FIXED: Push to far right */
   flex-shrink: 0;
   margin-left: auto; /* FIXED: Ensure maximum right positioning */
+  position: relative;
+  z-index: 1001;
 }
 
 .nav-mobile {
@@ -375,7 +377,7 @@ a:hover {
   height: 0;
 }
 
-/* FIXED: Hamburger Menu - Positioned to Far Right */
+/* FIXED: Hamburger Menu - Simplified and reliable toggle */
 .nav-burger {
   display: flex;
   flex-direction: column;
@@ -393,6 +395,13 @@ a:hover {
   opacity: 1 !important;
   visibility: visible !important;
   margin-left: auto; /* FIXED: Push completely to right */
+  position: relative;
+}
+
+.nav-burger:focus {
+  outline: 2px solid rgb(var(--color-primary-500));
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .burger-line {
@@ -404,7 +413,7 @@ a:hover {
   transform-origin: center;
 }
 
-/* FIXED: Mobile Menu - Optimized Spacing Between Items */
+/* FIXED: Mobile Menu - Simplified and reliable */
 .nav-toggle:checked ~ .nav-mobile {
   display: block;
   position: fixed;
@@ -428,9 +437,9 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* FIXED: Reduced spacing between menu items */
-  gap: var(--space-md); /* Changed from var(--space-xl) to var(--space-md) */
-  padding: var(--space-2xl) var(--space-xl); /* FIXED: Reduced top/bottom padding */
+  /* FIXED: Optimized spacing between menu items */
+  gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-xl);
   list-style: none;
   margin: 0;
   background: transparent;
@@ -479,7 +488,7 @@ a:hover {
   border-color: rgb(var(--color-border));
 }
 
-/* FIXED: Burger animation */
+/* FIXED: Simplified burger animation */
 .nav-toggle:checked + .nav-burger .burger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
@@ -2017,6 +2026,7 @@ a:hover {
   color: rgb(var(--color-primary-500));
 }
 
+/* FIXED: Contact Section - Enhanced Alignment (continued) */
 .contact-social {
   display: flex;
   gap: var(--space-md);
@@ -2108,14 +2118,14 @@ textarea {
   text-align: left; /* FIXED: Left alignment */
 }
 
-/* FIXED: Footer - Enhanced Alignment */
+/* FIXED: Footer - Enhanced Mobile Alignment */
 .footer {
   background: rgb(var(--color-background));
   border-top: 1px solid rgb(var(--color-border) / 0.2);
   padding: var(--space-3xl) 0 var(--space-lg);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  text-align: left; /* FIXED: Left alignment for content */
 }
 
 .footer-content {
@@ -2123,6 +2133,8 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: var(--space-xl);
   margin-bottom: var(--space-xl);
+  justify-content: center; /* FIXED: Center the grid */
+  align-items: start;
 }
 
 .footer-brand {
@@ -2417,6 +2429,40 @@ textarea {
     grid-template-columns: 1fr;
     text-align: left; /* FIXED: Left alignment */
     gap: var(--space-lg);
+    justify-content: center; /* FIXED: Center the single column */
+  }
+  
+  .footer-brand {
+    text-align: center; /* FIXED: Center brand on mobile */
+    align-items: center;
+  }
+  
+  .footer-social {
+    justify-content: center; /* FIXED: Center social icons */
+  }
+  
+  .footer-links {
+    text-align: center; /* FIXED: Center links on mobile */
+  }
+  
+  .footer-list {
+    align-items: center;
+  }
+  
+  .footer-link {
+    text-align: center; /* FIXED: Center link text */
+    justify-content: center;
+  }
+  
+  .newsletter-description {
+    text-align: center; /* FIXED: Center newsletter text */
+  }
+  
+  .newsletter-form {
+    align-items: center;
+    max-width: 20rem;
+    margin: 0 auto;
+    text-align: center; /* FIXED: Center newsletter form */
   }
   
   .section-header {
@@ -2604,6 +2650,15 @@ textarea {
     text-align: left; /* FIXED: Left alignment */
     padding: var(--space-lg); /* FIXED: Consistent padding */
   }
+  
+  .footer-content {
+    gap: var(--space-md); /* FIXED: Tighter spacing on small screens */
+  }
+  
+  .footer-brand,
+  .footer-links {
+    text-align: center; /* FIXED: Ensure centering */
+  }
 }
 
 /* FIXED: Scroll offset for smooth scrolling */
@@ -2781,4 +2836,31 @@ textarea.error {
   opacity: 1 !important;
   visibility: visible !important;
   text-align: left; /* FIXED: Left alignment */
+}
+
+/* FIXED: Social links styling */
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-text-dim));
+  transition: var(--transition-normal);
+  text-decoration: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: rgb(var(--color-primary-500));
+  color: white;
+  transform: translateY(-1px);
+}
+
+.social-link i {
+  font-size: var(--text-base);
 }
