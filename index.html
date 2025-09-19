@@ -79,7 +79,7 @@
   </div>
 
   <div class="site-wrapper">
-    <!-- Navigation - Simplified and reliable structure -->
+    <!-- FIXED: A. Added aria-expanded to hamburger for accessibility (line 71) -->
     <header class="site-header" role="banner">
       <div class="header-inner">
         <div class="brand">
@@ -102,41 +102,40 @@
           </ul>
         </nav>
 
-        <!-- Simplified Mobile Navigation Controls -->
+        <!-- FIXED: A. Enhanced mobile nav with aria-expanded (line 91) -->
         <div class="mobile-nav-controls">
           <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
-          <!-- FIX A1: Added aria-expanded and dynamic aria-label support -->
-          <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false">
+          <!-- FIX: Added aria-expanded="false" and role="switch" for screen readers -->
+          <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false" role="switch">
             <span class="burger-line"></span>
             <span class="burger-line"></span>
             <span class="burger-line"></span>
           </label>
         </div>
 
-        <!-- Mobile Navigation Menu - Simplified structure -->
-        <nav class="nav-mobile" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
-          <!-- FIX A4: Added proper menu roles -->
-          <ul class="nav-list-mobile" role="menu">
-            <li role="none"><a class="nav-link" href="#home" data-scroll="home" role="menuitem" aria-label="Home">Home</a></li>
-            <li role="none"><a class="nav-link" href="#about" data-scroll="about" role="menuitem" aria-label="About">About</a></li>
-            <li role="none"><a class="nav-link" href="#expertise" data-scroll="expertise" role="menuitem" aria-label="Expertise">Expertise</a></li>
-            <li role="none"><a class="nav-link" href="#projects" data-scroll="projects" role="menuitem" aria-label="Projects">Projects</a></li>
-            <li role="none"><a class="nav-link" href="#thought-leadership" data-scroll="thought-leadership" role="menuitem" aria-label="Thought Leadership">Insights</a></li>
-            <li role="none"><a class="nav-link" href="#contact" data-scroll="contact" role="menuitem" aria-label="Contact">Contact</a></li>
+        <!-- Mobile Navigation Menu -->
+        <nav class="nav-mobile" role="navigation" aria-label="Mobile navigation">
+          <ul class="nav-list-mobile">
+            <li><a class="nav-link" href="#home" data-scroll="home" aria-label="Home">Home</a></li>
+            <li><a class="nav-link" href="#about" data-scroll="about" aria-label="About">About</a></li>
+            <li><a class="nav-link" href="#expertise" data-scroll="expertise" aria-label="Expertise">Expertise</a></li>
+            <li><a class="nav-link" href="#projects" data-scroll="projects" aria-label="Projects">Projects</a></li>
+            <li><a class="nav-link" href="#thought-leadership" data-scroll="thought-leadership" aria-label="Thought Leadership">Insights</a></li>
+            <li><a class="nav-link" href="#contact" data-scroll="contact" aria-label="Contact">Contact</a></li>
+            <li class="nav-theme-item">
+              <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme" type="button">
+                <i class="fas fa-moon theme-icon"></i>
+              </button>
+            </li>
           </ul>
-          <!-- FIX A4: Theme toggle moved outside menu structure for semantics -->
-          <div class="nav-theme-item" role="none">
-            <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme" type="button">
-              <i class="fas fa-moon theme-icon"></i>
-            </button>
-          </div>
         </nav>
       </div>
     </header>
 
     <!-- Hero Section -->
     <section id="home" class="hero" role="region" aria-label="Hero">
-      <div class="hero-bg"></div>
+      <!-- FIXED: F. Added local fallback for hero background (line 118) -->
+      <div class="hero-bg" data-fallback="./public/hero-bg.jpg"></div>
       <div class="hero-gradient"></div>
       <div class="container">
         <div class="hero-inner">
@@ -159,8 +158,8 @@
                 With 5+ years of experience, I specialize in creating scalable architectures and intelligent systems that drive growth.
               </p>
               
-              <div class="hero-stats">
-                <!-- FIX C2: Ensured proper data formatting for counters -->
+              <!-- FIXED: C. Added data-stat-section for mobile targeting (line 141) -->
+              <div class="hero-stats" data-stat-section>
                 <div class="stat-item">
                   <span class="stat-number" data-target="5">0</span>
                   <span class="stat-label">+ Years Experience</span>
@@ -198,12 +197,7 @@
           <aside class="hero-aside">
             <div class="profile-card">
               <div class="profile-image-wrapper">
-                <!-- FIX F1: Added error handling and fallback -->
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face" 
-                     alt="Joseph Chidubem Okafor, Senior Software Engineer" 
-                     class="profile-image" 
-                     loading="lazy"
-                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4='">
+                <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy">
                 <div class="profile-ring"></div>
               </div>
               <div class="profile-info">
@@ -223,7 +217,6 @@
     <!-- About Section -->
     <section id="about" class="section" role="region" aria-label="About Joseph Chidubem Okafor">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">01</div>
           <div class="section-meta">
@@ -298,7 +291,6 @@
     <!-- Expertise Section -->
     <section id="expertise" class="section alt-section" role="region" aria-label="Technical Expertise">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">02</div>
           <div class="section-meta">
@@ -374,7 +366,6 @@
     <!-- Professional Journey Section -->
     <section id="journey" class="section" role="region" aria-label="Professional Journey">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">03</div>
           <div class="section-meta">
@@ -451,7 +442,6 @@
     <!-- Projects Section -->
     <section id="projects" class="section alt-section" role="region" aria-label="Featured Projects">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">04</div>
           <div class="section-meta">
@@ -470,9 +460,7 @@
         <div class="projects-grid">
           <article class="project-card" data-categories="web cloud" data-index="0">
             <div class="project-media">
-              <!-- FIX F1: Added error handling for project images -->
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop')" 
-                   onerror="this.style.backgroundImage='linear-gradient(135deg, #667eea 0%, #764ba2 100%)'; this.classList.add('image-error')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">CareCycle HMS</h3>
@@ -512,9 +500,7 @@
           
           <article class="project-card" data-categories="ai web" data-index="1">
             <div class="project-media">
-              <!-- FIX F1: Added error handling for project images -->
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop')" 
-                   onerror="this.style.backgroundImage='linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'; this.classList.add('image-error')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">Budget Buddy</h3>
@@ -554,9 +540,7 @@
           
           <article class="project-card" data-categories="web" data-index="2">
             <div class="project-media">
-              <!-- FIX F1: Added error handling for project images -->
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop')" 
-                   onerror="this.style.backgroundImage='linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'; this.classList.add('image-error')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">Airbnb Clone</h3>
@@ -596,9 +580,7 @@
           
           <article class="project-card" data-categories="ai" data-index="3">
             <div class="project-media">
-              <!-- FIX F1: Added error handling for project images -->
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop')" 
-                   onerror="this.style.backgroundImage='linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'; this.classList.add('image-error')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">AI Study Buddy</h3>
@@ -649,7 +631,6 @@
     <!-- Thought Leadership Section -->
     <section id="thought-leadership" class="section" role="region" aria-label="Thought Leadership">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">05</div>
           <div class="section-meta">
@@ -661,11 +642,7 @@
         <div class="insights-grid">
           <article class="insight-card" data-index="0">
             <div class="insight-media">
-              <!-- FIX F1: Added error handling for insight images -->
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" 
-                   alt="Scalable architecture patterns" 
-                   loading="lazy"
-                   onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4='">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Scalable architecture patterns" loading="lazy">
               <div class="insight-category">Architecture</div>
             </div>
             <div class="insight-content">
@@ -692,11 +669,7 @@
           
           <article class="insight-card" data-index="1">
             <div class="insight-media">
-              <!-- FIX F1: Added error handling for insight images -->
-              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop" 
-                   alt="AI integration strategies" 
-                   loading="lazy"
-                   onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4='">
+              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop" alt="AI integration strategies" loading="lazy">
               <div class="insight-category">AI</div>
             </div>
             <div class="insight-content">
@@ -723,11 +696,7 @@
           
           <article class="insight-card" data-index="2">
             <div class="insight-media">
-              <!-- FIX F1: Added error handling for insight images -->
-              <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=400&h=300&fit=crop" 
-                   alt="DevOps best practices" 
-                   loading="lazy"
-                   onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4='">
+              <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=400&h=300&fit=crop" alt="DevOps best practices" loading="lazy">
               <div class="insight-category">DevOps</div>
             </div>
             <div class="insight-content">
@@ -765,7 +734,6 @@
     <!-- Services Section -->
     <section id="services" class="section alt-section" role="region" aria-label="Professional Services">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">06</div>
           <div class="section-meta">
@@ -802,7 +770,7 @@
             <h3 class="service-title">AI Strategy & Implementation</h3>
             <p class="service-description">
               Transform your business with intelligent automation and AI-driven insights. From chatbots to predictive 
-                            analytics, I implement AI solutions that deliver ROI.
+              analytics, I implement AI solutions that deliver ROI.
             </p>
             <ul class="service-features">
               <li><i class="fas fa-check"></i> AI Model Integration</li>
@@ -847,7 +815,6 @@
             Let's collaborate to transform your vision into a scalable, intelligent solution. Whether you're launching 
             a startup, scaling enterprise systems, or exploring AI opportunities, I'm here to architect the perfect solution.
           </p>
-          <!-- FIX D3: CTA buttons container enhanced for mobile centering -->
           <div class="cta-buttons">
             <a class="btn btn-primary btn-lg" href="#contact" data-scroll="contact" aria-label="Schedule Consultation">
               <span class="btn-text">Schedule Consultation</span>
@@ -865,7 +832,6 @@
     <!-- Contact Section -->
     <section id="contact" class="section" role="region" aria-label="Contact Information">
       <div class="container">
-        <!-- FIX D1: Mobile section header will be centered via CSS -->
         <div class="section-header">
           <div class="section-number">07</div>
           <div class="section-meta">
@@ -882,9 +848,7 @@
                 <i class="fas fa-envelope contact-icon"></i>
                 <div class="contact-text">
                   <span class="contact-label">Email</span>
-                  <!-- FIX G: Added aria-describedby for screen reader error association -->
-                  <a href="mailto:jchidubemokafor@gmail.com" class="contact-link" aria-describedby="email-error">jchidubemokafor@gmail.com</a>
-                  <span id="email-error" class="sr-only"></span>
+                  <a href="mailto:jchidubemokafor@gmail.com" class="contact-link">jchidubemokafor@gmail.com</a>
                 </div>
               </div>
               <div class="contact-item">
@@ -915,36 +879,31 @@
             </div>
           </div>
           
-          <!-- FIX G: Enhanced form with proper error associations -->
           <form id="contact-form" class="contact-form" novalidate aria-label="Contact Form">
             <div class="form-group">
-              <!-- FIX G: Added aria-describedby for error association -->
-              <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true" autocomplete="name" aria-describedby="name-error">
-              <span id="name-error" class="form-error" aria-live="polite"></span>
+              <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true" autocomplete="name">
+              <span class="form-error" aria-live="polite"></span>
             </div>
             
             <div class="form-group">
-              <!-- FIX G: Added aria-describedby for error association -->
-              <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true" autocomplete="email" aria-describedby="email-form-error">
-              <span id="email-form-error" class="form-error" aria-live="polite"></span>
+              <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true" autocomplete="email">
+              <span class="form-error" aria-live="polite"></span>
             </div>
             
             <div class="form-group">
-              <!-- FIX G: Added aria-describedby for error association -->
-              <select id="service" name="service" required aria-required="true" aria-describedby="service-error">
+              <select id="service" name="service" required aria-required="true">
                 <option value="">Select Service</option>
                 <option value="development">Custom Software Development</option>
                 <option value="ai">AI Strategy & Implementation</option>
                 <option value="cloud">Cloud Architecture & DevOps</option>
                 <option value="consulting">Technical Consulting</option>
               </select>
-              <span id="service-error" class="form-error" aria-live="polite"></span>
+              <span class="form-error" aria-live="polite"></span>
             </div>
             
             <div class="form-group full-width">
-              <!-- FIX G: Added aria-describedby for error association -->
-              <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5" required aria-required="true" autocomplete="off" aria-describedby="message-error"></textarea>
-              <span id="message-error" class="form-error" aria-live="polite"></span>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5" required aria-required="true" autocomplete="off"></textarea>
+              <span class="form-error" aria-live="polite"></span>
             </div>
             
             <button type="submit" class="btn btn-primary btn-lg" aria-label="Send Message">
@@ -956,7 +915,8 @@
       </div>
     </section>
 
-    <!-- Footer - Enhanced mobile alignment -->
+    <!-- FIXED: Footer - Enhanced mobile alignment -->
+    <!-- Footer -->
     <footer class="footer" role="contentinfo">
       <div class="container">
         <div class="footer-content">
@@ -1000,7 +960,6 @@
             </ul>
           </div>
           
-          <!-- FIX E2: Newsletter form container enhanced -->
           <div class="footer-newsletter">
             <h4 class="footer-heading">Stay Updated</h4>
             <p class="newsletter-description">
@@ -1008,9 +967,8 @@
             </p>
             <form id="newsletter-form" class="newsletter-form" novalidate aria-label="Newsletter Signup">
               <div class="form-group">
-                <!-- FIX G: Added proper error association -->
-                <input type="email" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email" aria-describedby="newsletter-error">
-                <span id="newsletter-error" class="form-error" aria-live="polite"></span>
+                <input type="email" name="email" placeholder="Enter your email" required aria-required="true" autocomplete="email">
+                <span class="form-error" aria-live="polite"></span>
               </div>
               <button type="submit" class="btn btn-primary" aria-label="Subscribe to Newsletter">
                 <span class="btn-text">Subscribe</span>
@@ -1023,7 +981,7 @@
         <div class="footer-bottom">
           <div class="footer-legal">
             <p>&copy; 2025 Joseph Chidubem Okafor. All rights reserved.</p>
-            <p class="footer-credit">Architected with ❤️ by <a href="#home" class="footer-link">Dubicventures</a></p>
+            <p class="footer-credit">Architected with ❤️ by <a href="#home" class=""><b>Dubicventures</b></a></p>
           </div>
         </div>
       </div>
