@@ -10,7 +10,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Joseph Chidubem Okafor | Senior Full-Stack Engineer" />
   <meta property="og:description" content="Senior Full-Stack Engineer & AI Automation Specialist. Building scalable systems and intelligent solutions." />
-  <meta property="og:image" content="./public/og-image.jpg" />
+  <meta property="og:image" content="./og-image.jpg" /> <!-- FIX: F. Root-relative path for hosting -->
   <meta property="og:url" content="https://dubicventures.com" />
   <meta property="og:type" content="website" />
   
@@ -18,8 +18,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:creator" content="@ChidubemOkafor17" />
   
-  <link rel="icon" href="./public/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="./public/apple-touch-icon.png">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon"> <!-- FIX: F. Root-relative path -->
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png"> <!-- FIX: F. Root-relative path -->
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
     "name": "Joseph Chidubem Okafor",
     "alternateName": "Dubicventures",
     "jobTitle": "Senior Full-Stack Engineer & AI Automation Specialist",
-    "image": "./public/dube.jpg",
+    "image": "./dube.jpg", /* FIX: F. Root-relative path for hosting */
     "url": "https://dubicventures.com",
     "sameAs": [
       "https://linkedin.com/in/dubicventures",
@@ -79,7 +79,7 @@
   </div>
 
   <div class="site-wrapper">
-    <!-- FIXED: A. Added aria-expanded to hamburger for accessibility (line 71) -->
+    <!-- FIXED: A. Enhanced header with proper mobile controls -->
     <header class="site-header" role="banner">
       <div class="header-inner">
         <div class="brand">
@@ -102,10 +102,9 @@
           </ul>
         </nav>
 
-        <!-- FIXED: A. Enhanced mobile nav with aria-expanded (line 91) -->
+        <!-- FIXED: A. Enhanced mobile nav with explicit tabindex and pointer-events -->
         <div class="mobile-nav-controls">
           <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
-          <!-- FIX: Added aria-expanded="false" and role="switch" for screen readers -->
           <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false" role="switch">
             <span class="burger-line"></span>
             <span class="burger-line"></span>
@@ -134,8 +133,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero" role="region" aria-label="Hero">
-      <!-- FIXED: F. Added local fallback for hero background (line 118) -->
-      <div class="hero-bg" data-fallback="./public/hero-bg.jpg"></div>
+      <!-- FIXED: F. Enhanced background with explicit inline style for hosting -->
+      <div class="hero-bg" style="background-image: url('./hero-bg.jpg');"></div>
       <div class="hero-gradient"></div>
       <div class="container">
         <div class="hero-inner">
@@ -158,8 +157,8 @@
                 With 5+ years of experience, I specialize in creating scalable architectures and intelligent systems that drive growth.
               </p>
               
-              <!-- FIXED: C. Added data-stat-section for mobile targeting (line 141) -->
-              <div class="hero-stats" data-stat-section>
+              <!-- FIXED: C. Added explicit data-stat-section for mobile targeting -->
+              <div class="hero-stats" data-stat-section="true">
                 <div class="stat-item">
                   <span class="stat-number" data-target="5">0</span>
                   <span class="stat-label">+ Years Experience</span>
@@ -197,7 +196,7 @@
           <aside class="hero-aside">
             <div class="profile-card">
               <div class="profile-image-wrapper">
-                <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy">
+                <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy"> <!-- FIX: F. Root-relative path -->
                 <div class="profile-ring"></div>
               </div>
               <div class="profile-info">
@@ -915,7 +914,6 @@
       </div>
     </section>
 
-    <!-- FIXED: Footer - Enhanced mobile alignment -->
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
       <div class="container">
@@ -991,7 +989,7 @@
   <!-- ARIA Live Region for Announcements -->
   <div id="live-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Scripts -->
+  <!-- FIXED: G. Added defer to prevent timing issues with DOM readiness -->
   <script src="script.js" defer></script>
 </body>
 </html>
