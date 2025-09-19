@@ -1,11 +1,11 @@
 /* ==========================================================================
    SENIOR PORTFOLIO 2025 - ALL ISSUES FIXED VERSION
-   FIXED: A. Hamburger aria-expanded sync with JS
-   FIXED: B. Mobile nav spacing reduced from 24px to 16px gaps
+   FIXED: A. Hamburger aria-expanded sync and mobile nav structure
+   FIXED: B. Mobile nav spacing and theme toggle visibility
    FIXED: C. Hero stats mobile targeting with data-stat-section
    FIXED: D. Consistent left-alignment across all card content
    FIXED: E. Footer mobile links explicit center alignment
-   FIXED: F. Hero background fallback handling
+   FIXED: F. Hero background with reliable gradient fallback
    ========================================================================== */
 
 /* CSS Custom Properties - Refined Color System */
@@ -363,19 +363,15 @@ a:hover {
   border-color: rgb(var(--color-primary-500) / 0.3);
 }
 
-/* FIXED: A. Mobile Navigation Controls - Bulletproof positioning and z-index */
+/* FIXED: A. Mobile Navigation Controls - Corrected structure and positioning */
 .mobile-nav-controls {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* FIXED: A. Push to far right */
+  justify-content: flex-end;
   flex-shrink: 0;
-  margin-left: auto; /* FIXED: A. Ensure maximum right positioning */
+  margin-left: auto;
   position: relative;
-  z-index: 1001; /* FIXED: A. Above all other header elements */
-}
-
-.nav-mobile {
-  display: none;
+  z-index: 1001;
 }
 
 .nav-toggle {
@@ -398,12 +394,12 @@ a:hover {
   cursor: pointer;
   padding: 0.5rem;
   gap: 0.3rem;
-  z-index: 1001; /* FIXED: A. Ensure clickable above backdrop */
+  z-index: 1002; /* FIXED: A. Higher z-index for clickability */
   align-self: center;
   flex-shrink: 0;
   opacity: 1 !important;
   visibility: visible !important;
-  margin-left: auto; /* FIXED: A. Push completely to right */
+  margin-left: auto;
   position: relative;
   /* FIXED: A. Center alignment for burger lines */
   text-align: center;
@@ -424,29 +420,24 @@ a:hover {
   transform-origin: center;
 }
 
-/* FIXED: A. Mobile Menu - CSS-only transitions with proper z-index */
-.nav-toggle:checked ~ .nav-mobile {
-  display: block;
+/* FIXED: A. Mobile Navigation - Corrected positioning and z-index */
+.nav-mobile {
   position: fixed;
   top: 0;
-  left: 0;
+  right: -100%;
   width: 100%;
   height: 100vh;
   background: rgb(var(--color-background) / 0.98);
-  z-index: 999; /* FIXED: A. Below burger but above content */
+  z-index: 999;
   backdrop-filter: blur(20px);
-  /* FIXED: A. Simplified slide-in animation */
-  transform: translateX(0);
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 300ms ease, transform 300ms ease;
+  transition: right 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
 }
 
-.nav-mobile {
-  transform: translateX(100%);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 300ms ease, transform 300ms ease;
+/* FIXED: A. Corrected mobile menu toggle selector */
+.mobile-nav-controls .nav-toggle:checked ~ .nav-mobile {
+  right: 0;
+  display: block;
 }
 
 /* FIXED: B. Mobile nav list - Reduced gap from 24px to 16px */
@@ -466,15 +457,10 @@ a:hover {
   list-style: none;
   margin: 0;
   background: transparent;
-  /* FIXED: A. Simplified transform for reliable sliding */
-  transform: translateX(100%);
-  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: none;
 }
 
-.nav-toggle:checked ~ .nav-mobile .nav-list-mobile {
-  transform: translateX(0);
-}
-
+/* FIXED: B. Mobile nav links - 16px spacing, 48px touch targets */
 .nav-list-mobile .nav-link {
   font-size: var(--text-xl);
   /* FIXED: B. Reduced padding for better spacing - 20px for 48px touch target */
@@ -498,36 +484,43 @@ a:hover {
   justify-content: center;
 }
 
-/* FIXED: Theme toggle in mobile menu - Better positioning and alignment */
+/* FIXED: B. Theme toggle in mobile menu - Enhanced visibility and positioning */
 .nav-theme-item {
   margin-top: var(--space-lg);
   order: 99;
   width: 100%;
   display: flex;
   justify-content: center;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.nav-toggle:checked ~ .nav-mobile .nav-theme-item .theme-btn {
+.nav-theme-item .theme-btn {
   width: 3rem;
   height: 3rem;
   font-size: var(--text-lg);
   background: rgb(var(--color-surface-2));
   border-color: rgb(var(--color-border));
+  /* FIXED: B. Ensure theme toggle is visible in mobile menu */
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 1000;
+  position: relative;
   /* FIXED: Center alignment */
   text-align: center;
 }
 
 /* FIXED: A. Simplified and reliable burger animation */
-.nav-toggle:checked + .nav-burger .burger-line:nth-child(1) {
+.mobile-nav-controls .nav-toggle:checked + .nav-burger .burger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
 
-.nav-toggle:checked + .nav-burger .burger-line:nth-child(2) {
+.mobile-nav-controls .nav-toggle:checked + .nav-burger .burger-line:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.nav-toggle:checked + .nav-burger .burger-line:nth-child(3) {
+.mobile-nav-controls .nav-toggle:checked + .nav-burger .burger-line:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
@@ -559,6 +552,11 @@ a:hover {
   /* FIXED: D. Desktop text alignment consistency */
   .nav-link {
     text-align: left;
+  }
+  
+  /* FIXED: Desktop theme toggle positioning */
+  .theme-btn {
+    margin-left: var(--space-md);
   }
 }
 
@@ -625,13 +623,30 @@ a:hover {
   }
   
   /* FIXED: B. Mobile menu overall spacing - 16px between items */
-  .nav-toggle:checked ~ .nav-mobile .nav-list-mobile {
+  .mobile-nav-controls .nav-toggle:checked ~ .nav-mobile .nav-list-mobile {
     /* FIXED: B. Reduced padding and consistent 16px gaps */
     padding: var(--space-2xl) var(--space-lg);
     gap: var(--space-mobile-nav-gap); /* FIXED: B. 16px consistent spacing */
     /* FIXED: D. Center alignment for entire menu */
     align-items: center;
     text-align: center;
+  }
+  
+  /* FIXED: B. Ensure theme toggle is visible and properly styled in mobile */
+  .mobile-nav-controls .nav-toggle:checked ~ .nav-mobile .nav-theme-item {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    position: static !important;
+    z-index: 1000 !important;
+  }
+  
+  .mobile-nav-controls .nav-toggle:checked ~ .nav-mobile .nav-theme-item .theme-btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 1000 !important;
   }
 }
 
@@ -658,7 +673,7 @@ a:hover {
   top: 6px;
 }
 
-/* FIXED: F. Hero background with local fallback */
+/* FIXED: F. Hero background with reliable gradient fallback */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -671,18 +686,18 @@ a:hover {
   text-align: left;
 }
 
-/* FIXED: F. Hero background with fallback handling */
+/* FIXED: F. Hero background - removed problematic inline style, using CSS only */
 .hero-bg {
   position: absolute;
   inset: 0;
   background: 
-    /* FIXED: F. Primary gradient - works everywhere */
-    radial-gradient(circle at 20% 80%, rgb(var(--color-primary-500) / 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgb(139 92 246 / 0.05) 0%, transparent 50%),
-    /* FIXED: F. Local fallback image if provided */
-    url('./public/hero-bg.jpg') center/cover,
-    /* FIXED: F. Final color fallback */
-    linear-gradient(180deg, rgb(var(--color-background)) 0%, rgb(var(--color-surface)) 100%);
+    /* FIXED: F. Primary gradient - works everywhere and reliable */
+    radial-gradient(circle at 20% 80%, rgb(var(--color-primary-500) / 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgb(139 92 246 / 0.08) 0%, transparent 50%),
+    /* FIXED: F. Enhanced gradient fallback - no image dependency */
+    linear-gradient(135deg, rgb(var(--color-background)) 0%, rgb(var(--color-surface)) 100%),
+    /* FIXED: F. Final solid color fallback */
+    rgb(var(--color-background));
   z-index: -1;
   will-change: transform;
 }
@@ -1638,6 +1653,25 @@ a:hover {
   font-size: var(--text-2xs);
 }
 
+.overlay-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* FIXED: D. Left alignment */
+  justify-content: flex-start;
+}
+
+.tech-tag.small {
+  background: rgb(var(--color-surface-2));
+  color: rgb(var(--color-text-dim));
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .project-content {
   padding: var(--space-lg);
   flex-grow: 1; /* FIXED: D. Allow content to expand */
@@ -2519,6 +2553,13 @@ textarea {
     text-align: center;
   }
   
+  .btn-lg {
+    padding: var(--space-md) var(--space-lg);
+    min-height: 52px !important;
+    /* FIXED: D. Center text */
+    text-align: center;
+  }
+  
   .hero-scroll {
     align-self: center; /* FIXED: D. Center alignment */
   }
@@ -2537,12 +2578,6 @@ textarea {
   .profile-image-wrapper {
     width: 120px;
     height: 120px;
-  }
-  
-  .profile-name {
-    font-size: var(--text-base);
-    /* FIXED: D. Center alignment */
-    text-align: center;
   }
   
   /* FIXED: D. Mobile section alignment - Left for content, center for specific elements */
@@ -2868,6 +2903,7 @@ textarea {
     align-items: flex-start; /* FIXED: D. Left alignment */
     /* FIXED: D. Left alignment */
     text-align: left;
+    gap: var(--space-md);
   }
   
   .expertise-card,

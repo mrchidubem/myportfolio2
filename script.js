@@ -91,6 +91,135 @@ class PortfolioApp {
     }
   }
 
+  // FIXED: G. Reliable preloader with proper timing and error handling
+  initPreloader() {
+    try {
+      const preloader = document.getElementById('preloader');
+      if (!preloader) return;
+
+      const progressFill = document.querySelector('.progress-fill');
+      let progress = 0;
+      
+      const updateProgress = () => {
+        if (progress < 100) {
+          progress += Math.random() * 3 + 1;
+          if (progressFill) {
+            progressFill.style.width = `${Math.min(progress, 100)}%`;
+          }
+          requestAnimationFrame(updateProgress);
+        } else {
+          // FIXED: G. Proper fade-out timing
+          setTimeout(() => {
+            if (preloader) {
+              preloader.style.opacity = '0';
+              setTimeout(() => {
+                if (preloader) {
+                  preloader.style.display = 'none';
+                }
+                document.body.classList.add('loaded');
+                // FIXED: G. Start animations after preloader
+                this.startScrollAnimations();
+                this.announce('Welcome to my portfolio');
+              }, 300);
+            }
+          }, 500);
+        }
+      };
+      
+      // FIXED: G. Start after brief delay
+      setTimeout(updateProgress, 200);
+    } catch (error) {
+      console.error('Preloader initialization failed:', error);
+    }
+  }
+
+  // FIXED: G. Bulletproof theme system with single listener
+  initThemeSystem() {
+    try {
+      this.themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      let activeTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+      
+      // FIXED: G. Proper theme application
+      html.setAttribute('data-theme', activeTheme);
+      this.updateThemeIcon(activeTheme);
+      
+      if (this.themeToggle) {
+        // FIXED: G. Remove existing listener to prevent duplicates
+        this.themeToggle.removeEventListener('click', this.themeToggle._themeHandler);
+        
+        this.themeToggle._themeHandler = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const currentTheme = html.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          
+          // FIXED: G. Smooth theme transition
+          html.style.transition = 'all 200ms ease';
+          html.setAttribute('data-theme', newTheme);
+          localStorage.setItem('portfolio-theme', newTheme);
+          this.updateThemeIcon(newTheme);
+          
+          // FIXED: G. Proper ARIA label update
+          const ariaLabel = `Switch to ${newTheme === 'dark' ? 'light' : 'dark'} theme`;
+          this.themeToggle.setAttribute('aria-label', ariaLabel);
+          
+          // FIXED: G. Proper announcement
+          setTimeout(() => {
+            this.announce(`Switched to ${newTheme} theme`);
+          }, 200);
+          
+          // FIXED: G. Remove transition after change
+          setTimeout(() => {
+            html.style.transition = '';
+          }, 250);
+        };
+        
+        this.themeToggle.addEventListener('click', this.themeToggle._themeHandler);
+        
+        // FIXED: G. Keyboard accessibility - single listener
+        this.themeToggle.removeEventListener('keydown', this.themeToggle._keyHandler);
+        this.themeToggle._keyHandler = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.themeToggle.click();
+          }
+        };
+        this.themeToggle.addEventListener('keydown', this.themeToggle._keyHandler);
+      }
+      
+      // FIXED: G. System preference listener with proper cleanup
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handlePreferenceChange = (e) => {
+        if (!localStorage.getItem('portfolio-theme')) {
+          const systemTheme = e.matches ? 'dark' : 'light';
+          html.setAttribute('data-theme', systemTheme);
+          this.updateThemeIcon(systemTheme);
+        }
+      };
+      
+      mediaQuery.addEventListener('change', handlePreferenceChange);
+      this.mediaQueryListener = () => mediaQuery.removeEventListener('change', handlePreferenceChange);
+    } catch (error) {
+      console.error('Theme system initialization failed:', error);
+    }
+  }
+  
+  updateThemeIcon(theme) {
+    try {
+      const icon = document.querySelector('.theme-icon');
+      if (icon) {
+        icon.className = `fas ${theme === 'dark' ? 'fa-moon' : 'fa-sun'} theme-icon`;
+      }
+    } catch (error) {
+      console.warn('Theme icon update failed:', error);
+    }
+  }
+
   // FIXED: A. Completely reliable navigation system with aria-expanded sync
   initNavigation() {
     try {
@@ -548,7 +677,7 @@ class PortfolioApp {
       e.preventDefault();
       
       const email = emailInput.value.trim();
-      if (!this.validateEmail(email)) {
+      if (!this.validateEmail(email) ) {
         this.showFieldError(emailInput, 'Please enter a valid email address');
         this.announce('Please enter a valid email address');
         return;
@@ -620,7 +749,7 @@ class PortfolioApp {
       
       if (field.hasAttribute('required') && !fieldValue) {
         isValid = false;
-        errorMessage = `${this.getFieldName(field.name)} is required`;
+        errorMessage = `${this.getFieldName(field.name) } is required`;
       } else if (field.type === 'email' && fieldValue && !this.validateEmail(fieldValue)) {
         isValid = false;
         errorMessage = 'Please enter a valid email address';
@@ -779,135 +908,6 @@ class PortfolioApp {
         }
       }, delay);
     });
-  }
-
-  // FIXED: G. Reliable preloader with proper timing and error handling
-  initPreloader() {
-    try {
-      const preloader = document.getElementById('preloader');
-      if (!preloader) return;
-
-      const progressFill = document.querySelector('.progress-fill');
-      let progress = 0;
-      
-      const updateProgress = () => {
-        if (progress < 100) {
-          progress += Math.random() * 3 + 1;
-          if (progressFill) {
-            progressFill.style.width = `${Math.min(progress, 100)}%`;
-          }
-          requestAnimationFrame(updateProgress);
-        } else {
-          // FIXED: G. Proper fade-out timing
-          setTimeout(() => {
-            if (preloader) {
-              preloader.style.opacity = '0';
-              setTimeout(() => {
-                if (preloader) {
-                  preloader.style.display = 'none';
-                }
-                document.body.classList.add('loaded');
-                // FIXED: G. Start animations after preloader
-                this.startScrollAnimations();
-                this.announce('Welcome to my portfolio');
-              }, 300);
-            }
-          }, 500);
-        }
-      };
-      
-      // FIXED: G. Start after brief delay
-      setTimeout(updateProgress, 200);
-    } catch (error) {
-      console.error('Preloader initialization failed:', error);
-    }
-  }
-
-  // FIXED: G. Bulletproof theme system - single listener
-  initThemeSystem() {
-    try {
-      this.themeToggle = document.getElementById('theme-toggle');
-      const html = document.documentElement;
-      
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const savedTheme = localStorage.getItem('portfolio-theme');
-      let activeTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-      
-      // FIXED: G. Proper theme application
-      html.setAttribute('data-theme', activeTheme);
-      this.updateThemeIcon(activeTheme);
-      
-      if (this.themeToggle) {
-        // FIXED: G. Remove existing listener to prevent duplicates
-        this.themeToggle.removeEventListener('click', this.themeToggle._themeHandler);
-        
-        this.themeToggle._themeHandler = (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          const currentTheme = html.getAttribute('data-theme');
-          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-          
-          // FIXED: G. Smooth theme transition
-          html.style.transition = 'all 200ms ease';
-          html.setAttribute('data-theme', newTheme);
-          localStorage.setItem('portfolio-theme', newTheme);
-          this.updateThemeIcon(newTheme);
-          
-          // FIXED: G. Proper ARIA label update
-          const ariaLabel = `Switch to ${newTheme === 'dark' ? 'light' : 'dark'} theme`;
-          this.themeToggle.setAttribute('aria-label', ariaLabel);
-          
-          // FIXED: G. Proper announcement
-          setTimeout(() => {
-            this.announce(`Switched to ${newTheme} theme`);
-          }, 200);
-          
-          // FIXED: G. Remove transition after change
-          setTimeout(() => {
-            html.style.transition = '';
-          }, 250);
-        };
-        
-        this.themeToggle.addEventListener('click', this.themeToggle._themeHandler);
-        
-        // FIXED: G. Keyboard accessibility - single listener
-        this.themeToggle.removeEventListener('keydown', this.themeToggle._keyHandler);
-        this.themeToggle._keyHandler = (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.themeToggle.click();
-          }
-        };
-        this.themeToggle.addEventListener('keydown', this.themeToggle._keyHandler);
-      }
-      
-      // FIXED: G. System preference listener with proper cleanup
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handlePreferenceChange = (e) => {
-        if (!localStorage.getItem('portfolio-theme')) {
-          const systemTheme = e.matches ? 'dark' : 'light';
-          html.setAttribute('data-theme', systemTheme);
-          this.updateThemeIcon(systemTheme);
-        }
-      };
-      
-      mediaQuery.addEventListener('change', handlePreferenceChange);
-      this.mediaQueryListener = () => mediaQuery.removeEventListener('change', handlePreferenceChange);
-    } catch (error) {
-      console.error('Theme system initialization failed:', error);
-    }
-  }
-  
-  updateThemeIcon(theme) {
-    try {
-      const icon = document.querySelector('.theme-icon');
-      if (icon) {
-        icon.className = `fas ${theme === 'dark' ? 'fa-moon' : 'fa-sun'} theme-icon`;
-      }
-    } catch (error) {
-      console.warn('Theme icon update failed:', error);
-    }
   }
 
   // FIXED: G. Simplified and performant parallax with error handling
@@ -1121,14 +1121,14 @@ if (document.readyState === 'loading') {
   }
 }
 
-// FIXED: G. Enhanced performance optimizations with error handling
+// FIXED: G. Performance optimizations with error handling
 if ('link' in document.createElement('link')) {
   const preloadLinks = [
     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face',
-    'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop',
-    'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop',
-    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop',
-    'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop'
+    'https://images.unsplash.com/photo-1576091161160399-112ba8d25d1f?w=400&h=250&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop&auto=format'
   ];
   
   // FIXED: F/G. Only preload if images exist and add error handling

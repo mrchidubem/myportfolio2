@@ -10,7 +10,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Joseph Chidubem Okafor | Senior Full-Stack Engineer" />
   <meta property="og:description" content="Senior Full-Stack Engineer & AI Automation Specialist. Building scalable systems and intelligent solutions." />
-  <meta property="og:image" content="./og-image.jpg" /> <!-- FIX: F. Root-relative path for hosting -->
+  <meta property="og:image" content="/og-image.jpg" />
   <meta property="og:url" content="https://dubicventures.com" />
   <meta property="og:type" content="website" />
   
@@ -18,8 +18,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:creator" content="@ChidubemOkafor17" />
   
-  <link rel="icon" href="./favicon.ico" type="image/x-icon"> <!-- FIX: F. Root-relative path -->
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png"> <!-- FIX: F. Root-relative path -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
     "name": "Joseph Chidubem Okafor",
     "alternateName": "Dubicventures",
     "jobTitle": "Senior Full-Stack Engineer & AI Automation Specialist",
-    "image": "./dube.jpg", /* FIX: F. Root-relative path for hosting */
+    "image": "/dube.jpg",
     "url": "https://dubicventures.com",
     "sameAs": [
       "https://linkedin.com/in/dubicventures",
@@ -79,7 +79,7 @@
   </div>
 
   <div class="site-wrapper">
-    <!-- FIXED: A. Enhanced header with proper mobile controls -->
+    <!-- FIXED: A. Corrected header structure for proper mobile navigation -->
     <header class="site-header" role="banner">
       <div class="header-inner">
         <div class="brand">
@@ -102,7 +102,7 @@
           </ul>
         </nav>
 
-        <!-- FIXED: A. Enhanced mobile nav with explicit tabindex and pointer-events -->
+        <!-- FIXED: A. Corrected mobile nav structure - checkbox before burger -->
         <div class="mobile-nav-controls">
           <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
           <label for="nav-toggle" class="nav-burger" title="Toggle menu" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false" role="switch">
@@ -112,7 +112,7 @@
           </label>
         </div>
 
-        <!-- Mobile Navigation Menu -->
+        <!-- FIXED: A. Mobile Navigation - properly positioned after controls -->
         <nav class="nav-mobile" role="navigation" aria-label="Mobile navigation">
           <ul class="nav-list-mobile">
             <li><a class="nav-link" href="#home" data-scroll="home" aria-label="Home">Home</a></li>
@@ -121,6 +121,7 @@
             <li><a class="nav-link" href="#projects" data-scroll="projects" aria-label="Projects">Projects</a></li>
             <li><a class="nav-link" href="#thought-leadership" data-scroll="thought-leadership" aria-label="Thought Leadership">Insights</a></li>
             <li><a class="nav-link" href="#contact" data-scroll="contact" aria-label="Contact">Contact</a></li>
+            <!-- FIXED: Theme toggle moved to proper position in mobile menu -->
             <li class="nav-theme-item">
               <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme" type="button">
                 <i class="fas fa-moon theme-icon"></i>
@@ -133,8 +134,8 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero" role="region" aria-label="Hero">
-      <!-- FIXED: F. Enhanced background with explicit inline style for hosting -->
-      <div class="hero-bg" style="background-image: url('./hero-bg.jpg');"></div>
+      <!-- FIXED: F. Hero background with reliable gradient fallback -->
+      <div class="hero-bg"></div>
       <div class="hero-gradient"></div>
       <div class="container">
         <div class="hero-inner">
@@ -196,7 +197,7 @@
           <aside class="hero-aside">
             <div class="profile-card">
               <div class="profile-image-wrapper">
-                <img src="./public/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy"> <!-- FIX: F. Root-relative path -->
+                <img src="/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy">
                 <div class="profile-ring"></div>
               </div>
               <div class="profile-info">
@@ -459,7 +460,7 @@
         <div class="projects-grid">
           <article class="project-card" data-categories="web cloud" data-index="0">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop&auto=format')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">CareCycle HMS</h3>
@@ -499,7 +500,7 @@
           
           <article class="project-card" data-categories="ai web" data-index="1">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop&auto=format')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">Budget Buddy</h3>
@@ -539,7 +540,7 @@
           
           <article class="project-card" data-categories="web" data-index="2">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop&auto=format')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">Airbnb Clone</h3>
@@ -579,7 +580,7 @@
           
           <article class="project-card" data-categories="ai" data-index="3">
             <div class="project-media">
-              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop')"></div>
+              <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop&auto=format')"></div>
               <div class="project-overlay">
                 <div class="overlay-content">
                   <h3 class="overlay-title">AI Study Buddy</h3>
@@ -641,7 +642,7 @@
         <div class="insights-grid">
           <article class="insight-card" data-index="0">
             <div class="insight-media">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Scalable architecture patterns" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&auto=format" alt="Scalable architecture patterns" loading="lazy">
               <div class="insight-category">Architecture</div>
             </div>
             <div class="insight-content">
@@ -668,7 +669,7 @@
           
           <article class="insight-card" data-index="1">
             <div class="insight-media">
-              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop" alt="AI integration strategies" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop&auto=format" alt="AI integration strategies" loading="lazy">
               <div class="insight-category">AI</div>
             </div>
             <div class="insight-content">
@@ -695,7 +696,7 @@
           
           <article class="insight-card" data-index="2">
             <div class="insight-media">
-              <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=400&h=300&fit=crop" alt="DevOps best practices" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=400&h=300&fit=crop&auto=format" alt="DevOps best practices" loading="lazy">
               <div class="insight-category">DevOps</div>
             </div>
             <div class="insight-content">
@@ -989,7 +990,6 @@
   <!-- ARIA Live Region for Announcements -->
   <div id="live-announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- FIXED: G. Added defer to prevent timing issues with DOM readiness -->
   <script src="script.js" defer></script>
 </body>
 </html>
