@@ -1,6 +1,8 @@
 /* ==========================================================================
    SENIOR PORTFOLIO 2025 - COMPLETE FIXED VERSION
-   All navigation and hero section issues permanently resolved
+   FIXED: Card and button visibility issues resolved
+   FIXED: All text, buttons, and cards now fully visible immediately
+   FIXED: Enhanced mobile touch targets while preserving design
    ========================================================================== */
 
 /* CSS Custom Properties - Refined Color System */
@@ -278,6 +280,10 @@ a:hover {
   transition: var(--transition-normal);
   text-decoration: none;
   white-space: nowrap;
+  /* FIXED: Ensure nav links are always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .nav-link:hover,
@@ -323,6 +329,9 @@ a:hover {
   transition: var(--transition-normal);
   font-size: var(--text-base);
   flex-shrink: 0;
+  /* FIXED: Ensure theme button is always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .theme-btn:hover,
@@ -372,6 +381,9 @@ a:hover {
     z-index: 1001;
     align-self: center;
     flex-shrink: 0;
+    /* FIXED: Ensure burger is always visible */
+    opacity: 1 !important;
+    visibility: visible !important;
   }
   
   .burger-line {
@@ -426,7 +438,7 @@ a:hover {
     backdrop-filter: blur(20px);
   }
   
-  /* FIXED: Mobile nav links styling */
+  /* FIXED: Mobile nav links styling - Always visible when menu opens */
   .nav-toggle:checked ~ .nav-list .nav-link {
     font-size: var(--text-xl);
     padding: var(--space-md) var(--space-xl);
@@ -437,17 +449,11 @@ a:hover {
     background: rgb(var(--color-surface));
     margin: var(--space-sm) 0;
     border: 1px solid rgb(var(--color-border) / 0.2);
-    opacity: 0;
-    transform: translateX(20px);
-    animation: slideInLink 0.3s ease-out forwards;
+    opacity: 1 !important; /* FIXED: Always visible */
+    transform: translateX(0) !important; /* FIXED: No transform */
+    visibility: visible !important;
+    animation: none; /* FIXED: Remove animation delays */
   }
-  
-  .nav-toggle:checked ~ .nav-list .nav-link:nth-child(1) { animation-delay: 0.1s; }
-  .nav-toggle:checked ~ .nav-list .nav-link:nth-child(2) { animation-delay: 0.15s; }
-  .nav-toggle:checked ~ .nav-list .nav-link:nth-child(3) { animation-delay: 0.2s; }
-  .nav-toggle:checked ~ .nav-list .nav-link:nth-child(4) { animation-delay: 0.25s; }
-  .nav-toggle:checked ~ .nav-list .nav-link:nth-child(5) { animation-delay: 0.3s; }
-  .nav-toggle:checked ~ .nav-list .nav-link:nth-child(6) { animation-delay: 0.35s; }
   
   /* FIXED: Burger animation */
   .nav-toggle:checked + .nav-burger .burger-line:nth-child(1) {
@@ -473,13 +479,6 @@ a:hover {
       transform: translateX(0);
       opacity: 1;
       visibility: visible;
-    }
-  }
-  
-  @keyframes slideInLink {
-    to {
-      opacity: 1;
-      transform: translateX(0);
     }
   }
 }
@@ -517,6 +516,9 @@ a:hover {
   border-radius: var(--border-radius);
   font-size: var(--text-xs);
   transition: top var(--transition-fast);
+  /* FIXED: Ensure skip link is always accessible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .skip-link:focus {
@@ -583,6 +585,9 @@ a:hover {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  /* FIXED: Ensure meta tags are visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .meta-tag {
@@ -613,24 +618,12 @@ a:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: titleReveal 0.8s ease-out forwards;
+  opacity: 1 !important; /* FIXED: Title always visible */
+  transform: translateY(0) !important; /* FIXED: No transform */
+  animation: none; /* FIXED: Remove animation */
   font-size: var(--text-4xl);
   font-weight: 700;
   line-height: 1.2;
-}
-
-.title-line:nth-child(1) { animation-delay: 0.1s; }
-.title-line:nth-child(2) { animation-delay: 0.2s; }
-.title-line:nth-child(3) { animation-delay: 0.3s; }
-.title-line:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes titleReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .hero-subtitle {
@@ -638,6 +631,9 @@ a:hover {
   max-width: 28rem;
   color: rgb(var(--color-text-muted));
   line-height: 1.7;
+  /* FIXED: Subtitle always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .hero-stats {
@@ -651,6 +647,9 @@ a:hover {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.25rem;
+  /* FIXED: Stats always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .stat-number {
@@ -712,6 +711,10 @@ a:hover {
   transition: var(--transition-normal);
   width: 100%;
   max-width: 320px;
+  /* FIXED: Profile card always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .profile-card:hover {
@@ -758,6 +761,9 @@ a:hover {
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: rgb(var(--color-text));
+  /* FIXED: Profile text always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .profile-role {
@@ -778,7 +784,7 @@ a:hover {
   font-size: var(--text-2xs);
 }
 
-/* Buttons - Subtle blue */
+/* FIXED: Buttons - Always visible and touch-friendly */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -793,8 +799,13 @@ a:hover {
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  min-height: 44px;
+  min-height: 44px; /* FIXED: Minimum touch target */
   justify-content: center;
+  /* FIXED: Buttons always visible and clickable */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
 }
 
 .btn::before {
@@ -863,11 +874,13 @@ a:hover {
 .btn-lg {
   padding: var(--space-lg) var(--space-xl);
   font-size: var(--text-sm);
+  min-height: 48px; /* FIXED: Larger touch target */
 }
 
 .btn-sm {
   padding: var(--space-sm) var(--space-md);
   font-size: var(--text-2xs);
+  min-height: 40px; /* FIXED: Minimum touch target */
 }
 
 .btn-icon {
@@ -877,6 +890,36 @@ a:hover {
 
 .btn:hover .btn-icon {
   transform: translateX(2px);
+}
+
+/* FIXED: Filter buttons - Always visible */
+.filter-btn {
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-text-dim));
+  border: 1px solid rgb(var(--color-border) / 0.3);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 9999px;
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  /* FIXED: Filter buttons always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  min-height: 40px; /* FIXED: Touch target */
+  min-width: 60px; /* FIXED: Touch target */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: rgb(var(--color-primary-500));
+  color: white;
+  border-color: rgb(var(--color-primary-500));
+  transform: translateY(-1px);
 }
 
 /* Sections */
@@ -895,6 +938,9 @@ a:hover {
   gap: var(--space-xl);
   margin-bottom: var(--space-2xl);
   position: relative;
+  /* FIXED: Section headers always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .section-number {
@@ -912,12 +958,18 @@ a:hover {
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: rgb(var(--color-text));
+  /* FIXED: Section titles always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .section-subtitle {
   color: rgb(var(--color-text-muted));
   font-size: var(--text-sm);
   font-weight: 500;
+  /* FIXED: Section subtitles always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* About Section */
@@ -939,12 +991,18 @@ a:hover {
   line-height: 1.6;
   color: rgb(var(--color-text));
   font-weight: 500;
+  /* FIXED: About text always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .about-body {
   color: rgb(var(--color-text-muted));
   line-height: 1.6;
   font-size: var(--text-sm);
+  /* FIXED: About body always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .about-highlights {
@@ -960,6 +1018,9 @@ a:hover {
   gap: var(--space-sm);
   color: rgb(var(--color-text-muted));
   font-size: var(--text-xs);
+  /* FIXED: Highlights always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .highlight-icon {
@@ -990,6 +1051,10 @@ a:hover {
   border-radius: var(--border-radius);
   transition: var(--transition-normal);
   cursor: default;
+  /* FIXED: Skills always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .skill-item:hover {
@@ -1007,9 +1072,12 @@ a:hover {
   font-weight: 500;
   text-align: center;
   color: rgb(var(--color-text));
+  /* FIXED: Skill text always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Expertise Grid */
+/* FIXED: Expertise Grid - Cards always visible */
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -1024,6 +1092,11 @@ a:hover {
   transition: var(--transition-normal);
   position: relative;
   overflow: hidden;
+  /* FIXED: Expertise cards always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .expertise-card::before {
@@ -1069,6 +1142,9 @@ a:hover {
 .expertise-title {
   font-size: var(--text-lg);
   font-weight: 600;
+  /* FIXED: Card titles always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .expertise-description {
@@ -1076,6 +1152,9 @@ a:hover {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   font-size: var(--text-sm);
+  /* FIXED: Card descriptions always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .expertise-tech {
@@ -1091,9 +1170,12 @@ a:hover {
   border-radius: 9999px;
   font-size: var(--text-2xs);
   font-weight: 500;
+  /* FIXED: Tech tags always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Timeline */
+/* FIXED: Timeline - Items always visible */
 .journey-timeline {
   position: relative;
 }
@@ -1102,6 +1184,10 @@ a:hover {
   position: relative;
   max-width: 40rem;
   margin: 0 auto;
+  /* FIXED: Timeline container always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .timeline-line {
@@ -1117,22 +1203,24 @@ a:hover {
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-2xl);
-  opacity: 0;
-  transform: translateX(10px);
-  transition: all var(--transition-normal);
+  /* FIXED: Timeline items always visible - NO opacity/transform */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 .timeline-item.animate {
-  opacity: 1;
-  transform: translateX(0);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 .timeline-item:nth-child(even) {
-  transform: translateX(-10px);
+  transform: none !important; /* FIXED: No transform */
 }
 
 .timeline-item:nth-child(even).animate {
-  transform: translateX(0);
+  transform: none !important; /* FIXED: No transform */
 }
 
 .timeline-marker {
@@ -1148,6 +1236,9 @@ a:hover {
   box-shadow: 0 0 0 3px rgb(var(--color-primary-500) / 0.2);
   z-index: 1;
   transition: var(--transition-normal);
+  /* FIXED: Markers always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .timeline-item:hover .timeline-marker {
@@ -1164,6 +1255,10 @@ a:hover {
   border: 1px solid rgb(var(--color-border) / 0.1);
   box-shadow: var(--shadow-sm);
   position: relative;
+  /* FIXED: Timeline content always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
 }
 
 .timeline-header {
@@ -1177,18 +1272,27 @@ a:hover {
   font-size: var(--text-base);
   font-weight: 600;
   color: rgb(var(--color-text));
+  /* FIXED: Timeline role always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .timeline-company {
   font-size: var(--text-2xs);
   color: rgb(var(--color-primary-500));
   font-weight: 500;
+  /* FIXED: Timeline company always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .timeline-date {
   font-size: var(--text-2xs);
   color: rgb(var(--color-text-muted));
   font-weight: 500;
+  /* FIXED: Timeline date always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .timeline-description {
@@ -1196,6 +1300,9 @@ a:hover {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   font-size: var(--text-sm);
+  /* FIXED: Timeline description always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .timeline-impact {
@@ -1214,35 +1321,18 @@ a:hover {
   border-radius: 9999px;
   font-size: var(--text-2xs);
   font-weight: 500;
+  /* FIXED: Impact items always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* Projects */
+/* FIXED: Projects - Cards always visible */
 .projects-filter {
   display: flex;
   justify-content: center;
   gap: var(--space-sm);
   margin-bottom: var(--space-xl);
   flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: rgb(var(--color-surface));
-  color: rgb(var(--color-text-dim));
-  border: 1px solid rgb(var(--color-border) / 0.3);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: 9999px;
-  font-size: var(--text-2xs);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition-normal);
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background: rgb(var(--color-primary-500));
-  color: white;
-  border-color: rgb(var(--color-primary-500));
-  transform: translateY(-1px);
 }
 
 .projects-grid {
@@ -1258,20 +1348,16 @@ a:hover {
   overflow: hidden;
   border: 1px solid rgb(var(--color-border) / 0.1);
   transition: var(--transition-normal);
-  opacity: 0;
-  transform: translateY(10px);
-  animation: slideInUp 0.6s ease-out forwards;
+  /* FIXED: Project cards always visible - NO opacity/transform/animation */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  display: block !important;
 }
 
-.project-card:nth-child(2) { animation-delay: 0.1s; }
-.project-card:nth-child(3) { animation-delay: 0.2s; }
-.project-card:nth-child(4) { animation-delay: 0.3s; }
-
-@keyframes slideInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.project-card:nth-child(2), .project-card:nth-child(3), .project-card:nth-child(4) {
+  animation: none !important; /* FIXED: Remove staggered delays */
 }
 
 .project-card:hover {
@@ -1316,6 +1402,8 @@ a:hover {
 
 .overlay-content {
   color: white;
+  /* FIXED: Overlay content visible on hover only */
+  opacity: 1 !important;
 }
 
 .overlay-title {
@@ -1345,12 +1433,18 @@ a:hover {
   font-size: var(--text-base);
   font-weight: 600;
   line-height: 1.3;
+  /* FIXED: Project titles always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .project-date {
   font-size: var(--text-2xs);
   color: rgb(var(--color-text-muted));
   font-weight: 500;
+  /* FIXED: Project dates always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .project-description {
@@ -1358,6 +1452,9 @@ a:hover {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   font-size: var(--text-sm);
+  /* FIXED: Project descriptions always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .project-metrics {
@@ -1373,6 +1470,9 @@ a:hover {
   gap: 0.25rem;
   color: rgb(var(--color-text-muted));
   font-size: var(--text-2xs);
+  /* FIXED: Metrics always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .project-links {
@@ -1380,7 +1480,7 @@ a:hover {
   gap: var(--space-sm);
 }
 
-/* Insights Grid */
+/* FIXED: Insights Grid - Cards always visible */
 .insights-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -1394,13 +1494,16 @@ a:hover {
   overflow: hidden;
   border: 1px solid rgb(var(--color-border) / 0.1);
   transition: var(--transition-normal);
-  opacity: 0;
-  transform: translateY(10px);
-  animation: slideInUp 0.6s ease-out forwards;
+  /* FIXED: Insight cards always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
 }
 
-.insight-card:nth-child(2) { animation-delay: 0.1s; }
-.insight-card:nth-child(3) { animation-delay: 0.2s; }
+.insight-card:nth-child(2), .insight-card:nth-child(3) {
+  animation: none !important; /* FIXED: Remove staggered delays */
+}
 
 .insight-card:hover {
   transform: translateY(-2px);
@@ -1436,6 +1539,9 @@ a:hover {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  /* FIXED: Category badges always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .insight-content {
@@ -1448,6 +1554,9 @@ a:hover {
   margin-bottom: var(--space-xs);
   font-size: var(--text-2xs);
   color: rgb(var(--color-text-muted));
+  /* FIXED: Meta info always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .insight-title {
@@ -1456,6 +1565,9 @@ a:hover {
   line-height: 1.3;
   margin-bottom: var(--space-sm);
   color: rgb(var(--color-text));
+  /* FIXED: Insight titles always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .insight-excerpt {
@@ -1463,6 +1575,9 @@ a:hover {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   font-size: var(--text-sm);
+  /* FIXED: Insight excerpts always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .insight-tags {
@@ -1479,6 +1594,9 @@ a:hover {
   border-radius: 9999px;
   font-size: var(--text-2xs);
   font-weight: 500;
+  /* FIXED: Tags always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .insight-link {
@@ -1489,6 +1607,11 @@ a:hover {
   font-weight: 500;
   font-size: var(--text-sm);
   transition: var(--transition-normal);
+  /* FIXED: Insight links always visible and clickable */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  text-decoration: none;
 }
 
 .insight-link:hover {
@@ -1501,7 +1624,7 @@ a:hover {
   font-size: var(--text-sm);
 }
 
-/* Services Grid */
+/* FIXED: Services Grid - Cards always visible */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -1517,6 +1640,11 @@ a:hover {
   transition: var(--transition-normal);
   position: relative;
   overflow: hidden;
+  /* FIXED: Service cards always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .service-card::before {
@@ -1552,6 +1680,9 @@ a:hover {
   font-size: 1.25rem;
   color: rgb(var(--color-primary-500));
   transition: var(--transition-normal);
+  /* FIXED: Icons always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .service-card:hover .service-icon {
@@ -1564,6 +1695,9 @@ a:hover {
   font-size: var(--text-lg);
   font-weight: 600;
   margin-bottom: var(--space-sm);
+  /* FIXED: Service titles always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .service-description {
@@ -1571,6 +1705,9 @@ a:hover {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   font-size: var(--text-sm);
+  /* FIXED: Service descriptions always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .service-features {
@@ -1586,6 +1723,9 @@ a:hover {
   color: rgb(var(--color-text-muted));
   margin-bottom: 0.5rem;
   font-size: var(--text-xs);
+  /* FIXED: Service features always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .service-features i {
@@ -1602,6 +1742,12 @@ a:hover {
   font-weight: 500;
   font-size: var(--text-sm);
   transition: var(--transition-normal);
+  /* FIXED: Service links always visible and clickable */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  text-decoration: none;
+  min-height: 40px; /* FIXED: Touch target */
 }
 
 .service-link:hover {
@@ -1626,6 +1772,9 @@ a:hover {
   font-weight: 700;
   margin-bottom: var(--space-md);
   color: rgb(var(--color-text));
+  /* FIXED: CTA title always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .cta-description {
@@ -1633,6 +1782,9 @@ a:hover {
   color: rgb(var(--color-text-muted));
   line-height: 1.6;
   margin-bottom: var(--space-xl);
+  /* FIXED: CTA description always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .cta-buttons {
@@ -1642,7 +1794,7 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* Contact */
+/* FIXED: Contact */
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1654,6 +1806,9 @@ a:hover {
   border-radius: var(--border-radius-lg);
   padding: var(--space-xl);
   border: 1px solid rgb(var(--color-border) / 0.1);
+  /* FIXED: Contact info always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .contact-title {
@@ -1661,6 +1816,9 @@ a:hover {
   font-weight: 600;
   margin-bottom: var(--space-lg);
   color: rgb(var(--color-text));
+  /* FIXED: Contact title always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .contact-details {
@@ -1674,6 +1832,9 @@ a:hover {
   display: flex;
   align-items: flex-start;
   gap: var(--space-md);
+  /* FIXED: Contact items always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .contact-icon {
@@ -1683,6 +1844,9 @@ a:hover {
   margin-top: 0.125em;
   flex-shrink: 0;
   font-size: var(--text-base);
+  /* FIXED: Contact icons always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .contact-text {
@@ -1696,6 +1860,9 @@ a:hover {
   color: rgb(var(--color-text-muted));
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  /* FIXED: Contact labels always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .contact-link,
@@ -1703,6 +1870,9 @@ a:hover {
   font-size: var(--text-sm);
   font-weight: 500;
   color: rgb(var(--color-text));
+  /* FIXED: Contact links always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .contact-link:hover {
@@ -1725,6 +1895,11 @@ a:hover {
   transition: var(--transition-normal);
   border-radius: 50%;
   font-size: var(--text-sm);
+  /* FIXED: Social links always visible and clickable */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  text-decoration: none;
 }
 
 .social-link:hover {
@@ -1737,12 +1912,15 @@ a:hover {
 .social-link[data-platform="github"]:hover { color: #333; }
 .social-link[data-platform="twitter"]:hover { color: #1DA1F2; }
 
-/* Contact Form */
+/* FIXED: Contact Form - Always visible */
 .contact-form {
   background: rgb(var(--color-surface));
   border-radius: var(--border-radius-lg);
   padding: var(--space-xl);
   border: 1px solid rgb(var(--color-border) / 0.1);
+  /* FIXED: Form always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .form-group {
@@ -1764,6 +1942,10 @@ textarea {
   color: rgb(var(--color-text));
   font-size: var(--text-sm);
   transition: var(--transition-normal);
+  /* FIXED: Form inputs always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 44px; /* FIXED: Touch target */
 }
 
 input:focus,
@@ -1801,6 +1983,9 @@ textarea {
   color: rgb(var(--color-error));
   margin-top: 0.25rem;
   min-height: 1rem;
+  /* FIXED: Error messages always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Footer */
@@ -1808,6 +1993,9 @@ textarea {
   background: rgb(var(--color-background));
   border-top: 1px solid rgb(var(--color-border) / 0.2);
   padding: var(--space-3xl) 0 var(--space-lg);
+  /* FIXED: Footer always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .footer-content {
@@ -1826,12 +2014,18 @@ textarea {
 .footer-logo {
   font-size: var(--text-xl);
   font-weight: 700;
+  /* FIXED: Footer logo always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .footer-description {
   color: rgb(var(--color-text-muted));
   line-height: 1.6;
   font-size: var(--text-sm);
+  /* FIXED: Footer description always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .footer-social {
@@ -1853,6 +2047,9 @@ textarea {
   margin-bottom: var(--space-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  /* FIXED: Footer headings always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .footer-list {
@@ -1866,6 +2063,11 @@ textarea {
   color: rgb(var(--color-text-dim));
   font-size: var(--text-sm);
   transition: var(--transition-fast);
+  /* FIXED: Footer links always visible and clickable */
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  text-decoration: none;
 }
 
 .footer-link:hover {
@@ -1878,12 +2080,18 @@ textarea {
   margin-bottom: var(--space-sm);
   line-height: 1.6;
   font-size: var(--text-sm);
+  /* FIXED: Newsletter text always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .newsletter-form {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  /* FIXED: Newsletter form always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .newsletter-form input {
@@ -1899,15 +2107,24 @@ textarea {
 .footer-legal {
   color: rgb(var(--color-text-dim));
   font-size: var(--text-sm);
+  /* FIXED: Footer legal always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .footer-credit {
   margin-top: var(--space-xs);
   font-size: var(--text-2xs);
+  /* FIXED: Footer credit always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .footer-credit a {
   color: rgb(var(--color-primary-500));
+  /* FIXED: Footer credit link always visible */
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* FIXED: Hero Mobile Responsiveness */
@@ -1971,6 +2188,9 @@ textarea {
     width: 100%;
     max-width: 18rem;
     justify-content: center;
+    min-height: 48px !important; /* FIXED: Mobile touch target */
+    padding: 12px 20px !important; /* FIXED: Better mobile padding */
+    font-size: 16px !important; /* FIXED: Prevent iOS zoom */
   }
   
   /* FIXED: Profile card mobile sizing */
@@ -2059,6 +2279,73 @@ textarea {
     white-space: nowrap;
     flex-shrink: 0;
     min-width: 80px;
+    min-height: 44px !important; /* FIXED: Mobile touch target */
+    padding: 8px 16px !important; /* FIXED: Better mobile padding */
+    font-size: 16px !important; /* FIXED: Prevent iOS zoom */
+  }
+  
+  /* FIXED: Mobile timeline adjustments */
+  .timeline-container {
+    max-width: none;
+  }
+  
+  .timeline-line {
+    left: 1rem;
+  }
+  
+  .timeline-marker {
+    left: 1rem;
+  }
+  
+  .timeline-content {
+    margin-left: 2.5rem;
+    margin-right: 0;
+  }
+  
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 2.5rem;
+    margin-right: 0;
+  }
+  
+  /* FIXED: Mobile card spacing */
+  .project-card, .expertise-card, .service-card, .insight-card {
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  /* FIXED: Mobile text sizing */
+  .hero-subtitle, .expertise-description, .project-description, .timeline-description {
+    font-size: clamp(14px, 3.5vw, 16px);
+    line-height: 1.6;
+  }
+  
+  /* FIXED: Mobile navigation improvements */
+  .nav-toggle:checked ~ .nav-list .nav-link {
+    padding: 16px 20px !important;
+    font-size: 18px !important;
+    line-height: 1.4;
+    min-height: 48px !important;
+  }
+  
+  /* FIXED: Mobile form inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+    padding: 12px 16px !important;
+    min-height: 48px !important;
+  }
+  
+  /* FIXED: Mobile social links */
+  .social-link {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 18px !important;
+  }
+  
+  /* FIXED: Mobile service links */
+  .service-link {
+    min-height: 44px !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
   }
 }
 
@@ -2100,10 +2387,23 @@ textarea {
   .btn {
     width: 100%;
     justify-content: center;
+    min-height: 48px !important; /* FIXED: Mobile touch target */
   }
   
   .btn-lg {
     padding: var(--space-md) var(--space-lg);
+    min-height: 52px !important; /* FIXED: Larger mobile target */
+  }
+  
+  /* FIXED: Extra small screen adjustments */
+  .filter-btn {
+    min-width: 70px;
+    padding: 10px 12px !important;
+  }
+  
+  .nav-toggle:checked ~ .nav-list .nav-link {
+    padding: 20px 24px !important;
+    font-size: 20px !important;
   }
 }
 
@@ -2133,23 +2433,31 @@ textarea {
   .scroll-indicator {
     animation: none;
   }
+  
+  /* FIXED: Ensure visibility even with reduced motion */
+  .timeline-item, .project-card, .expertise-card, .service-card, .insight-card {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }
 
-/* Scroll Animations */
+/* FIXED: Remove all problematic animations and transforms */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition-normal);
+  /* FIXED: Fade-in elements always visible */
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
 }
 
 .fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Preloader */
@@ -2257,7 +2565,9 @@ textarea {
 .btn:focus,
 .social-link:focus,
 .filter-btn:focus,
-.skip-link:focus {
+.skip-link:focus,
+.service-link:focus,
+.insight-link:focus {
   outline: 2px solid rgb(var(--color-primary-500));
   outline-offset: 2px;
 }
