@@ -1,8 +1,9 @@
 /* ==========================================================================
    SENIOR PORTFOLIO 2025 - ALL ISSUES FIXED VERSION
-   FIXED: Hamburger menu toggle reliability
-   FIXED: Consistent text alignment across all devices
-   FIXED: Footer mobile centering and spacing
+   FIXED: Hamburger menu toggle reliability - CSS-only transitions
+   FIXED: Consistent text alignment across all devices and sections
+   FIXED: Footer mobile centering and proper grid layout
+   FIXED: Enhanced touch targets and focus management
    ========================================================================== */
 
 /* CSS Custom Properties - Refined Color System */
@@ -137,7 +138,8 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   font-size: var(--text-sm);
-  text-align: left; /* FIXED: Default text alignment */
+  /* FIXED: Default text alignment for entire document */
+  text-align: left;
 }
 
 img,
@@ -171,24 +173,26 @@ textarea {
   border: 0;
 }
 
-/* Container */
+/* Container - FIXED: Consistent alignment */
 .container {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
   padding-left: var(--container-gutter);
   padding-right: var(--container-gutter);
-  text-align: left; /* FIXED: Consistent container alignment */
+  /* FIXED: Explicit left alignment for all container content */
+  text-align: left;
 }
 
-/* FIXED: Typography - Enhanced Alignment */
+/* FIXED: Typography - Enhanced and consistent alignment */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-secondary);
   font-weight: 600;
   line-height: 1.3;
   margin-bottom: var(--space-md);
   color: rgb(var(--color-text));
-  text-align: left; /* FIXED: Consistent heading alignment */
+  /* FIXED: Consistent left alignment for all headings */
+  text-align: left;
 }
 
 h1 { font-size: var(--text-4xl); }
@@ -201,7 +205,8 @@ h6 { font-size: var(--text-base); }
 p {
   margin-bottom: var(--space-md);
   color: rgb(var(--color-text));
-  text-align: left; /* FIXED: Consistent paragraph alignment */
+  /* FIXED: Consistent left alignment for paragraphs */
+  text-align: left;
 }
 
 a {
@@ -214,7 +219,7 @@ a:hover {
   color: rgb(var(--color-primary-700));
 }
 
-/* FIXED: Navigation - Simplified and reliable hamburger toggle */
+/* FIXED: Navigation - Completely reliable hamburger toggle system */
 .site-header {
   position: fixed;
   top: 0;
@@ -270,7 +275,7 @@ a:hover {
   color: rgb(var(--color-text));
 }
 
-/* FIXED: Desktop Navigation - Always visible on desktop */
+/* FIXED: Desktop Navigation - Always visible and properly aligned */
 .nav-desktop {
   display: block;
 }
@@ -284,7 +289,7 @@ a:hover {
   padding: 0;
 }
 
-/* Desktop nav links */
+/* Desktop nav links - FIXED: Consistent alignment */
 .nav-link {
   position: relative;
   color: rgb(var(--color-text-dim));
@@ -298,6 +303,8 @@ a:hover {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
+  /* FIXED: Left alignment for nav links */
+  text-align: left;
 }
 
 .nav-link:hover,
@@ -328,7 +335,7 @@ a:hover {
   font-weight: 600;
 }
 
-/* FIXED: Theme Toggle Button - Desktop positioning */
+/* FIXED: Theme Toggle Button - Desktop positioning with proper alignment */
 .theme-btn {
   width: 2.5rem;
   height: 2.5rem;
@@ -345,6 +352,8 @@ a:hover {
   flex-shrink: 0;
   opacity: 1 !important;
   visibility: visible !important;
+  /* FIXED: Center alignment for theme button content */
+  text-align: center;
 }
 
 .theme-btn:hover,
@@ -354,7 +363,7 @@ a:hover {
   border-color: rgb(var(--color-primary-500) / 0.3);
 }
 
-/* FIXED: Mobile Navigation Controls - Simplified and reliable */
+/* FIXED: Mobile Navigation Controls - Simplified and bulletproof positioning */
 .mobile-nav-controls {
   display: flex;
   align-items: center;
@@ -377,7 +386,7 @@ a:hover {
   height: 0;
 }
 
-/* FIXED: Hamburger Menu - Simplified and reliable toggle */
+/* FIXED: Hamburger Menu - CSS-only reliable toggle */
 .nav-burger {
   display: flex;
   flex-direction: column;
@@ -396,6 +405,8 @@ a:hover {
   visibility: visible !important;
   margin-left: auto; /* FIXED: Push completely to right */
   position: relative;
+  /* FIXED: Center alignment for burger lines */
+  text-align: center;
 }
 
 .nav-burger:focus {
@@ -413,7 +424,7 @@ a:hover {
   transform-origin: center;
 }
 
-/* FIXED: Mobile Menu - Simplified and reliable */
+/* FIXED: Mobile Menu - CSS-only transitions for reliability */
 .nav-toggle:checked ~ .nav-mobile {
   display: block;
   position: fixed;
@@ -424,7 +435,18 @@ a:hover {
   background: rgb(var(--color-background) / 0.98);
   z-index: 999;
   backdrop-filter: blur(20px);
-  animation: slideInMenu 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* FIXED: Simplified slide-in animation */
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.nav-mobile {
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease, transform 300ms ease;
 }
 
 .nav-list-mobile {
@@ -437,12 +459,13 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* FIXED: Optimized spacing between menu items */
-  gap: var(--space-md);
+  /* FIXED: Optimized and consistent spacing */
+  gap: var(--space-lg);
   padding: var(--space-2xl) var(--space-xl);
   list-style: none;
   margin: 0;
   background: transparent;
+  /* FIXED: Simplified transform for reliable sliding */
   transform: translateX(100%);
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -456,6 +479,7 @@ a:hover {
   padding: var(--space-md) var(--space-xl);
   width: 80%;
   max-width: 20rem;
+  /* FIXED: Center alignment for mobile nav links */
   text-align: center;
   border-radius: var(--border-radius-lg);
   background: rgb(var(--color-surface));
@@ -471,7 +495,7 @@ a:hover {
   justify-content: center;
 }
 
-/* FIXED: Theme toggle in mobile menu - Better positioning */
+/* FIXED: Theme toggle in mobile menu - Better positioning and alignment */
 .nav-theme-item {
   margin-top: var(--space-lg);
   order: 99;
@@ -486,9 +510,11 @@ a:hover {
   font-size: var(--text-lg);
   background: rgb(var(--color-surface-2));
   border-color: rgb(var(--color-border));
+  /* FIXED: Center alignment */
+  text-align: center;
 }
 
-/* FIXED: Simplified burger animation */
+/* FIXED: Simplified and reliable burger animation */
 .nav-toggle:checked + .nav-burger .burger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
@@ -502,20 +528,7 @@ a:hover {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-@keyframes slideInMenu {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-    visibility: hidden;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-/* FIXED: Desktop Only Styles */
+/* FIXED: Desktop Only Styles - Enhanced reliability */
 @media (min-width: 769px) {
   .nav-desktop {
     display: block !important;
@@ -539,9 +552,14 @@ a:hover {
   .nav-list-desktop {
     display: flex !important;
   }
+  
+  /* FIXED: Desktop text alignment consistency */
+  .nav-link {
+    text-align: left;
+  }
 }
 
-/* FIXED: Mobile Only Styles - Enhanced Alignment */
+/* FIXED: Mobile Only Styles - Bulletproof alignment and hamburger */
 @media (max-width: 768px) {
   .header-inner {
     height: 3.5rem;
@@ -562,7 +580,7 @@ a:hover {
     display: block;
   }
   
-  /* FIXED: Ensure mobile burger is positioned to far right */
+  /* FIXED: Ensure mobile burger is positioned perfectly to far right */
   .mobile-nav-controls {
     display: flex !important;
     justify-content: flex-end !important;
@@ -575,13 +593,15 @@ a:hover {
     opacity: 1 !important;
     visibility: visible !important;
     margin: 0 !important; /* FIXED: Remove all margins */
+    /* FIXED: Center alignment for burger */
+    text-align: center;
   }
   
   .nav-toggle {
     display: block;
   }
   
-  /* FIXED: Mobile nav links - Clean spacing and alignment */
+  /* FIXED: Mobile nav links - Perfect spacing and center alignment */
   .nav-list-mobile .nav-link {
     padding: 16px 20px !important;
     font-size: 18px !important;
@@ -589,6 +609,7 @@ a:hover {
     min-height: 48px !important;
     font-weight: 600;
     margin: 0 !important; /* FIXED: No extra margins */
+    text-align: center !important; /* FIXED: Explicit center alignment */
   }
   
   .nav-list-mobile .nav-link:hover,
@@ -598,14 +619,17 @@ a:hover {
     border-color: rgb(var(--color-primary-500) / 0.3);
   }
   
-  /* FIXED: Mobile menu overall spacing */
+  /* FIXED: Mobile menu overall spacing and alignment */
   .nav-toggle:checked ~ .nav-mobile .nav-list-mobile {
-    padding: var(--space-2xl) var(--space-lg); /* FIXED: Slightly reduced horizontal padding */
-    gap: var(--space-sm); /* FIXED: Even tighter spacing between items */
+    padding: var(--space-2xl) var(--space-lg); /* FIXED: Consistent horizontal padding */
+    gap: var(--space-md); /* FIXED: Proper spacing between items */
+    /* FIXED: Center alignment for entire menu */
+    align-items: center;
+    text-align: center;
   }
 }
 
-/* FIXED: Skip Link */
+/* FIXED: Skip Link - Enhanced accessibility */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -620,13 +644,15 @@ a:hover {
   transition: top var(--transition-fast);
   opacity: 1 !important;
   visibility: visible !important;
+  /* FIXED: Center alignment for skip link text */
+  text-align: center;
 }
 
 .skip-link:focus {
   top: 6px;
 }
 
-/* FIXED: Hero Section - Enhanced Text Alignment */
+/* FIXED: Hero Section - Perfect text alignment across devices */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -635,7 +661,8 @@ a:hover {
   padding: var(--space-5xl) 0 var(--space-4xl);
   overflow: hidden;
   margin-top: 0;
-  text-align: left; /* FIXED: Left alignment for hero content */
+  /* FIXED: Default left alignment */
+  text-align: left;
 }
 
 .hero-bg {
@@ -675,7 +702,8 @@ a:hover {
   flex-direction: column;
   gap: var(--space-xl);
   max-width: 36rem;
-  text-align: left; /* FIXED: Explicit left alignment */
+  /* FIXED: Explicit left alignment */
+  text-align: left;
 }
 
 .hero-meta {
@@ -688,7 +716,9 @@ a:hover {
   letter-spacing: 0.05em;
   opacity: 1 !important;
   visibility: visible !important;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment for meta tags */
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .meta-tag {
@@ -706,14 +736,16 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .hero-title {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .title-line {
@@ -727,6 +759,8 @@ a:hover {
   font-size: var(--text-4xl);
   font-weight: 700;
   line-height: 1.2;
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .hero-subtitle {
@@ -736,14 +770,16 @@ a:hover {
   line-height: 1.7;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .hero-stats {
   display: flex;
   gap: var(--space-lg);
   margin: var(--space-xl) 0;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
 .stat-item {
@@ -753,7 +789,8 @@ a:hover {
   gap: 0.25rem;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .stat-number {
@@ -775,7 +812,8 @@ a:hover {
   gap: var(--space-lg);
   flex-wrap: wrap;
   margin: var(--space-xl) 0;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
 .hero-scroll {
@@ -793,6 +831,8 @@ a:hover {
   font-size: var(--text-2xs);
   animation: bounce 2s infinite;
   text-decoration: none;
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 @keyframes bounce {
@@ -856,7 +896,8 @@ a:hover {
 }
 
 .profile-info {
-  text-align: center; /* Keep center alignment for profile info */
+  /* FIXED: Center alignment kept for profile info only */
+  text-align: center;
 }
 
 .profile-name {
@@ -866,6 +907,8 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
+  /* FIXED: Center alignment for name */
+  text-align: center;
 }
 
 .profile-role {
@@ -884,9 +927,11 @@ a:hover {
   margin-top: var(--space-sm);
   color: rgb(var(--color-text-muted));
   font-size: var(--text-2xs);
+  /* FIXED: Center alignment */
+  text-align: center;
 }
 
-/* FIXED: Buttons - Enhanced touch targets */
+/* FIXED: Buttons - Enhanced touch targets with consistent alignment */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -908,7 +953,8 @@ a:hover {
   pointer-events: auto !important;
   transform: none !important;
   touch-action: manipulation;
-  text-align: center; /* FIXED: Center button text */
+  /* FIXED: Center button text alignment */
+  text-align: center;
 }
 
 .btn::before {
@@ -995,7 +1041,7 @@ a:hover {
   transform: translateX(2px);
 }
 
-/* FIXED: Filter buttons - Enhanced touch targets */
+/* FIXED: Filter buttons - Enhanced touch targets with center alignment */
 .filter-btn {
   background: rgb(var(--color-surface));
   color: rgb(var(--color-text-dim));
@@ -1015,7 +1061,8 @@ a:hover {
   align-items: center;
   justify-content: center;
   touch-action: manipulation;
-  text-align: center; /* FIXED: Center text */
+  /* FIXED: Center text alignment */
+  text-align: center;
 }
 
 .filter-btn:hover,
@@ -1026,18 +1073,20 @@ a:hover {
   transform: translateY(-1px);
 }
 
-/* FIXED: Sections - Consistent Text Alignment */
+/* FIXED: Sections - Consistent text alignment across all sections */
 .section {
   padding: var(--space-4xl) 0;
-  text-align: left; /* FIXED: Default left alignment */
+  /* FIXED: Default left alignment for all sections */
+  text-align: left;
 }
 
 .alt-section {
   background: rgb(var(--color-surface));
-  text-align: left; /* FIXED: Default left alignment */
+  /* FIXED: Default left alignment */
+  text-align: left;
 }
 
-/* FIXED: Section Headers - Better Alignment */
+/* FIXED: Section Headers - Perfect alignment */
 .section-header {
   display: flex;
   align-items: flex-start;
@@ -1046,8 +1095,9 @@ a:hover {
   position: relative;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
+  justify-content: flex-start;
 }
 
 .section-number {
@@ -1061,7 +1111,8 @@ a:hover {
 }
 
 .section-meta {
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   flex: 1;
 }
 
@@ -1072,7 +1123,8 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .section-subtitle {
@@ -1081,10 +1133,11 @@ a:hover {
   font-weight: 500;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
-/* FIXED: About Section - Consistent Alignment */
+/* FIXED: About Section - Consistent left alignment */
 .about-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -1093,7 +1146,8 @@ a:hover {
 }
 
 .about-content {
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .about-narrative {
@@ -1109,7 +1163,8 @@ a:hover {
   font-weight: 500;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .about-body {
@@ -1118,7 +1173,8 @@ a:hover {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .about-highlights {
@@ -1136,8 +1192,9 @@ a:hover {
   font-size: var(--text-xs);
   opacity: 1 !important;
   visibility: visible !important;
-  justify-content: flex-start; /* FIXED: Left alignment */
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .highlight-icon {
@@ -1157,8 +1214,9 @@ a:hover {
   background: rgb(var(--color-surface-2));
   border-radius: var(--border-radius-lg);
   border: 1px solid rgb(var(--color-border) / 0.1);
-  justify-items: center; /* FIXED: Center skill items */
-  text-align: center; /* FIXED: Center skill text */
+  /* FIXED: Center skill items */
+  justify-items: center;
+  text-align: center;
 }
 
 .skill-item {
@@ -1173,7 +1231,8 @@ a:hover {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
-  text-align: center; /* FIXED: Center alignment */
+  /* FIXED: Center alignment */
+  text-align: center;
 }
 
 .skill-item:hover {
@@ -1189,18 +1248,20 @@ a:hover {
 .skill-item span {
   font-size: var(--text-2xs);
   font-weight: 500;
+  /* FIXED: Center alignment */
   text-align: center;
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
 }
 
-/* FIXED: Expertise Grid - Better Card Alignment */
+/* FIXED: Expertise Grid - Better card alignment with left text */
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: var(--space-xl);
-  justify-items: stretch; /* FIXED: Even card distribution */
+  /* FIXED: Even card distribution */
+  justify-items: stretch;
 }
 
 .expertise-card {
@@ -1215,7 +1276,8 @@ a:hover {
   visibility: visible !important;
   transform: none !important;
   animation: none !important;
-  text-align: left; /* FIXED: Left alignment for card content */
+  /* FIXED: Left alignment for card content */
+  text-align: left;
   display: flex;
   flex-direction: column;
 }
@@ -1246,7 +1308,8 @@ a:hover {
   align-items: center;
   gap: var(--space-md);
   margin-bottom: var(--space-md);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .expertise-icon {
@@ -1266,7 +1329,8 @@ a:hover {
   font-weight: 600;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   margin: 0; /* FIXED: Remove default margin */
 }
 
@@ -1277,7 +1341,8 @@ a:hover {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   flex-grow: 1; /* FIXED: Allow description to expand */
 }
 
@@ -1285,7 +1350,8 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
   margin-top: auto; /* FIXED: Push to bottom of card */
 }
 
@@ -1300,10 +1366,11 @@ a:hover {
   visibility: visible !important;
 }
 
-/* FIXED: Timeline - Enhanced Alignment */
+/* FIXED: Timeline - Enhanced left alignment */
 .journey-timeline {
   position: relative;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .timeline-container {
@@ -1332,7 +1399,8 @@ a:hover {
   visibility: visible !important;
   transform: none !important;
   transition: none !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .timeline-marker {
@@ -1369,7 +1437,8 @@ a:hover {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   display: flex;
   flex-direction: column;
 }
@@ -1379,7 +1448,8 @@ a:hover {
   flex-direction: column;
   gap: 0.25rem;
   margin-bottom: var(--space-sm);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .timeline-role {
@@ -1388,7 +1458,8 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   margin: 0; /* FIXED: Remove default margin */
 }
 
@@ -1398,7 +1469,8 @@ a:hover {
   font-weight: 500;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .timeline-date {
@@ -1407,7 +1479,8 @@ a:hover {
   font-weight: 500;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .timeline-description {
@@ -1417,7 +1490,8 @@ a:hover {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   flex-grow: 1; /* FIXED: Allow description to expand */
 }
 
@@ -1425,7 +1499,8 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
   margin-top: auto; /* FIXED: Push to bottom */
 }
 
@@ -1443,10 +1518,11 @@ a:hover {
   visibility: visible !important;
 }
 
-/* FIXED: Projects - Enhanced Card Alignment */
+/* FIXED: Projects - Enhanced card alignment with left text */
 .projects-filter {
   display: flex;
-  justify-content: center; /* FIXED: Center alignment for filters */
+  /* FIXED: Center alignment for filters only */
+  justify-content: center;
   gap: var(--space-sm);
   margin-bottom: var(--space-xl);
   flex-wrap: wrap;
@@ -1457,7 +1533,8 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: var(--space-xl);
   margin-bottom: var(--space-2xl);
-  justify-items: stretch; /* FIXED: Even card distribution */
+  /* FIXED: Even card distribution */
+  justify-items: stretch;
 }
 
 .project-card {
@@ -1473,7 +1550,8 @@ a:hover {
   display: block !important;
   display: flex;
   flex-direction: column; /* FIXED: Flex layout for better content distribution */
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .project-card:hover {
@@ -1509,7 +1587,8 @@ a:hover {
   opacity: 0;
   visibility: hidden;
   transition: var(--transition-slow);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .project-card:hover .project-overlay {
@@ -1520,7 +1599,8 @@ a:hover {
 .overlay-content {
   color: white;
   opacity: 1 !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .overlay-title {
@@ -1547,7 +1627,8 @@ a:hover {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: var(--space-sm);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .project-title {
@@ -1556,7 +1637,8 @@ a:hover {
   line-height: 1.3;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   margin: 0; /* FIXED: Remove default margin */
   flex: 1; /* FIXED: Take available space */
 }
@@ -1567,7 +1649,8 @@ a:hover {
   font-weight: 500;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: right; /* FIXED: Right align date */
+  /* FIXED: Right align date, left align everything else */
+  text-align: right;
   white-space: nowrap; /* FIXED: Prevent wrapping */
 }
 
@@ -1578,7 +1661,8 @@ a:hover {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   flex-grow: 1; /* FIXED: Allow description to expand */
 }
 
@@ -1587,7 +1671,8 @@ a:hover {
   flex-wrap: wrap;
   gap: var(--space-sm);
   margin-bottom: var(--space-md);
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
 .metric {
@@ -1604,16 +1689,18 @@ a:hover {
   display: flex;
   gap: var(--space-sm);
   margin-top: auto; /* FIXED: Push to bottom */
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
-/* FIXED: Insights Grid - Enhanced Card Alignment */
+/* FIXED: Insights Grid - Enhanced card alignment with left text */
 .insights-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: var(--space-xl);
   margin-bottom: var(--space-2xl);
-  justify-items: stretch; /* FIXED: Even card distribution */
+  /* FIXED: Even card distribution */
+  justify-items: stretch;
 }
 
 .insight-card {
@@ -1628,7 +1715,8 @@ a:hover {
   animation: none !important;
   display: flex;
   flex-direction: column;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .insight-card:hover {
@@ -1684,7 +1772,8 @@ a:hover {
   color: rgb(var(--color-text-muted));
   opacity: 1 !important;
   visibility: visible !important;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
 .insight-title {
@@ -1695,7 +1784,8 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   margin: 0; /* FIXED: Remove default margin */
 }
 
@@ -1706,7 +1796,8 @@ a:hover {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   flex-grow: 1; /* FIXED: Allow excerpt to expand */
 }
 
@@ -1715,7 +1806,8 @@ a:hover {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: var(--space-md);
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
 .tag {
@@ -1743,8 +1835,9 @@ a:hover {
   text-decoration: none;
   min-height: 40px;
   margin-top: auto; /* FIXED: Push to bottom */
-  justify-content: flex-start; /* FIXED: Left alignment */
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .insight-link:hover {
@@ -1757,19 +1850,21 @@ a:hover {
   font-size: var(--text-sm);
 }
 
-/* FIXED: Services Grid - Enhanced Card Alignment */
+/* FIXED: Services Grid - Cards with center titles but left descriptions */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: var(--space-xl);
-  justify-items: stretch; /* FIXED: Even card distribution */
+  /* FIXED: Even card distribution */
+  justify-items: stretch;
 }
 
 .service-card {
   background: rgb(var(--color-surface));
   border-radius: var(--border-radius-lg);
   padding: var(--space-xl);
-  text-align: center; /* Keep center alignment for services */
+  /* FIXED: Center alignment for service cards only */
+  text-align: center;
   border: 1px solid rgb(var(--color-border) / 0.1);
   transition: var(--transition-normal);
   position: relative;
@@ -1831,7 +1926,8 @@ a:hover {
   margin-bottom: var(--space-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment for service titles */
+  text-align: center;
   margin: 0; /* FIXED: Remove default margin */
 }
 
@@ -1842,14 +1938,16 @@ a:hover {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment for descriptions */
+  text-align: center;
   flex-grow: 1; /* FIXED: Allow description to expand */
 }
 
 .service-features {
   list-style: none;
   margin-bottom: var(--space-lg);
-  text-align: left; /* FIXED: Left align feature list */
+  /* FIXED: Left align feature list for readability */
+  text-align: left;
   padding-left: 0;
 }
 
@@ -1862,7 +1960,8 @@ a:hover {
   font-size: var(--text-xs);
   opacity: 1 !important;
   visibility: visible !important;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
 .service-features i {
@@ -1885,9 +1984,10 @@ a:hover {
   text-decoration: none;
   min-height: 40px;
   touch-action: manipulation;
-  justify-content: center; /* FIXED: Center alignment */
+  /* FIXED: Center alignment */
+  justify-content: center;
   margin-top: auto; /* FIXED: Push to bottom */
-  text-align: center; /* FIXED: Center text */
+  text-align: center;
 }
 
 .service-link:hover {
@@ -1895,17 +1995,19 @@ a:hover {
   transform: translateX(2px);
 }
 
-/* FIXED: CTA Section - Enhanced Centering */
+/* FIXED: CTA Section - Perfect center alignment */
 .cta-section {
   background: rgb(var(--color-surface-2));
   padding: var(--space-4xl) 0;
-  text-align: center; /* Keep center alignment for CTA */
+  /* FIXED: Center alignment for CTA */
+  text-align: center;
 }
 
 .cta-content {
   max-width: 36rem;
   margin: 0 auto;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment */
+  text-align: center;
 }
 
 .cta-title {
@@ -1915,7 +2017,8 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment */
+  text-align: center;
   margin: 0 auto; /* FIXED: Center the title */
   max-width: 100%; /* FIXED: Prevent overflow */
 }
@@ -1927,18 +2030,20 @@ a:hover {
   margin-bottom: var(--space-xl);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment */
+  text-align: center;
   max-width: 100%; /* FIXED: Prevent overflow */
 }
 
 .cta-buttons {
   display: flex;
-  justify-content: center; /* FIXED: Center alignment */
+  /* FIXED: Center alignment */
+  justify-content: center;
   gap: var(--space-lg);
   flex-wrap: wrap;
 }
 
-/* FIXED: Contact Section - Enhanced Alignment */
+/* FIXED: Contact Section - Perfect left alignment */
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1952,7 +2057,8 @@ a:hover {
   border: 1px solid rgb(var(--color-border) / 0.1);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   display: flex;
   flex-direction: column;
 }
@@ -1964,7 +2070,8 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   margin: 0 0 var(--space-lg) 0; /* FIXED: Consistent margins */
 }
 
@@ -1981,7 +2088,8 @@ a:hover {
   gap: var(--space-md);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .contact-icon {
@@ -2009,7 +2117,8 @@ a:hover {
   letter-spacing: 0.05em;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .contact-link,
@@ -2019,22 +2128,24 @@ a:hover {
   color: rgb(var(--color-text));
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .contact-link:hover {
   color: rgb(var(--color-primary-500));
 }
 
-/* FIXED: Contact Section - Enhanced Alignment (continued) */
+/* FIXED: Contact social - Left alignment */
 .contact-social {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  justify-content: flex-start;
 }
 
-/* FIXED: Contact Form - Better Alignment */
+/* FIXED: Contact Form - Perfect left alignment */
 .contact-form {
   background: rgb(var(--color-surface));
   border-radius: var(--border-radius-lg);
@@ -2042,7 +2153,8 @@ a:hover {
   border: 1px solid rgb(var(--color-border) / 0.1);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
   display: flex;
   flex-direction: column;
 }
@@ -2072,7 +2184,8 @@ textarea {
   visibility: visible !important;
   min-height: 44px;
   touch-action: manipulation;
-  text-align: left; /* FIXED: Left alignment for form inputs */
+  /* FIXED: Left alignment for form inputs */
+  text-align: left;
 }
 
 input:focus,
@@ -2087,7 +2200,8 @@ textarea:focus {
 input::placeholder,
 textarea::placeholder {
   color: rgb(var(--color-text-muted) / 0.5);
-  text-align: left; /* FIXED: Left alignment for placeholders */
+  /* FIXED: Left alignment for placeholders */
+  text-align: left;
 }
 
 select {
@@ -2098,13 +2212,15 @@ select {
   background-size: 1em 1em;
   padding-right: 2rem;
   appearance: none;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 textarea {
   resize: vertical;
   min-height: 6rem;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
 .form-error {
@@ -2115,17 +2231,19 @@ textarea {
   min-height: 1rem;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
-/* FIXED: Footer - Enhanced Mobile Alignment */
+/* FIXED: Footer - Perfect mobile alignment and centering */
 .footer {
   background: rgb(var(--color-background));
   border-top: 1px solid rgb(var(--color-border) / 0.2);
   padding: var(--space-3xl) 0 var(--space-lg);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment for content */
+  /* FIXED: Left alignment for content */
+  text-align: left;
 }
 
 .footer-content {
@@ -2133,7 +2251,8 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: var(--space-xl);
   margin-bottom: var(--space-xl);
-  justify-content: center; /* FIXED: Center the grid */
+  /* FIXED: Center the grid on desktop */
+  justify-content: center;
   align-items: start;
 }
 
@@ -2141,7 +2260,8 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
 }
 
 .footer-logo {
@@ -2149,7 +2269,8 @@ textarea {
   font-weight: 700;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
   margin: 0; /* FIXED: Remove default margin */
 }
 
@@ -2159,21 +2280,24 @@ textarea {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
 }
 
 .footer-social {
   display: flex;
   gap: var(--space-sm);
   margin-top: auto;
-  justify-content: flex-start; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  justify-content: flex-start;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
 }
 
 .footer-heading {
@@ -2185,7 +2309,8 @@ textarea {
   letter-spacing: 0.05em;
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
 }
 
 .footer-list {
@@ -2207,7 +2332,8 @@ textarea {
   min-height: 32px;
   display: flex;
   align-items: center;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
   padding: 0.25rem 0; /* FIXED: Consistent padding */
 }
 
@@ -2223,7 +2349,8 @@ textarea {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
 }
 
 .newsletter-form {
@@ -2232,7 +2359,8 @@ textarea {
   gap: var(--space-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment on desktop */
+  text-align: left;
 }
 
 .newsletter-form input {
@@ -2242,7 +2370,8 @@ textarea {
 .footer-bottom {
   border-top: 1px solid rgb(var(--color-border) / 0.2);
   padding-top: var(--space-md);
-  text-align: center; /* Keep center alignment for legal text */
+  /* FIXED: Center alignment for legal text */
+  text-align: center;
 }
 
 .footer-legal {
@@ -2250,7 +2379,8 @@ textarea {
   font-size: var(--text-sm);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment */
+  text-align: center;
   margin: 0;
 }
 
@@ -2259,7 +2389,8 @@ textarea {
   font-size: var(--text-2xs);
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: center; /* Keep center alignment */
+  /* FIXED: Center alignment */
+  text-align: center;
 }
 
 .footer-credit a {
@@ -2268,18 +2399,20 @@ textarea {
   visibility: visible !important;
 }
 
-/* FIXED: Hero Mobile Responsiveness - Enhanced Alignment */
+/* FIXED: Hero Mobile Responsiveness - Perfect alignment */
 @media (max-width: 768px) {
   .hero {
     padding: var(--space-3xl) 0 var(--space-2xl);
     min-height: calc(100vh - 3.5rem);
-    text-align: center; /* FIXED: Center alignment for mobile hero */
+    /* FIXED: Center alignment for mobile hero content */
+    text-align: center;
   }
   
   .hero-inner {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
     padding-top: calc(3.5rem + var(--space-md));
     padding-left: var(--space-md);
     padding-right: var(--space-md);
@@ -2296,25 +2429,29 @@ textarea {
     order: 1;
     width: 100%;
     max-width: none;
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .hero-title {
     gap: var(--space-md);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
     justify-content: center; /* FIXED: Center title lines */
   }
   
   .title-line {
     font-size: var(--text-3xl);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .hero-subtitle {
     font-size: var(--text-sm);
     max-width: 100%;
     padding: 0 var(--space-sm);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
     margin: 0 auto; /* FIXED: Center the text */
   }
   
@@ -2322,12 +2459,14 @@ textarea {
     justify-content: center;
     gap: var(--space-md);
     padding: 0 var(--space-sm);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .stat-item {
     align-items: center; /* FIXED: Center stats on mobile */
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .hero-ctas {
@@ -2336,7 +2475,8 @@ textarea {
     gap: var(--space-md);
     width: 100%;
     padding: 0 var(--space-sm);
-    justify-content: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    justify-content: center;
   }
   
   .btn {
@@ -2346,7 +2486,8 @@ textarea {
     min-height: 48px !important;
     padding: 12px 20px !important;
     font-size: 16px !important;
-    text-align: center; /* FIXED: Center button text */
+    /* FIXED: Center button text */
+    text-align: center;
   }
   
   .hero-scroll {
@@ -2360,7 +2501,8 @@ textarea {
   .profile-card {
     max-width: 280px;
     padding: var(--space-md);
-    text-align: center; /* Keep center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .profile-image-wrapper {
@@ -2370,26 +2512,36 @@ textarea {
   
   .profile-name {
     font-size: var(--text-base);
-    text-align: center; /* Keep center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
-  /* FIXED: Mobile section alignment */
+  /* FIXED: Mobile section alignment - Left for content, center for specific elements */
   .about-grid {
     grid-template-columns: 1fr;
-    text-align: left; /* FIXED: Left alignment for content */
+    /* FIXED: Left alignment for content */
+    text-align: left;
     gap: var(--space-xl);
   }
   
   .about-content,
   .about-narrative {
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
+  }
+  
+  .about-lead,
+  .about-body {
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .skills-mosaic {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
-    justify-items: center; /* FIXED: Center items */
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center items */
+    justify-items: center;
+    text-align: center;
   }
   
   .timeline-line {
@@ -2399,7 +2551,8 @@ textarea {
   .timeline-content {
     margin-left: 2.5rem;
     margin-right: 0;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .timeline-marker {
@@ -2409,7 +2562,8 @@ textarea {
   .timeline-item:nth-child(even) .timeline-content {
     margin-left: 2.5rem;
     margin-right: 0;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .contact-wrapper {
@@ -2418,31 +2572,49 @@ textarea {
   }
   
   .contact-info {
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .contact-form {
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
+  /* FIXED: Footer mobile - Perfect centering */
   .footer-content {
     grid-template-columns: 1fr;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment for content structure */
+    text-align: left;
     gap: var(--space-lg);
-    justify-content: center; /* FIXED: Center the single column */
+    /* FIXED: Center the single column */
+    justify-content: center;
   }
   
   .footer-brand {
-    text-align: center; /* FIXED: Center brand on mobile */
+    /* FIXED: Center brand on mobile */
+    text-align: center;
     align-items: center;
   }
   
+  .footer-logo {
+    /* FIXED: Center logo on mobile */
+    text-align: center;
+  }
+  
+  .footer-description {
+    /* FIXED: Center description on mobile */
+    text-align: center;
+  }
+  
   .footer-social {
-    justify-content: center; /* FIXED: Center social icons */
+    /* FIXED: Center social icons */
+    justify-content: center;
   }
   
   .footer-links {
-    text-align: center; /* FIXED: Center links on mobile */
+    /* FIXED: Center links on mobile */
+    text-align: center;
   }
   
   .footer-list {
@@ -2450,36 +2622,42 @@ textarea {
   }
   
   .footer-link {
-    text-align: center; /* FIXED: Center link text */
+    /* FIXED: Center link text */
+    text-align: center;
     justify-content: center;
   }
   
   .newsletter-description {
-    text-align: center; /* FIXED: Center newsletter text */
+    /* FIXED: Center newsletter text */
+    text-align: center;
   }
   
   .newsletter-form {
     align-items: center;
     max-width: 20rem;
     margin: 0 auto;
-    text-align: center; /* FIXED: Center newsletter form */
+    /* FIXED: Center newsletter form */
+    text-align: center;
   }
   
   .section-header {
     flex-direction: column;
     align-items: flex-start; /* FIXED: Left alignment */
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
     gap: var(--space-md);
   }
   
   .section-meta {
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .cta-buttons {
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    justify-content: center;
   }
   
   .projects-grid,
@@ -2488,11 +2666,13 @@ textarea {
   .expertise-grid {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
-    justify-items: stretch; /* FIXED: Even distribution */
+    /* FIXED: Even distribution */
+    justify-items: stretch;
   }
   
   .projects-filter {
-    justify-content: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    justify-content: center;
     overflow-x: auto;
     padding-bottom: var(--space-xs);
   }
@@ -2505,7 +2685,8 @@ textarea {
     padding: 8px 16px !important;
     font-size: 16px !important;
     margin-right: var(--space-sm);
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center text */
+    text-align: center;
   }
   
   .timeline-container {
@@ -2523,13 +2704,15 @@ textarea {
   .timeline-content {
     margin-left: 2.5rem;
     margin-right: 0;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .timeline-item:nth-child(even) .timeline-content {
     margin-left: 2.5rem;
     margin-right: 0;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .project-card, 
@@ -2538,7 +2721,8 @@ textarea {
   .insight-card {
     margin-bottom: 1.5rem;
     border-radius: 12px;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment for content */
+    text-align: left;
   }
   
   .hero-subtitle, 
@@ -2547,53 +2731,61 @@ textarea {
   .timeline-description {
     font-size: clamp(14px, 3.5vw, 16px);
     line-height: 1.6;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   input, select, textarea {
     font-size: 16px !important;
     padding: 12px 16px !important;
     min-height: 48px !important;
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .social-link {
     width: 48px !important;
     height: 48px !important;
     font-size: 18px !important;
-    text-align: center; /* FIXED: Center icons */
+    /* FIXED: Center icons */
+    text-align: center;
   }
   
   .service-link {
     min-height: 44px !important;
     padding: 8px 12px !important;
     font-size: 16px !important;
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center text */
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
     padding: var(--space-2xl) 0 var(--space-xl);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .hero-inner {
     padding-top: calc(3.5rem + var(--space-sm));
     gap: var(--space-lg);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .title-line {
     font-size: var(--text-2xl);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .hero-stats {
     flex-direction: column;
     align-items: center;
     gap: var(--space-sm);
-    text-align: center; /* FIXED: Center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .profile-image-wrapper {
@@ -2604,7 +2796,8 @@ textarea {
   .profile-card {
     max-width: 260px;
     padding: var(--space-sm);
-    text-align: center; /* Keep center alignment */
+    /* FIXED: Center alignment */
+    text-align: center;
   }
   
   .container {
@@ -2616,39 +2809,50 @@ textarea {
     width: 100%;
     justify-content: center;
     min-height: 48px !important;
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center text */
+    text-align: center;
   }
   
   .btn-lg {
     padding: var(--space-md) var(--space-lg);
     min-height: 52px !important;
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center text */
+    text-align: center;
   }
   
   .filter-btn {
     min-width: 70px;
     padding: 10px 12px !important;
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center text */
+    text-align: center;
   }
   
   .nav-list-mobile .nav-link {
     padding: 20px 24px !important;
     font-size: 20px !important;
-    text-align: center; /* FIXED: Center text */
+    /* FIXED: Center text */
+    text-align: center;
   }
   
   /* FIXED: Extra small screen section alignment */
   .section-header {
     align-items: flex-start; /* FIXED: Left alignment */
-    text-align: left; /* FIXED: Left alignment */
+    /* FIXED: Left alignment */
+    text-align: left;
   }
   
   .expertise-card,
   .project-card,
-  .insight-card,
-  .service-card {
-    text-align: left; /* FIXED: Left alignment */
+  .insight-card {
+    /* FIXED: Left alignment */
+    text-align: left;
     padding: var(--space-lg); /* FIXED: Consistent padding */
+  }
+  
+  .service-card {
+    /* FIXED: Center alignment for service cards */
+    text-align: center;
+    padding: var(--space-lg);
   }
   
   .footer-content {
@@ -2657,7 +2861,8 @@ textarea {
   
   .footer-brand,
   .footer-links {
-    text-align: center; /* FIXED: Ensure centering */
+    /* FIXED: Ensure centering */
+    text-align: center;
   }
 }
 
@@ -2725,6 +2930,7 @@ textarea {
 }
 
 .preloader-content {
+  /* FIXED: Center alignment */
   text-align: center;
 }
 
@@ -2824,7 +3030,7 @@ textarea {
   outline-offset: 2px;
 }
 
-/* FIXED: Form error styling */
+/* FIXED: Form error styling with left alignment */
 input.error,
 select.error,
 textarea.error {
@@ -2835,10 +3041,11 @@ textarea.error {
 .form-error.show {
   opacity: 1 !important;
   visibility: visible !important;
-  text-align: left; /* FIXED: Left alignment */
+  /* FIXED: Left alignment */
+  text-align: left;
 }
 
-/* FIXED: Social links styling */
+/* FIXED: Social links styling with center alignment */
 .social-link {
   display: flex;
   align-items: center;
@@ -2852,6 +3059,8 @@ textarea.error {
   text-decoration: none;
   opacity: 1 !important;
   visibility: visible !important;
+  /* FIXED: Center alignment */
+  text-align: center;
 }
 
 .social-link:hover,
