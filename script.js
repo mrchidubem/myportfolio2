@@ -41,8 +41,9 @@ class PortfolioApp {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
           this.updateHeaderHeight();
-          // FIXED: C. Reinitialize stats on mobile resize
-          if (window.innerWidth <= 768 && !this.statsInitialized) {
+          // FIXED: C. Reinitialize stats on mobile resize with flag reset
+          if (window.innerWidth <= 768) {
+            this.statsInitialized = false; // Reset for safe re-init
             this.initStatsAnimation();
           }
         }, 150);
@@ -478,8 +479,8 @@ class PortfolioApp {
       const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // FIXED: C. Proper timing for animation start - delayed for mobile
-            const delay = window.innerWidth <= 768 ? 500 : 300;
+            // FIXED: C. Proper timing for animation start - increased delay for mobile
+            const delay = window.innerWidth <= 768 ? 600 : 300;
             setTimeout(animateStats, delay);
             statsObserver.unobserve(entry.target);
           }
@@ -1125,7 +1126,7 @@ if (document.readyState === 'loading') {
 if ('link' in document.createElement('link')) {
   const preloadLinks = [
     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face',
-    'https://images.unsplash.com/photo-1576091161160399-112ba8d25d1f?w=400&h=250&fit=crop&auto=format',
+    'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop&auto=format',
     'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop&auto=format',
     'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=250&fit=crop&auto=format',
     'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e896?w=400&h=250&fit=crop&auto=format'
@@ -1196,3 +1197,16 @@ try {
 } catch (error) {
   console.error('Global PortfolioApp instance creation failed:', error);
 }
+
+// FIXED: G. Image error fallback handler for hosted environments
+document.addEventListener('DOMContentLoaded', () => {
+  const projectImages = document.querySelectorAll('.project-image img');
+  projectImages.forEach(img => {
+    img.addEventListener('error', () => {
+      const parent = img.parentElement;
+      parent.style.backgroundImage = 'none';
+      parent.style.backgroundColor = 'rgb(var(--color-surface-2))';
+      img.style.display = 'block'; // Show fallback img if needed
+    });
+  });
+});

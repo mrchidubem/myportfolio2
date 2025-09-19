@@ -434,8 +434,8 @@ a:hover {
   display: none;
 }
 
-/* FIXED: A. Corrected mobile menu toggle selector */
-.mobile-nav-controls .nav-toggle:checked ~ .nav-mobile {
+/* FIXED: A. Corrected mobile menu toggle selector with :has() for proper targeting */
+.header-inner:has(#nav-toggle:checked) .nav-mobile {
   right: 0;
   display: block;
 }
@@ -511,16 +511,16 @@ a:hover {
 }
 
 /* FIXED: A. Simplified and reliable burger animation */
-.mobile-nav-controls .nav-toggle:checked + .nav-burger .burger-line:nth-child(1) {
+.header-inner:has(#nav-toggle:checked) .nav-burger .burger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
 
-.mobile-nav-controls .nav-toggle:checked + .nav-burger .burger-line:nth-child(2) {
+.header-inner:has(#nav-toggle:checked) .nav-burger .burger-line:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.mobile-nav-controls .nav-toggle:checked + .nav-burger .burger-line:nth-child(3) {
+.header-inner:has(#nav-toggle:checked) .nav-burger .burger-line:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
@@ -623,7 +623,7 @@ a:hover {
   }
   
   /* FIXED: B. Mobile menu overall spacing - 16px between items */
-  .mobile-nav-controls .nav-toggle:checked ~ .nav-mobile .nav-list-mobile {
+  .header-inner:has(#nav-toggle:checked) .nav-mobile .nav-list-mobile {
     /* FIXED: B. Reduced padding and consistent 16px gaps */
     padding: var(--space-2xl) var(--space-lg);
     gap: var(--space-mobile-nav-gap); /* FIXED: B. 16px consistent spacing */
@@ -633,7 +633,7 @@ a:hover {
   }
   
   /* FIXED: B. Ensure theme toggle is visible and properly styled in mobile */
-  .mobile-nav-controls .nav-toggle:checked ~ .nav-mobile .nav-theme-item {
+  .header-inner:has(#nav-toggle:checked) .nav-mobile .nav-theme-item {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
@@ -641,7 +641,7 @@ a:hover {
     z-index: 1000 !important;
   }
   
-  .mobile-nav-controls .nav-toggle:checked ~ .nav-mobile .nav-theme-item .theme-btn {
+  .header-inner:has(#nav-toggle:checked) .nav-mobile .nav-theme-item .theme-btn {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
@@ -687,6 +687,54 @@ a:hover {
 }
 
 /* FIXED: F. Hero background - removed problematic inline style, using CSS only */
+/* Added fallback for project images */
+.project-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(var(--color-surface-2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.project-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-image img:not([style*="display: none"]) {
+  opacity: 1;
+}
+
+.project-image img[style*="display: block"] {
+  opacity: 1;
+  z-index: 2;
+}
+
+.project-image::after {
+  /* Fallback if both fail */
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: rgb(var(--color-primary-500));
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -1590,6 +1638,7 @@ a:hover {
   flex-direction: column; /* FIXED: D. Flex layout for better content distribution */
   /* FIXED: D. Consistent left alignment */
   text-align: left;
+  position: relative;
 }
 
 .project-card:hover {
@@ -1609,6 +1658,7 @@ a:hover {
   background-size: cover;
   background-position: center;
   transition: var(--transition-normal);
+  position: relative;
 }
 
 .project-card:hover .project-image {
@@ -2683,6 +2733,11 @@ textarea {
   
   .footer-list {
     align-items: center;
+  }
+  
+  .footer-list li {
+    margin: 0;
+    padding: 0; /* FIXED: E. Explicit for mobile centering */
   }
   
   .footer-link {
