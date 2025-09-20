@@ -104,16 +104,17 @@
   --color-border: 71 85 105;
 }
 
-/* Light Theme Base - Updated for slightly reduced brightness (softer off-white) */
+/* Light Theme Base - Further reduced brightness for softer, warmer tones */
+/* Light Theme Base - Further reduced brightness for softer, warmer tones */
 [data-theme="light"] {
-  --color-background: 250 248 246; /* Warmer, softer off-white for reduced brightness */
-  --color-surface: 245 243 239; /* Warmer light gray surface */
-  --color-surface-2: 236 234 229; /* Subtle warmer mid-gray for depth */
+  --color-background: 238 235 232; /* Even softer warm off-white, significantly reduced brightness */
+  --color-surface: 232 230 227; /* Softer warm light gray surface */
+  --color-surface-2: 224 222 219; /* Subtle warmer mid-gray for depth, lower luminance */
   --color-text: 17 24 39; /* Retained for contrast */
-  --color-text-muted: 107 114 128; /* Slightly warmer muted text */
-  --color-text-dim: 156 163 175; /* Balanced dim text */
-  --color-border: 229 231 235; /* Softer, warmer border */
-  --gradient-hero: linear-gradient(135deg, rgb(250 248 246) 0%, rgb(245 243 239) 50%, rgb(236 234 229) 100%); /* Soft light gradient for hero */
+  --color-text-muted: 94 100 112; /* Slightly warmer muted text with better balance */
+  --color-text-dim: 141 151 163; /* Balanced dim text */
+  --color-border: 215 213 210; /* Softer, warmer border with reduced contrast */
+  --gradient-hero: linear-gradient(135deg, rgb(238 235 232) 0%, rgb(232 230 227) 50%, rgb(224 222 219) 100%); /* Soft light gradient for hero */
 }
 
 /* Reset & Base Styles */
