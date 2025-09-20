@@ -2554,7 +2554,7 @@ textarea {
     gap: var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    padding-top: calc(3.5rem + var(--space-xs)); /* UPDATED: Reduced to var(--space-xs) for very tiny margin between nav and profile card */
+    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Reduced for very tiny margin between nav and profile card */
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -2656,16 +2656,19 @@ textarea {
     background: rgb(var(--color-surface));
     padding: var(--space-md);
     text-align: center;
-    width: calc(100% - 0.125rem); /* UPDATED: ~99% width with minimal side margins for almost full stretch */
-    max-width: none; /* UPDATED: Remove max-width constraint for full stretch */
-    margin: 0 auto; /* UPDATED: Center with auto margins */
-    border-radius: 0.25rem; /* UPDATED: Tiny round edge */
-    box-shadow: var(--shadow-sm); /* UPDATED: Subtle shadow */
+    width: 100%; /* FIXED: Full width for stretch */
+    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    max-width: none; /* FIXED: Remove max-width constraint for full stretch */
+    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
+    border-radius: 0.25rem; /* FIXED: Tiny round edge */
+    box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
   
   .profile-image-wrapper {
     width: 160px;
     height: 160px;
+    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for tighter balance */
     border-radius: 50%;
   }
   
@@ -3019,7 +3022,7 @@ textarea {
   }
   
   .hero-inner {
-    padding-top: calc(3.5rem + var(--space-xs)); /* UPDATED: Consistent tiny margin */
+    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Consistent tiny margin */
     gap: var(--space-lg);
     /* FIXED: D. Center alignment */
     text-align: center;
@@ -3049,11 +3052,13 @@ textarea {
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
-    width: calc(100% - 0.125rem); /* UPDATED: ~99% for extra-small screens too */
-    max-width: none; /* UPDATED: Full stretch */
-    margin: 0 auto; /* UPDATED: Centered */
-    border-radius: 0.25rem; /* UPDATED: Tiny radius */
-    box-shadow: var(--shadow-sm); /* UPDATED: Subtle shadow */
+    width: 100%; /* FIXED: Full width for stretch */
+    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    max-width: none; /* FIXED: Full stretch */
+    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
+    border-radius: 0.25rem; /* FIXED: Tiny radius */
+    box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
   
   .container {
