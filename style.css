@@ -76,6 +76,7 @@
   --container: 80rem;
   --container-gutter: 1.5rem;
   --border-radius: 0.5rem;
+  --border-radius-sm: 0.25rem; /* NEW: Subtle radius for mobile elements like profile card */
   --border-radius-lg: 1rem;
   
   /* Shadows */
@@ -2554,7 +2555,7 @@ textarea {
     gap: var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Reduced for very tiny margin between nav and profile card */
+    padding-top: calc(var(--header-height) + 0.125rem); /* UPDATED: Minimal breathing room below nav */
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -2656,12 +2657,12 @@ textarea {
     background: rgb(var(--color-surface));
     padding: var(--space-md);
     text-align: center;
-    width: 100%; /* FIXED: Full width for stretch */
-    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    max-width: none; /* FIXED: Remove max-width constraint for full stretch */
+    width: 100vw; /* UPDATED: True viewport width for edge flush */
+    margin-left: 0; /* UPDATED: Explicit zero margins for no inset */
+    margin-right: 0; /* UPDATED: Explicit zero margins for no inset */
+    max-width: none; /* UPDATED: Remove max-width constraint for full stretch */
     margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
-    border-radius: 0.25rem; /* FIXED: Tiny round edge */
+    border-radius: var(--border-radius-sm); /* UPDATED: Use subtle radius variable */
     box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
   
@@ -3022,7 +3023,7 @@ textarea {
   }
   
   .hero-inner {
-    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Consistent tiny margin */
+    padding-top: calc(var(--header-height) + 0.125rem); /* UPDATED: Minimal breathing room below nav (consistent with 768px) */
     gap: var(--space-lg);
     /* FIXED: D. Center alignment */
     text-align: center;
@@ -3052,12 +3053,12 @@ textarea {
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
-    width: 100%; /* FIXED: Full width for stretch */
-    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    max-width: none; /* FIXED: Full stretch */
+    width: 100vw; /* UPDATED: True viewport width for edge flush (consistent with 768px) */
+    margin-left: 0; /* UPDATED: Explicit zero margins for no inset (consistent with 768px) */
+    margin-right: 0; /* UPDATED: Explicit zero margins for no inset (consistent with 768px) */
+    max-width: none; /* UPDATED: Full stretch (consistent with 768px) */
     margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
-    border-radius: 0.25rem; /* FIXED: Tiny radius */
+    border-radius: var(--border-radius-sm); /* UPDATED: Use subtle radius variable (consistent with 768px) */
     box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
   
