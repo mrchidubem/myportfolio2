@@ -2657,6 +2657,9 @@ textarea {
     padding: var(--space-md); /* UPDATED: Adjusted for proportionality */
     /* FIXED: D. Center alignment */
     text-align: center;
+    /* Mobile-specific: Stretch card to near full width with small side margins */
+    width: calc(100% - 2 * var(--space-sm));
+    margin: 0 var(--space-sm);
   }
   
   .profile-image-wrapper {
@@ -3045,6 +3048,8 @@ textarea {
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
+    /* Mobile-specific: Stretch card to near full width with small side margins (inherits from 768px query, but adjusts max-width if needed) */
+    max-width: none;
   }
   
   .container {
