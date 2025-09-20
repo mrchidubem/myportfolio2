@@ -779,8 +779,8 @@ a:hover {
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: var(--space-3xl);
+  grid-template-columns: 1fr 380px; /* UPDATED: Increased from 320px for better balance */
+  gap: var(--space-2xl); /* UPDATED: Slightly increased gap from 1.5rem for breathing room */
   align-items: start;
   max-width: var(--container);
   margin: 0 auto;
@@ -962,12 +962,12 @@ a:hover {
 .profile-card {
   background: rgb(var(--color-surface));
   border-radius: var(--border-radius-lg);
-  padding: var(--space-lg);
+  padding: var(--space-xl); /* UPDATED: Increased from 1rem for more balance */
   border: 1px solid rgb(var(--color-border) / 0.2);
   box-shadow: var(--shadow-md);
   transition: var(--transition-normal);
   width: 100%;
-  max-width: 320px;
+  max-width: 380px; /* UPDATED: Increased from 320px for prominence */
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
@@ -980,8 +980,8 @@ a:hover {
 
 .profile-image-wrapper {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 200px; /* UPDATED: Increased from 160px for bigger, more balanced image */
+  height: 200px; /* UPDATED: Matching square for profile */
   margin: 0 auto var(--space-md);
   border-radius: 50%;
   overflow: hidden;
@@ -2653,15 +2653,15 @@ textarea {
   }
   
   .profile-card {
-    max-width: 280px;
-    padding: var(--space-md);
+    max-width: 320px; /* UPDATED: Increased from 280px for better mobile balance */
+    padding: var(--space-md); /* UPDATED: Adjusted for proportionality */
     /* FIXED: D. Center alignment */
     text-align: center;
   }
   
   .profile-image-wrapper {
-    width: 120px;
-    height: 120px;
+    width: 160px; /* UPDATED: Increased from 120px for bigger, balanced image */
+    height: 160px; /* UPDATED: Matching square */
   }
   
   /* Hero Meta Tag - Mobile Specific: Centered under profile photo */
@@ -3036,12 +3036,12 @@ textarea {
   }
   
   .profile-image-wrapper {
-    width: 100px;
-    height: 100px;
+    width: 140px; /* UPDATED: Increased from 100px for small-screen balance */
+    height: 140px; /* UPDATED: Matching square */
   }
   
   .profile-card {
-    max-width: 260px;
+    max-width: 300px; /* UPDATED: Slightly increased from 260px for proportionality */
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
