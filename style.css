@@ -2658,6 +2658,17 @@ textarea {
     text-align: center;
   }
   
+  /* FIXED: Mobile Centering - About highlights center on mobile only */
+  .about-highlights {
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .highlight-item {
+    justify-content: center;
+    text-align: center;
+  }
+  
   .skills-mosaic {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-sm);
@@ -2738,6 +2749,11 @@ textarea {
     /* FIXED: E. Center links on mobile with explicit override */
     text-align: center !important;
     justify-content: center !important;
+  }
+  
+  /* FIXED: Mobile Centering - Footer headings and items center on mobile only */
+  .footer-heading {
+    text-align: center !important;
   }
   
   .footer-list {
