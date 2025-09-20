@@ -2653,18 +2653,19 @@ textarea {
   }
   
   .profile-card {
-    max-width: 320px; /* UPDATED: Increased from 280px for better mobile balance */
-    padding: var(--space-md); /* UPDATED: Adjusted for proportionality */
-    /* FIXED: D. Center alignment */
+    background: rgb(var(--color-surface));
+    padding: var(--space-md);
     text-align: center;
-    /* Mobile-specific: Stretch card to near full width with small side margins */
-    width: calc(100% - 2 * var(--space-sm));
-    margin: 0 var(--space-sm);
+    max-width: 320px;
+    width: calc(100% - 1rem);
+    margin: 0 0.5rem;
+    border-radius: 0;
   }
   
   .profile-image-wrapper {
-    width: 160px; /* UPDATED: Increased from 120px for bigger, balanced image */
-    height: 160px; /* UPDATED: Matching square */
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
   }
   
   /* Hero Meta Tag - Mobile Specific: Centered under profile photo */
