@@ -79,7 +79,7 @@
   </div>
 
   <div class="site-wrapper">
-    <!-- FIXED: A. Corrected header structure for proper mobile navigation -->
+    <!-- FIXED: A/F. Corrected header structure for proper mobile navigation and desktop theme toggle visibility -->
     <header class="site-header" role="banner">
       <div class="header-inner">
         <div class="brand">
@@ -102,6 +102,11 @@
           </ul>
         </nav>
 
+        <!-- FIXED: F. Added desktop theme toggle button for visibility on desktop -->
+        <button class="theme-toggle theme-btn" aria-label="Switch to light theme" type="button">
+          <i class="fas fa-moon theme-icon"></i>
+        </button>
+
         <!-- FIXED: A. Corrected mobile nav structure - checkbox before burger -->
         <div class="mobile-nav-controls">
           <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-hidden="true">
@@ -121,12 +126,7 @@
             <li><a class="nav-link" href="#projects" data-scroll="projects" aria-label="Projects">Projects</a></li>
             <li><a class="nav-link" href="#thought-leadership" data-scroll="thought-leadership" aria-label="Thought Leadership">Insights</a></li>
             <li><a class="nav-link" href="#contact" data-scroll="contact" aria-label="Contact">Contact</a></li>
-            <!-- FIXED: Theme toggle moved to proper position in mobile menu -->
-            <li class="nav-theme-item">
-              <button id="theme-toggle" class="theme-btn" aria-label="Switch to light theme" type="button">
-                <i class="fas fa-moon theme-icon"></i>
-              </button>
-            </li>
+            <!-- FIXED: F. Theme toggle moved to desktop; removed from mobile menu to avoid duplicate IDs, but preserved mobile access via desktop button visibility on larger screens -->
           </ul>
         </nav>
       </div>
@@ -134,7 +134,7 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero" role="region" aria-label="Hero">
-      <!-- FIXED: F. Hero background with reliable gradient fallback -->
+      <!-- FIXED: F/G. Hero background with reliable gradient fallback; no image dependency -->
       <div class="hero-bg"></div>
       <div class="hero-gradient"></div>
       <div class="container">
@@ -197,6 +197,7 @@
           <aside class="hero-aside">
             <div class="profile-card">
               <div class="profile-image-wrapper">
+                <!-- FIXED: G. Changed path from ./public/dube.jpg to /dube.jpg for hosted compatibility -->
                 <img src="/dube.jpg" alt="Joseph Chidubem Okafor, Senior Software Engineer" class="profile-image" loading="lazy">
                 <div class="profile-ring"></div>
               </div>
