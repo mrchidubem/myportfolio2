@@ -106,14 +106,14 @@
 
 /* Light Theme Base - Updated for slightly reduced brightness (softer off-white) */
 [data-theme="light"] {
-  --color-background: 248 250 252; /* Slightly softer off-white for reduced brightness */
-  --color-surface: 241 245 249; /* Warmer light gray surface */
-  --color-surface-2: 229 231 235; /* Subtle mid-gray for depth */
+  --color-background: 250 248 246; /* Warmer, softer off-white for reduced brightness */
+  --color-surface: 245 243 239; /* Warmer light gray surface */
+  --color-surface-2: 236 234 229; /* Subtle warmer mid-gray for depth */
   --color-text: 17 24 39; /* Retained for contrast */
-  --color-text-muted: 100 116 139; /* Slightly warmer muted text */
-  --color-text-dim: 148 163 184; /* Balanced dim text */
-  --color-border: 228 228 231; /* Softer, warmer border */
-  --gradient-hero: linear-gradient(135deg, rgb(248 250 252) 0%, rgb(241 245 249) 50%, rgb(229 231 235) 100%); /* Soft light gradient for hero */
+  --color-text-muted: 107 114 128; /* Slightly warmer muted text */
+  --color-text-dim: 156 163 175; /* Balanced dim text */
+  --color-border: 229 231 235; /* Softer, warmer border */
+  --gradient-hero: linear-gradient(135deg, rgb(250 248 246) 0%, rgb(245 243 239) 50%, rgb(236 234 229) 100%); /* Soft light gradient for hero */
 }
 
 /* Reset & Base Styles */
@@ -817,8 +817,10 @@ a:hover {
 .meta-tag {
   background: rgb(var(--color-primary-500) / 0.1);
   padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
+  border-radius: 0.375rem;
   color: rgb(var(--color-primary-500));
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgb(var(--color-primary-500) / 0.2);
 }
 
 .meta-divider {
@@ -1022,6 +1024,7 @@ a:hover {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-align: center;
 }
 
 .profile-location {
