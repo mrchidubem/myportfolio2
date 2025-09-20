@@ -8,6 +8,7 @@
  * FIXED: G. Proper event delegation for dynamic content
  * FIXED: C. Added force trigger for hero stats animation on mobile to prevent 0 display
  * FIXED: H. Enhanced error handling and listener cleanup to prevent console errors
+ * FIXED: Mobile Theme Toggle - Added menu-state check for reliable dropdown toggling
  */
 
 class PortfolioApp {
@@ -138,6 +139,7 @@ class PortfolioApp {
   }
 
   // FIXED: F/G/H. Bulletproof theme system with single listener for multiple toggles
+  // FIXED: Mobile Theme Toggle - Added menu-state check for dropdown reliability
   initThemeSystem() {
     try {
       // FIXED: F. Changed to querySelectorAll for desktop and potential mobile toggles
@@ -160,6 +162,11 @@ class PortfolioApp {
           toggle._themeHandler = (e) => {
             e.preventDefault();
             e.stopPropagation();
+            
+            // FIXED: Mobile Theme Toggle - Check if in mobile menu and ensure it's open
+            if (toggle.closest('.nav-mobile') && !this.isMobileMenuOpen) {
+              return; // Prevent toggle if menu not open
+            }
             
             const currentTheme = html.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';

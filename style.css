@@ -524,6 +524,17 @@ a:hover {
   color: rgb(var(--color-primary-500));
 }
 
+/* FIXED: Mobile Theme Toggle - Smooth icon transition in dropdown */
+@media (max-width: 768px) {
+  .nav-list-mobile .theme-icon {
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+  }
+  
+  .nav-list-mobile .theme-btn:hover .theme-icon {
+    transform: scale(1.1);
+  }
+}
+
 /* FIXED: A. Simplified and reliable burger animation */
 .header-inner:has(#nav-toggle:checked) .nav-burger .burger-line:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
@@ -2669,12 +2680,49 @@ textarea {
     text-align: center;
   }
   
+  /* FIXED: Mobile Highlights - Enhanced mature look on mobile only */
+  .highlight-item {
+    background: rgba(var(--color-surface), 0.6);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    gap: 0.75rem;
+    transition: var(--transition-normal);
+  }
+  
+  .highlight-item:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .highlight-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
   .skills-mosaic {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* FIXED: Auto-fit for better wrapping with 8 items */
+    gap: 0.375rem; /* FIXED: Tighter gap for density */
     /* FIXED: D. Center items */
     justify-items: center;
     text-align: center;
+  }
+  
+  .skill-item {
+    padding: 0.5rem; /* FIXED: Slightly more padding for touch */
+  }
+  
+  .skill-item i {
+    font-size: 1.5rem; /* FIXED: Larger icons on mobile for appeal */
+  }
+  
+  .skill-item span {
+    font-size: var(--text-xs); /* FIXED: Larger text for readability */
+  }
+  
+  .skill-item:hover {
+    transform: scale(1.05); /* FIXED: Subtle scale for maturity */
   }
   
   .timeline-line {
