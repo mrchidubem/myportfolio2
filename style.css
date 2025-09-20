@@ -2554,7 +2554,7 @@ textarea {
     gap: var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    padding-top: calc(3.5rem + var(--space-sm)); /* UPDATED: Reduced from var(--space-md) to var(--space-sm) for tighter spacing between nav and profile card */
+    padding-top: calc(3.5rem + var(--space-md));
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -2656,15 +2656,10 @@ textarea {
     background: rgb(var(--color-surface));
     padding: var(--space-md);
     text-align: center;
-    max-width: calc(100% - 0.5rem); /* UPDATED: ~97% width with tiny side margins for near-full stretch */
-    width: calc(97% - 0.5rem); /* UPDATED: Explicit 97% for balance */
-    margin: 0 auto; /* UPDATED: Center with auto margins */
-    border-radius: 0.25rem; /* UPDATED: Tiny round edge */
-    box-shadow: var(--shadow-sm); /* UPDATED: Subtle shadow */
+    max-width: 320px;
     width: calc(100% - 0.5rem);
     margin: 0 0.25rem;
-    border-radius: 0.25rem; /* UPDATED: Tiny border radius for neat look */
-    box-shadow: var(--shadow-sm); /* UPDATED: Subtle shadow */
+    border-radius: 0;
   }
   
   .profile-image-wrapper {
@@ -3023,7 +3018,7 @@ textarea {
   }
   
   .hero-inner {
-    padding-top: calc(3.5rem + var(--space-xs)); /* UPDATED: Even tighter (var(--space-xs)) for very small screens to minimize nav-to-card gap */
+    padding-top: calc(3.5rem + var(--space-sm));
     gap: var(--space-lg);
     /* FIXED: D. Center alignment */
     text-align: center;
@@ -3056,10 +3051,6 @@ textarea {
     text-align: center;
     /* Mobile-specific: Stretch card to near full width with small side margins (inherits from 768px query, but adjusts max-width if needed) */
     max-width: none;
-    width: calc(97% - 0.25rem); /* UPDATED: Slightly tighter for extra-small screens */
-    margin: 0 auto; /* UPDATED: Ensure centering */
-    border-radius: 0.25rem; /* UPDATED: Consistent tiny radius */
-    box-shadow: var(--shadow-sm); /* UPDATED: Consistent subtle shadow */
   }
   
   .container {
