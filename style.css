@@ -104,15 +104,16 @@
   --color-border: 71 85 105;
 }
 
-/* Light Theme Base */
+/* Light Theme Base - Updated for slightly reduced brightness (softer off-white) */
 [data-theme="light"] {
-  --color-background: 255 255 255;
-  --color-surface: 248 250 252;
-  --color-surface-2: 241 245 249;
-  --color-text: 17 24 39;
-  --color-text-muted: 107 114 128;
-  --color-text-dim: 156 163 175;
-  --color-border: 229 231 235;
+  --color-background: 248 250 252; /* Slightly softer off-white for reduced brightness */
+  --color-surface: 241 245 249; /* Warmer light gray surface */
+  --color-surface-2: 229 231 235; /* Subtle mid-gray for depth */
+  --color-text: 17 24 39; /* Retained for contrast */
+  --color-text-muted: 100 116 139; /* Slightly warmer muted text */
+  --color-text-dim: 148 163 184; /* Balanced dim text */
+  --color-border: 228 228 231; /* Softer, warmer border */
+  --gradient-hero: linear-gradient(135deg, rgb(248 250 252) 0%, rgb(241 245 249) 50%, rgb(229 231 235) 100%); /* Soft light gradient for hero */
 }
 
 /* Reset & Base Styles */
@@ -491,9 +492,36 @@ a:hover {
 }
 
 /* FIXED: B. Theme toggle in mobile menu - Enhanced visibility and positioning */
-/* FIXED: F. Removed nav-theme-item since theme toggle now handled by desktop button; preserved spacing by removing li */
-.nav-list-mobile {
-  /* No change needed; gap preserved */
+.nav-list-mobile .nav-theme-item {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 20rem;
+  padding: var(--space-mobile-nav-item) var(--space-xl);
+  margin: 0;
+  border-radius: var(--border-radius-lg);
+  background: rgb(var(--color-surface));
+  border: 1px solid rgb(var(--color-border) / 0.2);
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none;
+  min-height: 48px;
+}
+
+.nav-list-mobile .nav-theme-item .theme-btn {
+  width: auto;
+  height: auto;
+  border: none;
+  background: transparent;
+  color: rgb(var(--color-text-dim));
+  padding: 0;
+  min-height: auto;
+}
+
+.nav-list-mobile .nav-theme-item .theme-btn:hover,
+.nav-list-mobile .nav-theme-item .theme-btn:focus {
+  background: rgb(var(--color-primary-500) / 0.1);
+  color: rgb(var(--color-primary-500));
 }
 
 /* FIXED: A. Simplified and reliable burger animation */
@@ -2709,12 +2737,14 @@ textarea {
   .footer-links {
     /* FIXED: E. Center links on mobile with explicit override */
     text-align: center !important;
+    justify-content: center !important;
   }
   
   .footer-list {
     align-items: center;
     /* FIXED: E. Explicit center for list items */
     text-align: center !important;
+    justify-content: center !important;
   }
   
   .footer-list li {
@@ -2726,7 +2756,7 @@ textarea {
   .footer-link {
     /* FIXED: E. Center link text with explicit mobile rule */
     text-align: center !important;
-    justify-content: center;
+    justify-content: center !important;
   }
   
   .newsletter-description {
@@ -2975,6 +3005,11 @@ textarea {
   .footer-links {
     /* FIXED: E. Ensure centering */
     text-align: center !important;
+    justify-content: center !important;
+  }
+  
+  .footer-list {
+    justify-content: center !important;
   }
 }
 
