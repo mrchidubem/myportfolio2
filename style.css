@@ -2657,8 +2657,8 @@ textarea {
     padding: var(--space-md);
     text-align: center;
     max-width: 320px;
-    width: calc(100% - 1rem);
-    margin: 0 0.5rem;
+    width: calc(100% - 0.5rem);
+    margin: 0 0.25rem;
     border-radius: 0;
   }
   
