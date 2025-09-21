@@ -2659,9 +2659,10 @@ textarea {
     background: rgb(var(--color-surface));
     padding: var(--space-md);
     text-align: center;
-    width: calc(100% + 2 * var(--space-md));
+    margin-left: calc(-50vw + 50%);
+    width: 100vw;
     max-width: none;
-    margin: 0 -1 * var(--space-md) 0;
+    margin: 0 auto 0;
     border-radius: 0.25rem;
     box-shadow: var(--shadow-sm);
   }
@@ -3055,9 +3056,10 @@ textarea {
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
-    width: calc(100% + 2 * var(--space-md));
+    margin-left: calc(-50vw + 50%);
+    width: 100vw;
     max-width: none;
-    margin: 0 -1 * var(--space-md) 0;
+    margin: 0 auto 0;
     border-radius: 0.25rem;
     box-shadow: var(--shadow-sm);
   }
