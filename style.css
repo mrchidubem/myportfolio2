@@ -2543,8 +2543,8 @@ textarea {
 /* FIXED: C/D. Hero Mobile Responsiveness - Perfect alignment and stats targeting */
 @media (max-width: 768px) {
   .hero {
-    padding: 0 0 var(--space-2xl);
-    min-height: calc(100vh - var(--header-height));
+    padding: var(--space-3xl) 0 var(--space-2xl);
+    min-height: calc(100vh - 3.5rem);
     /* FIXED: D. Center alignment for mobile hero content */
     text-align: center;
   }
@@ -2554,7 +2554,7 @@ textarea {
     gap: var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    padding-top: var(--header-height);
+    padding-top: calc(var(--header-height) + 0px); /* FIXED: Flush against nav - no extra space */
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -2585,7 +2585,6 @@ textarea {
     font-size: var(--text-3xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    margin-top: 0;
   }
   
   .hero-subtitle {
@@ -2594,8 +2593,7 @@ textarea {
     padding: 0 var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
-    margin: 0 auto var(--space-lg) auto; /* FIXED: D. Center the text */
-    margin-top: 0;
+    margin: 0 auto; /* FIXED: D. Center the text */
   }
   
   /* FIXED: C. Hero stats - Center alignment with proper targeting */
@@ -2658,20 +2656,19 @@ textarea {
     background: rgb(var(--color-surface));
     padding: var(--space-md);
     text-align: center;
-    position: relative;
-    left: 50%;
-    margin-left: -50vw;
-    width: 100vw;
-    max-width: none;
-    margin: 0 auto 0;
-    border-radius: 0.25rem;
-    box-shadow: var(--shadow-sm);
+    width: 100%; /* FIXED: Full width for stretch */
+    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    max-width: none; /* FIXED: Remove max-width constraint for full stretch */
+    margin: 0 auto 0; /* FIXED: No bottom margin for flush fit to content; top auto for centering */
+    border-radius: 0.25rem; /* FIXED: Tiny round edge */
+    box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
   
   .profile-image-wrapper {
     width: 160px;
     height: 160px;
-    margin: 0 auto 0;
+    margin: 0 auto 0; /* FIXED: No bottom margin for balance; top auto for centering */
     border-radius: 50%;
   }
   
@@ -2713,7 +2710,6 @@ textarea {
   .about-body {
     /* FIXED: D. Center alignment on mobile */
     text-align: center;
-    margin-top: 0;
   }
   
   /* FIXED: Mobile Centering - About highlights center on mobile only */
@@ -3020,13 +3016,13 @@ textarea {
 
 @media (max-width: 480px) {
   .hero {
-    padding: 0 0 var(--space-xl);
+    padding: var(--space-2xl) 0 var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
   }
   
   .hero-inner {
-    padding-top: var(--header-height);
+    padding-top: calc(var(--header-height) + 0px); /* FIXED: Flush against nav - no extra space */
     gap: var(--space-lg);
     /* FIXED: D. Center alignment */
     text-align: center;
@@ -3057,14 +3053,13 @@ textarea {
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
-    position: relative;
-    left: 50%;
-    margin-left: -50vw;
-    width: 100vw;
-    max-width: none;
-    margin: 0 auto 0;
-    border-radius: 0.25rem;
-    box-shadow: var(--shadow-sm);
+    width: 100%; /* FIXED: Full width for stretch */
+    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
+    max-width: none; /* FIXED: Full stretch */
+    margin: 0 auto 0; /* FIXED: No bottom margin for flush fit to content; top auto for centering */
+    border-radius: 0.25rem; /* FIXED: Tiny radius */
+    box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
   
   .container {
