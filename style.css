@@ -10,6 +10,7 @@
    FIXED: D. Added mobile-specific text-align: center for section content
    FIXED: E. Enhanced footer mobile centering with additional selectors
    FIXED: F. Ensured theme-btn visibility on desktop with proper positioning
+   FIXED: Mobile Hero - Reduced gap between nav and profile card for tighter mobile layout
    ========================================================================== */
 
 /* CSS Custom Properties - Refined Color System */
@@ -76,6 +77,7 @@
   --container: 80rem;
   --container-gutter: 1.5rem;
   --border-radius: 0.5rem;
+  --border-radius-sm: 0.25rem; /* NEW: Subtle radius for mobile elements like profile card */
   --border-radius-lg: 1rem;
   
   /* Shadows */
@@ -2554,7 +2556,7 @@ textarea {
     gap: var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Reduced for very tiny margin between nav and profile card */
+    padding-top: calc(var(--header-height) + 0.0625rem); /* FIXED: Reduced breathing room even further—from 0.125rem (2px) to 0.0625rem (1px) for tighter fit */
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -2564,6 +2566,7 @@ textarea {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: -0.5rem; /* FIXED: Add negative top margin to pull profile card up closer to header—pulls it ~8px tighter */
   }
   
   .hero-content {
@@ -2656,13 +2659,13 @@ textarea {
     background: rgb(var(--color-surface));
     padding: var(--space-md);
     text-align: center;
-    width: 100%; /* FIXED: Full width for stretch */
-    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    max-width: none; /* FIXED: Remove max-width constraint for full stretch */
-    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
-    border-radius: 0.25rem; /* FIXED: Tiny round edge */
-    box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
+    width: 100vw; /* UPDATED: True viewport width for edge flush */
+    margin-left: 0; /* UPDATED: Explicit zero margins for no inset */
+    margin-right: 0; /* UPDATED: Explicit zero margins for no inset */
+    max-width: none; /* UPDATED: Remove max-width constraint for full stretch */
+    margin: 0 auto var(--space-sm); /* FIXED: Remove top auto-margin entirely; rely on hero-inner padding and hero-aside margin for positioning */
+    border-radius: var(--border-radius-sm); /* UPDATED: Use subtle radius variable */
+    box-shadow: var(--shadow-sm) 0 -4px 8px; /* FIXED: Subtle upward shadow to "lift" it closer visually */
   }
   
   .profile-image-wrapper {
@@ -3022,10 +3025,14 @@ textarea {
   }
   
   .hero-inner {
-    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Consistent tiny margin */
+    padding-top: calc(var(--header-height) + 0rem); /* FIXED: Zero breathing room if you want it flush */
     gap: var(--space-lg);
     /* FIXED: D. Center alignment */
     text-align: center;
+  }
+  
+  .hero-aside {
+    margin-top: -0.25rem; /* FIXED: Even tighter pull-up */
   }
   
   .title-line {
@@ -3052,13 +3059,13 @@ textarea {
     padding: var(--space-sm);
     /* FIXED: D. Center alignment */
     text-align: center;
-    width: 100%; /* FIXED: Full width for stretch */
-    margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
-    max-width: none; /* FIXED: Full stretch */
+    width: 100vw; /* UPDATED: True viewport width for edge flush (consistent with 768px) */
+    margin-left: 0; /* UPDATED: Explicit zero margins for no inset (consistent with 768px) */
+    margin-right: 0; /* UPDATED: Explicit zero margins for no inset (consistent with 768px) */
+    max-width: none; /* UPDATED: Full stretch (consistent with 768px) */
     margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
-    border-radius: 0.25rem; /* FIXED: Tiny radius */
-    box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
+    border-radius: var(--border-radius-sm); /* UPDATED: Use subtle radius variable (consistent with 768px) */
+    box-shadow: var(--shadow-sm) 0 -4px 8px; /* FIXED: Subtle shadow */
   }
   
   .container {
