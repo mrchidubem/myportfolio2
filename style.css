@@ -2554,7 +2554,7 @@ textarea {
     gap: var(--space-xl);
     /* FIXED: D. Center alignment */
     text-align: center;
-    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Reduced for very tiny margin between nav and profile card */
+    padding-top: calc(var(--header-height) + 0px); /* FIXED: Flush against nav - no extra space */
     padding-left: var(--space-md);
     padding-right: var(--space-md);
   }
@@ -2660,7 +2660,7 @@ textarea {
     margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
     margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
     max-width: none; /* FIXED: Remove max-width constraint for full stretch */
-    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
+    margin: 0 auto 0; /* FIXED: No bottom margin for flush fit to content; top auto for centering */
     border-radius: 0.25rem; /* FIXED: Tiny round edge */
     box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
@@ -2668,7 +2668,7 @@ textarea {
   .profile-image-wrapper {
     width: 160px;
     height: 160px;
-    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for tighter balance */
+    margin: 0 auto 0; /* FIXED: No bottom margin for balance; top auto for centering */
     border-radius: 50%;
   }
   
@@ -3022,7 +3022,7 @@ textarea {
   }
   
   .hero-inner {
-    padding-top: calc(var(--header-height) + var(--space-xs)); /* FIXED: Consistent tiny margin */
+    padding-top: calc(var(--header-height) + 0px); /* FIXED: Flush against nav - no extra space */
     gap: var(--space-lg);
     /* FIXED: D. Center alignment */
     text-align: center;
@@ -3046,6 +3046,7 @@ textarea {
   .profile-image-wrapper {
     width: 140px; /* UPDATED: Increased from 100px for small-screen balance */
     height: 140px; /* UPDATED: Matching square */
+    margin: 0 auto 0; /* FIXED: No bottom margin for balance; top auto for centering */
   }
   
   .profile-card {
@@ -3056,7 +3057,7 @@ textarea {
     margin-left: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
     margin-right: calc(-1 * var(--space-md)); /* FIXED: Negate side paddings for full viewport stretch */
     max-width: none; /* FIXED: Full stretch */
-    margin: 0 auto var(--space-sm); /* FIXED: Reduced bottom margin for balance; top auto for centering */
+    margin: 0 auto 0; /* FIXED: No bottom margin for flush fit to content; top auto for centering */
     border-radius: 0.25rem; /* FIXED: Tiny radius */
     box-shadow: var(--shadow-sm); /* FIXED: Subtle shadow */
   }
